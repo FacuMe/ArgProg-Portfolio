@@ -1,0 +1,72 @@
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+.expanded-toolbar {
+    justify-content: space-between;
+    background-color: #101010;
+    color: white;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.40);
+}
+
+.expanded-toolbar .mat-button {
+    font-size: 12pt;
+    color: white;
+    font-weight: bold;
+}
+
+.toolbar-links {
+  display: flex;
+  margin-right: 3%;
+}
+
+#media-icons {
+    display: flex;
+    margin-left: -10%;
+    margin-right: 25%;
+}
+
+.fa {
+  padding: 20px;
+  font-size: 30px;
+  width: 30px;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+}
+
+.fa-whatsapp {
+    padding-right: 25%;
+}
+
+.fa:hover {
+  opacity: 0.7;
+}
+
+#brand-name {
+  padding-left: 5%;
+}
+
+/* solo para barra bootstrap */
+#brand-logo {
+  max-width: 40px;
+  width: 30;
+  height: 20;
+  margin-left: 2.5%;
+  border: 3px solid #cfa329;
+  border-radius: 5px;
+}
+
+
+/* solo para barra bootstrap */
+#navbar-button-login {
+  margin-right: 15%;
+  margin-top: 14px;
+  margin-bottom: 14px;
+}
+
+/*solo para barra material */
+#brand-logoo {
+  max-width: 40px;
+  width: 30;
+  height: 20;
+  margin-left: 2.5%;
+}

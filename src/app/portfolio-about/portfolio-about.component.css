@@ -1,0 +1,32 @@
+.about {
+    height: auto;
+    margin-top: 1%;
+    border-radius: 20px;
+    border: 1px solid #ced4da;
+    background-color: white;
+}
+
+.title {
+    font-size: 28px;
+    padding-left: 2.5%;
+    margin-top: 1%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.description {
+    padding-left: 2.5%;
+    text-align: justify;
+}
+
+.edit-buttons {
+    margin-right: 2.5%;
+    margin-top: 1%;
+    display: flex;
+    font-size: 20px;
+}
+
+.fa:hover {
+    opacity: 0.7;
+    cursor: pointer;
+  }

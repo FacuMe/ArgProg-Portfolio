@@ -1,0 +1,65 @@
+.portfolio-header {
+    border-radius: 20px;
+    margin-top: 1%;
+    border: 1px solid #ced4da;
+    background-color: white;
+}
+
+.banner {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    max-height: 400px;
+    width: 100%;
+}
+
+.photo {
+    margin-top: -5%;
+    padding-left: 2.5%;
+    display: flex;
+}
+
+.profilepic {
+    height: 150px;
+    width: 150px;
+    border-radius:  50%;
+    border: 1px solid black;
+}
+
+.edit-buttons {
+    margin-top: 8%;
+    padding-left: 1%;
+    font-size: 20px;
+}
+
+.fa:hover {
+    opacity: 0.7;
+    cursor: pointer;
+  }
+
+.personal-data {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 2.5%;
+}
+
+.title {
+    font-size: 28px;
+    text-shadow: 1px 1px 2px #ced4da;
+}
+
+#joblogo {
+    width: 15%;
+    height: 15%;
+    padding-bottom: 1%;
+    padding-right: 3%;
+}
+
+/* los originales
+
+.portfolio-header {
+    background-color: green;
+    width: 100%;
+    height: 300px;
+}
+
+*/
