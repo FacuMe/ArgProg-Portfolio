@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Experience } from '../experience';
+import { EXPERIENCES } from '../mock-experience';
 
 @Component({
   selector: 'app-portfolio-sections',
@@ -8,10 +10,15 @@ import { Component, OnInit } from '@angular/core';
 export class PortfolioSectionsComponent implements OnInit {
 
   title: string = "SECTIONS";
+  experiences: Experience[] = EXPERIENCES;
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  toggleAdd(){
+
   }
 
 }

@@ -1,35 +1,15 @@
-<mat-toolbar class="expanded-toolbar">
-  <div routerLink="/">
-    <a class="navbar-brand" href="#">
-      <img id="brand-logoo" src="../assets/argprop-logo.jpg" alt="ArgProg-logo">
-      <span id="brand-name"><b>Argentina Programa</b></span>
-    </a>
-  </div>
-  <div class="toolbar-links">
-    <div id="media-icons">
-      <a href="#" class="fa fa-facebook"></a>
-      <a href="#" class="fa fa-whatsapp"></a>
-      <a href="#" class="fa fa-instagram"></a>
-    </div>
-    <button mat-button routerLink="/login">LOGIN</button>
-  </div>
-</mat-toolbar>
-
-<nav class="navbar navbar-expand navbar-dark bg-dark">
-  <div routerLink="/" class="container-fluid">
-    <a class="navbar-brand" href="#">
-      <img id="brand-logo" src="../assets/argprop-logo2.jpg" alt="ArgProg-logo" class="d-inline-block align-text-top">
-      <span id="brand-name"><b>Argentina Programa</b></span>
-    </a>
-  </div>
-  <div class="toolbar-links">
-    <div id="media-icons">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a routerLink="/" id="brand" class="navbar-brand" href="#">
+    <img id="brand-logo" width="40" height="30" class="d-inline-block align-top" src="../assets/argprop-logo2.jpg" alt="ArgProg-logo">
+    <b id="brand-name">Argentina Programa</b>
+  </a>
+  <div class="container-fluid justify-content-end">
+    <div id="socialicons" class="d-flex">
       <a href="#" class="fa fa-facebook"></a>
       <a href="#" class="fa fa-whatsapp"></a>
       <a href="#" class="fa fa-instagram"></a> 
     </div>
-    <button routerLink="/login" type="button" id="navbar-button-login" class="btn btn-warning"><b>LOGIN</b></button>
+    <button routerLink="/login" id="loginbutton" type="button" class="btn btn-outline-warning"><b>LOGIN</b></button>
   </div>
 </nav>
-
 <router-outlet></router-outlet>
