@@ -2,7 +2,7 @@
     <div class="portfolio-header">  
         <img class="img-fluid banner" src="/assets/leadbg3.jpg" alt="banner">
         <div class="photo">
-            <img class="profilepic" src="/assets/NoPicture-500x500.jpg" alt="profilepic">
+            <img class="profilepic" [src]="myPortfolio.persona.url_foto_perfil" alt="profilepic">
             <div class="edit-buttons">
                 <i class="fa fa-pencil" aria-hidden="true"></i>
             </div>
@@ -10,15 +10,16 @@
         <div class="row personal-data">
             <div class="col-xl-3 col-md-6">
                 <div>
-                    <p class="title"><b>Facundo Menéndez</b></p>
+                    <p class="title"><b>{{myPortfolio.persona.nombre}} {{myPortfolio.persona.apellido}}</b></p>
                 </div>
                 <div class="info">
-                    <p>Abogado en Poder Judicial de la Provincia de Buenos Aires</p>
-                    <p>Desarrollador Web Full-Stack Junior</p>
-                    <p>Buenos Aires (Argentina)</p>
+                    <p>{{myPortfolio.persona.descripcion_1}}</p>
+                    <p>{{myPortfolio.persona.descripcion_2}}</p>
+                    <p>{{myPortfolio.persona.fecha_de_nacimiento}}, {{myPortfolio.persona.domicilio}}</p>
+                    <p>{{myPortfolio.persona.correo}}</p>
                 </div>
             </div>
-            <img id="joblogo" class="img-fluid rounded float-right" src="/assets/scba-logo.png" alt="scba-logo">
+            <img id="joblogo" class="img-fluid rounded float-right" [src]="myPortfolio.persona.url_foto_logo" alt="scba-logo">
         </div>
     </div>
 </div>

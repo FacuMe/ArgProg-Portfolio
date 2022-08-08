@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { PortfolioService } from '../servicios/portfolio.service';
 
 @Component({
   selector: 'app-portfolio-header',
@@ -6,12 +7,14 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
   styleUrls: ['./portfolio-header.component.css']
 })
 export class PortfolioHeaderComponent implements OnInit {
-
-  title: string = "Facundo Menéndez";
-
-  constructor() { }
+  myPortfolio:any;
+  constructor(private datosPortfolio:PortfolioService) { }
 
   ngOnInit(): void {
+    this.datosPortfolio.obtenerDatos().subscribe(data =>{
+      console.log(data);
+      this.myPortfolio=data;
+    });
   }
 
 }

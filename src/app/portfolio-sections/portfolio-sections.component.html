@@ -1,6 +1,5 @@
 <div class="container-fluid">
-        <div class="portfolio-sections">
-            
+        <div class="portfolio-sections">  
             <div class="section">
                 <div class="title">
                     <p>Experiencia</p>
@@ -8,11 +7,13 @@
                         <i class="fa fa-plus-circle" aria-hidden="true"></i>
                     </div>
                 </div>
-                <div class="subsection">
+                <div *ngFor="let experiencia of myExperience" class="subsection">
                     <div class="col-6">
-                        <p>
-                            dale gato
-                        </p>
+                        <p>{{experiencia.puesto}}</p>
+                        <p>{{experiencia.empleador}}</p>
+                        <p>{{experiencia.fecha_ingreso}} - {{experiencia.fecha_salida}}</p>
+                        <p>{{experiencia.tipo_empleo}}</p>
+                        <p>{{experiencia.descripcion}}</p>
                     </div>
                     <div class="edit-buttons">
                         <i class="fa fa-pencil edit-icon" aria-hidden="true"></i>
@@ -30,11 +31,12 @@
                         <i class="fa fa-plus-circle" aria-hidden="true"></i>
                     </div>
                 </div>
-                <div class="subsection">
+                <div *ngFor="let educacion of myEducation" class="subsection">
                     <div class="col-6">
-                        <p>
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iste dicta omnis sunt molestiae ipsam architecto, sapiente, inventore soluta culpa id enim, beatae fuga corporis itaque alias dolorem perspiciatis cum vero.
-                        </p>
+                        <p>{{educacion.institucion}}</p>
+                        <p>{{educacion.nombre}}</p>
+                        <p>{{educacion.fecha_inicio}} - {{educacion.fecha_finalizacion}}</p>
+                        <p>{{educacion.descripcion}}</p>
                     </div>
                     <div class="edit-buttons">
                         <i class="fa fa-pencil edit-icon" aria-hidden="true"></i>
@@ -47,68 +49,31 @@
 
             <div class="section">
                 <div class="title">
-                    <p>Skills</p>
+                    <p>Habilidades</p>
                     <div class="edit-buttons">
                         <i class="fa fa-plus-circle" aria-hidden="true"></i>
                     </div>
                 </div>
                 <div class="subsection">
-
                     <div class="row container d-flex justify-content-center">
                         <div class="col-xl-12">
                             <div class="card proj-progress-card">
                                 <div class="card-block">
                                     <div class="row">
-                                        <div class="col-xl-3 col-md-6">
+                                        <div *ngFor="let habilidad of mySkill" class="col-xl-3 col-md-6">
                                             <div class="d-flex justify-content-between">
-                                                <h6>HTML</h6>
+                                                <h6>{{habilidad.nombre}}</h6>
                                                 <div class="edit-buttons">
                                                     <i class="fa fa-pencil edit-icon" aria-hidden="true"></i>
                                                     <i class="fa fa-trash delete-icon" aria-hidden="true"></i>
                                                 </div>
                                             </div>
-                                            <h5 class="m-b-30 f-w-700">25%</h5>
+                                            <h5 class="m-b-30 f-w-700">{{habilidad.porcentaje}}%</h5>
                                             <div class="progress">
-                                                <div class="progress-bar bg-c-red" style="width:25%"></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-3 col-md-6">
-                                            <div class="d-flex justify-content-between">
-                                                <h6>CSS</h6>
-                                                <div class="edit-buttons">
-                                                    <i class="fa fa-pencil edit-icon" aria-hidden="true"></i>
-                                                    <i class="fa fa-trash delete-icon" aria-hidden="true"></i>
+                                                <div class="progress-bar" [ngStyle]="{
+                                                    'width': (habilidad.porcentaje + '%'), 
+                                                    'background': habilidad.color}">
                                                 </div>
-                                            </div>
-                                            <h5 class="m-b-30 f-w-700">65%</h5>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-c-blue" style="width:65%"></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-3 col-md-6">
-                                            <div class="d-flex justify-content-between">
-                                                <h6>JAVASCRIPT</h6>
-                                                <div class="edit-buttons">
-                                                    <i class="fa fa-pencil edit-icon" aria-hidden="true"></i>
-                                                    <i class="fa fa-trash delete-icon" aria-hidden="true"></i>
-                                                </div>
-                                            </div>
-                                            <h5 class="m-b-30 f-w-700">85%</h5>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-c-green" style="width:85%"></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-3 col-md-6">
-                                            <div class="d-flex justify-content-between">
-                                                <h6>ANGULAR</h6>
-                                                <div class="edit-buttons">
-                                                    <i class="fa fa-pencil edit-icon" aria-hidden="true"></i>
-                                                    <i class="fa fa-trash delete-icon" aria-hidden="true"></i>
-                                                </div>
-                                            </div>
-                                            <h5 class="m-b-30 f-w-700">45%</h5>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-c-yellow" style="width:45%"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -116,7 +81,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
 
@@ -129,11 +93,12 @@
                         <i class="fa fa-plus-circle" aria-hidden="true"></i>
                     </div>
                 </div>
-                <div class="subsection">
+                <div *ngFor="let proyecto of myProject" class="subsection">
                     <div class="col-6">
-                        <p>
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iste dicta omnis sunt molestiae ipsam architecto, sapiente, inventore soluta culpa id enim, beatae fuga corporis itaque alias dolorem perspiciatis cum vero.
-                        </p>
+                        <p>{{proyecto.nombre}}</p>
+                        <p>{{proyecto.entidad}}</p>
+                        <p>{{proyecto.fecha_inicio}} - {{proyecto.fecha_finalizacion}}</p>
+                        <p>{{proyecto.descripcion}}</p>
                     </div>
                     <div class="edit-buttons">
                         <i class="fa fa-pencil edit-icon" aria-hidden="true"></i>
@@ -141,6 +106,5 @@
                     </div>
                 </div>
             </div>
-
         </div>
 </div>
