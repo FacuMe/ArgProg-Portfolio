@@ -8,13 +8,18 @@ import { PortfolioService } from '../servicios/portfolio.service';
 })
 export class PortfolioHeaderComponent implements OnInit {
   myPortfolio:any;
+  showModifyHeader:boolean = false;
+
   constructor(private datosPortfolio:PortfolioService) { }
 
   ngOnInit(): void {
-    this.datosPortfolio.obtenerDatos().subscribe(data =>{
-      console.log(data);
+    this.datosPortfolio.obtenerDatos('/persona').subscribe(data =>{
       this.myPortfolio=data;
     });
+  }
+
+  onShowModifyHeader() {
+    this.showModifyHeader = !this.showModifyHeader;
   }
 
 }

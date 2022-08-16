@@ -2,24 +2,100 @@
     <div class="portfolio-header">  
         <img class="img-fluid banner" src="/assets/leadbg3.jpg" alt="banner">
         <div class="photo">
-            <img class="profilepic" [src]="myPortfolio.persona.url_foto_perfil" alt="profilepic">
+            <img id="url_foto_perfil" class="profilepic" [src]="myPortfolio.url_foto_perfil" alt="profile-pic">
             <div class="edit-buttons">
-                <i class="fa fa-pencil" aria-hidden="true"></i>
+                <i class="fa fa-pencil" aria-hidden="true" *ngIf="!showModifyHeader" (click)="onShowModifyHeader()"></i>
             </div>
         </div>
         <div class="row personal-data">
             <div class="col-xl-3 col-md-6">
                 <div>
-                    <p class="title"><b>{{myPortfolio.persona.nombre}} {{myPortfolio.persona.apellido}}</b></p>
+                    <p class="title"><b>{{myPortfolio.nombre}} {{myPortfolio.apellido}}</b></p>
                 </div>
                 <div class="info">
-                    <p>{{myPortfolio.persona.descripcion_1}}</p>
-                    <p>{{myPortfolio.persona.descripcion_2}}</p>
-                    <p>{{myPortfolio.persona.fecha_de_nacimiento}}, {{myPortfolio.persona.domicilio}}</p>
-                    <p>{{myPortfolio.persona.correo}}</p>
+                    <p>{{myPortfolio.descripcion_1}}</p>
+                    <p>{{myPortfolio.descripcion_2}}</p>
+                    <p>{{myPortfolio.fecha_de_nacimiento}}, {{myPortfolio.domicilio}}</p>
+                    <p>{{myPortfolio.correo}}</p>
                 </div>
             </div>
-            <img id="joblogo" class="img-fluid rounded float-right" [src]="myPortfolio.persona.url_foto_logo" alt="scba-logo">
+            <img id="joblogo" class="img-fluid rounded float-right" [src]="myPortfolio.url_foto_logo" alt="job-logo">
         </div>
+
+        <!--form for modifying header-->
+        <form class="row container d-flex justify-content-center form-block" *ngIf="showModifyHeader">
+            <div class="col-xl-12">
+                <div class="card proj-progress-card">
+                    <div class="card-block d-flex justify-content-between">
+                        <div class="row">
+                            <div class="form-group row">
+                                <label for="text" class="col-sm-2 col-form-label">Nombre</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre del usuario">
+                                </div>
+                            </div>
+                            <div class="form-group row form-row">
+                                <label for="text" class="col-sm-2 col-form-label">Apellido</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="apellido" id="apellido" placeholder="Apellido del usuario">
+                                </div>
+                            </div>
+                            <div class="form-group row form-row">
+                                <label for="text" class="col-sm-2 col-form-label">Descripción 1</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="descripcion1" id="descripcion1" placeholder="Descripción 1">
+                                </div>
+                            </div>
+                            <div class="form-group row form-row">
+                                <label for="text" class="col-sm-2 col-form-label">Descripción 2</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="descripcion2" id="descripcion2" placeholder="Descripción 2">
+                                </div>
+                            </div>
+                            <div class="form-group row form-row">
+                                <label for="text" class="col-sm-2 col-form-label">Fecha de nacimiento</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="nacimiento" id="nacimiento" placeholder="Fecha de nacimiento (aaaa-mm-dd)">
+                                </div>
+                            </div>
+                            <div class="form-group row form-row">
+                                <label for="text" class="col-sm-2 col-form-label">Lugar de residencia</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="residencia" id="residencia" placeholder="Lugar de residencia">
+                                </div>
+                            </div>
+                            <div class="form-group row form-row">
+                                <label for="text" class="col-sm-2 col-form-label">Correo Electrónico</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="email" id="email" placeholder="Dirección de correo electrónico">
+                                </div>
+                            </div>
+                            <div class="form-group row form-row">
+                                <label for="text" class="col-sm-2 col-form-label">URL foto de perfil</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="urlFoto" id="urlFoto" placeholder="URL de la foto de perfil">
+                                </div>
+                            </div>
+                            <div class="form-group row form-row">
+                                <label for="text" class="col-sm-2 col-form-label">URL logo</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="urlLogo" id="urlLogo" placeholder="URL del logo">
+                                </div>
+                            </div>
+                            <div class="form-row d-flex">
+                                <div class="col-sm-10">
+                                    <button type="submit" class="btn btn-warning">Modificar información</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="edit-buttons">
+                                <i class="fa fa-close" aria-hidden="true" (click)="onShowModifyHeader()"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 </div>

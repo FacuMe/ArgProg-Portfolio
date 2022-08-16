@@ -1,6 +1,15 @@
 .login-form {
     text-align: center;
     padding-top: 5%;
-    padding-right: 30%;
-    padding-left: 30%;
+    padding-right: 27%;
+    padding-left: 27%;
+}
+
+.login-element {
+    margin-top: 2%;
+}
+
+.form-element {
+    text-align: left;
+
 }

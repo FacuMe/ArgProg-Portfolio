@@ -3,7 +3,7 @@
         <div class="title">
             <h2>Perfil</h2>
             <div class="edit-buttons">
-                <i class="fa fa-pencil" aria-hidden="true"></i>
+                <i class="fa fa-pencil" aria-hidden="true" *ngIf="!showModifyProfile" (click)="onShowModifyProfile()"></i>
             </div>
         </div>
         <div class="description">
@@ -11,5 +11,35 @@
                 <p>{{myProfile}}</p>
             </div>    
         </div>
+    
+        <!--form for modifying profile-->
+        <form class="row container d-flex justify-content-center form-block" *ngIf="showModifyProfile">
+            <div class="col-xl-12">
+                <div class="card proj-progress-card">
+                    <div class="card-block d-flex justify-content-between">
+                        <div class="row d-flex justify-content-between col-sm-10">
+                            <div>
+                                <div class="form-group row form-row">
+                                    <label for="exampleFormControlTextarea1">Descripción</label>
+                                </div>
+                                <div>
+                                    <textarea class="form-control form-row" id="exampleFormControlTextarea1" rows="5"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div>
+                                    <button type="submit" class="btn btn-warning form-row">Modificar perfil</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="edit-buttons">
+                                <i class="fa fa-close" aria-hidden="true" (click)="onShowModifyProfile()"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 </div>

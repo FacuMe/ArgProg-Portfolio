@@ -51,11 +51,6 @@
     margin-bottom: 10px;
  }
  
-
- .bg-c {
-    background: black;
- }
-
  /* 
 .bg-c-red {
    background: #FF5370;
@@ -74,3 +69,11 @@
  }
  */
  
+.form-block {
+    padding-left: 2.5%;
+    margin-bottom: 1%;
+}
+
+ .form-row {
+    padding-top: 1%;
+ }
