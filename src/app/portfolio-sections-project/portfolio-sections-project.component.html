@@ -1,0 +1,154 @@
+<div class="container-fluid">
+    <div class="portfolio-sections">  
+        <div class="section">
+            <div class="title">
+                <p>Proyectos</p>
+                <div class="edit-buttons">
+                    <i class="fa fa-plus-circle" aria-hidden="true" *ngIf="!showAddProject" (click)="onShowAddProject()"></i>
+                </div>
+            </div>
+
+            <!--form for adding new project-->
+            <form class="row container d-flex justify-content-center form-block" *ngIf="showAddProject">
+                <div class="col-xl-12">
+                    <div class="card proj-progress-card">
+                        <div class="card-block d-flex justify-content-between">
+                            <div class="row">
+                                <div class="form-group row">
+                                    <label for="text" class="col-sm-2 col-form-label">Nombre</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="nombre-proyecto" id="nombre-proyecto" placeholder="Nombre del proyecto">
+                                    </div>
+                                </div>
+                                <div class="form-group row form-row">
+                                    <label for="text" class="col-sm-2 col-form-label">Entidad</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="entidad" id="entidad" placeholder="Nombre de la entidad">
+                                    </div>
+                                </div>
+                                <div class="form-group row form-row">
+                                    <label for="text" class="col-sm-2 col-form-label">Fecha de Inicio</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="fecha-inicio-proyecto" id="fecha-inicio-proyecto" placeholder="Fecha de inicio">
+                                    </div>
+                                </div>
+                                <div class="form-group row form-row">
+                                    <label for="text" class="col-sm-2 col-form-label">Fecha de Finalización</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="fecha-finalizacion-proyecto" id="fecha-finalizacion-proyecto" placeholder="Fecha de finalización">
+                                    </div>
+                                </div>
+                                <div class="form-group row form-row">
+                                    <label for="text" class="col-sm-2 col-form-label">Descripción</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="descripcion-proyecto" id="descripcion-proyecto" placeholder="Descripción">
+                                    </div>
+                                </div>
+                                <div class="form-group row form-row">
+                                <div class="col-sm-2">Proyecto actual</div>
+                                <div class="col-sm-10">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="empleo-actual" id="empleo-actual">
+                                        <label class="form-check-label" for="empleo-actual">
+                                            
+                                        </label>
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="form-row d-flex">
+                                    <div class="col-sm-10">
+                                        <button type="submit" class="btn btn-warning">Agregar proyecto</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="edit-buttons">
+                                    <i class="fa fa-close" aria-hidden="true" (click)="onShowAddProject()"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </form>
+
+            <!--list of projects-->
+            <div *ngFor="let proyecto of myProjects">
+                <div class="subsection">
+                    <div class="col-6">
+                        <p>{{proyecto.nombre}}</p>
+                        <p>{{proyecto.entidad}}</p>
+                        <p>{{proyecto.fecha_inicio}} - {{proyecto.fecha_finalizacion}}</p>
+                        <p>{{proyecto.descripcion}}</p>
+                    </div>
+                    <div class="edit-buttons">
+                        <i class="fa fa-pencil edit-icon" aria-hidden="true" *ngIf="!showModifyProject[proyecto.id]" (click)="onShowModifyProject(proyecto.id)"></i>
+                        <i class="fa fa-trash delete-icon" aria-hidden="true" (click)="onDeleteProject(proyecto)"></i>
+                    </div>
+                </div>
+
+                    <!--form for modifying new project-->
+                <form class="row container d-flex justify-content-center form-block" *ngIf="showModifyProject[proyecto.id]">
+                    <div class="col-xl-12">
+                        <div class="card proj-progress-card">
+                            <div class="card-block d-flex justify-content-between">
+                                <div class="row">
+                                    <div class="form-group row">
+                                        <label for="text" class="col-sm-2 col-form-label">Nombre</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" name="nombre-proyecto" id="nombre-proyecto" placeholder="Nombre del proyecto">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row form-row">
+                                        <label for="text" class="col-sm-2 col-form-label">Entidad</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" name="entidad" id="entidad" placeholder="Nombre de la entidad">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row form-row">
+                                        <label for="text" class="col-sm-2 col-form-label">Fecha de Inicio</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" name="fecha-inicio-proyecto" id="fecha-inicio-proyecto" placeholder="Fecha de inicio">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row form-row">
+                                        <label for="text" class="col-sm-2 col-form-label">Fecha de Finalización</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" name="fecha-finalizacion-proyecto" id="fecha-finalizacion-proyecto" placeholder="Fecha de finalización">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row form-row">
+                                        <label for="text" class="col-sm-2 col-form-label">Descripción</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" name="descripcion-proyecto" id="descripcion-proyecto" placeholder="Descripción">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row form-row">
+                                    <div class="col-sm-2">Proyecto actual</div>
+                                    <div class="col-sm-10">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="empleo-actual" id="empleo-actual">
+                                            <label class="form-check-label" for="empleo-actual">
+                                                
+                                            </label>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div class="form-row d-flex">
+                                        <div class="col-sm-10">
+                                            <button type="submit" class="btn btn-warning">Modificar proyecto</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="edit-buttons">
+                                        <i class="fa fa-close" aria-hidden="true" (click)="onShowModifyProject(proyecto.id)"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

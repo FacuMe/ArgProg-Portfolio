@@ -5,9 +5,9 @@
     "fecha_de_nacimiento": "26/09/1990",
     "domicilio": "Buenos Aires (Argentina)",
     "correo": "facufacu@gmail.com",
-    "descripcion_1": "Abogado en Poder Judicial de la Provincia de Buenos Aires",
-    "descripcion_2": "Desarrollador Web Full-Stack Junior",
-    "url_foto_perfil": "/assets/NoPicture-500x500.jpg",
+    "descripcion_1": "Desarrollador Web Full-Stack Junior",
+    "descripcion_2": "Abogado en Poder Judicial de la Provincia de Buenos Aires",
+    "url_foto_perfil": "/assets/fotoperfil.jpg",
     "url_foto_logo": "/assets/scba-logo.png",
     "perfil": "Preparado para frontar los retos y exigencias aportando soluciones ágiles y efectivas, con habilidades para la implementación e integración de las tecnologías del mercado actual, destacándome a través del buen desempeño grupal, el liderazgo y el sentido de responsabilidad."
   },

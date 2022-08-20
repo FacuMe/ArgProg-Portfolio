@@ -22,7 +22,7 @@
     height: 150px;
     width: 150px;
     border-radius:  50%;
-    border: 1px solid black;
+    border: 0.5px solid black;
 }
 
 .edit-buttons {
@@ -48,8 +48,8 @@
 }
 
 #joblogo {
-    width: 15%;
-    height: 15%;
+    width: 16%;
+    height: 16%;
     padding-bottom: 1%;
     padding-right: 3%;
 }

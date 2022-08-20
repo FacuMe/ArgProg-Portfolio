@@ -6,7 +6,10 @@ import { PortfolioComponent } from './portfolio/portfolio.component';
 import { LoginComponent } from './login/login.component';
 import { PortfolioHeaderComponent } from './portfolio-header/portfolio-header.component';
 import { PortfolioAboutComponent } from './portfolio-about/portfolio-about.component';
-import { PortfolioSectionsComponent } from './portfolio-sections/portfolio-sections.component';
+import { PortfolioSectionsExperienceComponent } from './portfolio-sections-experience/portfolio-sections-experience.component';
+import { PortfolioSectionsEducationComponent } from './portfolio-sections-education/portfolio-sections-education.component';
+import { PortfolioSectionsProjectComponent } from './portfolio-sections-project/portfolio-sections-project.component';
+import { PortfolioSectionsSkillComponent } from './portfolio-sections-skill/portfolio-sections-skill.component';
 import { PortfolioService } from './servicios/portfolio.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -18,7 +21,10 @@ import { FormsModule } from '@angular/forms';
     LoginComponent,
     PortfolioHeaderComponent,
     PortfolioAboutComponent,
-    PortfolioSectionsComponent
+    PortfolioSectionsExperienceComponent,
+    PortfolioSectionsEducationComponent,
+    PortfolioSectionsProjectComponent,
+    PortfolioSectionsSkillComponent
   ],
   imports: [
     BrowserModule,

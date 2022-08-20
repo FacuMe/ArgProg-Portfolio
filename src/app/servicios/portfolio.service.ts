@@ -26,6 +26,16 @@ export class PortfolioService {
     return this.http.delete<any>(this.apiUrl + '/experiencia_laboral/' + item.id);
   }
 
+  addExperience(item:any):Observable<any>{
+    console.log(item);
+    return this.http.post<any>(this.apiUrl + '/experiencia_laboral/', item, httpOptions)
+  }
+
+  updateExperience(item:any, modifValues:any):Observable<any>{
+    console.log(item, modifValues);
+    return this.http.put<any>(this.apiUrl + '/experiencia_laboral/' + item.id, modifValues, httpOptions);
+  }
+
   deleteItemEducation(item:any):Observable<any>{
     return this.http.delete<any>(this.apiUrl + '/education/' + item.id);
   }
@@ -36,16 +46,6 @@ export class PortfolioService {
 
   deleteItemProject(item:any):Observable<any>{
     return this.http.delete<any>(this.apiUrl + '/project/' + item.id);
-  }
-
-  addExperience(item:any):Observable<any>{
-    console.log(item);
-    return this.http.post<any>(this.apiUrl + '/experiencia_laboral/', item, httpOptions)
-  }
-
-  updateExperience(item:any, modifValues:any):Observable<any>{
-    console.log(item, modifValues);
-    return this.http.put<any>(this.apiUrl + '/experiencia_laboral/' + item.id, modifValues, httpOptions);
   }
 
 }
