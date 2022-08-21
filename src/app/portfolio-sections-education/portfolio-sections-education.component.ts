@@ -12,31 +12,25 @@ export class PortfolioSectionsEducationComponent implements OnInit {
   showAddEducation:boolean = false;
   showModifyEducation:boolean[] = [];
 
+  institucion:string = "";
+  nombre:string = "";
+  fechaInicio:string = "";
+  fechaFinalizacion:string = "";
+  descripcion:string = "";
+  estudioActual:boolean = false;
+
   constructor(private datosPortfolio:PortfolioService) { }
 
   ngOnInit(): void {
 
-    this.datosPortfolio.obtenerDatos('/educacion/').subscribe(data =>{
+    this.datosPortfolio.readEducation().subscribe(data =>{
       this.myEducations=data;
+
+      for (let item of this.myEducations) {
+        this.showModifyEducation[item.id] = false;
+      }
     });
 
-    for (let item of this.myEducations) {
-      this.showModifyEducation[item.id] = false;
-    }
-
-  }
-
-  onDeleteEducation(item: any) {
-    console.log(item);
-    this.datosPortfolio.deleteItemEducation(item).subscribe(
-      () => {
-        this.myEducations = this.myEducations.filter( 
-          (t:any) => {
-            return t.id !== item.id;
-          }
-        );
-      }
-    );
   }
 
   onShowAddEducation(){
@@ -47,4 +41,72 @@ export class PortfolioSectionsEducationComponent implements OnInit {
     this.showModifyEducation[item] = !this.showModifyEducation[item];
   }
 
+
+  onSubmitAddEducation(){
+    if(this.institucion.length === 0 || 
+      this.nombre.length === 0 || 
+      this.fechaInicio.length === 0 || 
+      this.fechaFinalizacion.length === 0 ||  
+      this.descripcion.length === 0) {
+      alert("Por favor completa todos los campos del estudio");
+      return;
+    }
+    if(this.institucion.length > 255 || 
+      this.nombre.length > 255 || 
+      this.fechaInicio.length > 255 || 
+      this.fechaFinalizacion.length > 255 || 
+      this.descripcion.length > 255 ) {
+      alert("Máximo 255 caracteres");
+      return;
+    }
+    const { institucion, nombre,  fechaInicio, fechaFinalizacion, descripcion, estudioActual } = this;
+    const addValues:any= { institucion, nombre,  fechaInicio, fechaFinalizacion, descripcion, estudioActual };
+    this.datosPortfolio.createEducation(addValues).subscribe(
+      () => {
+        this.myEducations.push(addValues);
+        this.datosPortfolio.readEducation().subscribe(data =>{
+          this.myEducations=data;
+        });
+      },
+    );
+  }
+
+  onSubmitModifyEducation(item:any){
+    if(this.institucion.length === 0 || 
+      this.nombre.length === 0 || 
+      this.fechaInicio.length === 0 || 
+      this.fechaFinalizacion.length === 0 ||  
+      this.descripcion.length === 0) {
+      alert("Por favor completa todos los campos del estudio");
+      return;
+    }
+    if(this.institucion.length > 255 || 
+      this.nombre.length > 255 || 
+      this.fechaInicio.length > 255 || 
+      this.fechaFinalizacion.length > 255 || 
+      this.descripcion.length > 255 ) {
+      alert("Máximo 255 caracteres");
+      return;
+    }
+    const { institucion, nombre,  fechaInicio, fechaFinalizacion, descripcion, estudioActual } = this;
+    const modifValues:any= { institucion, nombre,  fechaInicio, fechaFinalizacion, descripcion, estudioActual };
+    this.datosPortfolio.updateEducation(item, modifValues).subscribe((response) => {
+      this.datosPortfolio.readEducation().subscribe(data =>{
+        this.myEducations=data;
+      });
+    });
+  }
+
+  onDeleteEducation(item: any) {
+    console.log(item);
+    this.datosPortfolio.deleteEducation(item).subscribe(
+      () => {
+        this.myEducations = this.myEducations.filter( 
+          (t:any) => {
+            return t.id !== item.id;
+          }
+        );
+      }
+    );
+  }
 }

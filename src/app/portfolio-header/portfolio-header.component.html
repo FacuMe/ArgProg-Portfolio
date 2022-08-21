@@ -2,28 +2,28 @@
     <div class="portfolio-header">  
         <img class="img-fluid banner" src="/assets/leadbg3.jpg" alt="banner">
         <div class="photo">
-            <img id="url_foto_perfil" class="profilepic img-fluid" [src]="myPortfolio.url_foto_perfil" alt="profile-pic">
+            <img id="url_foto_perfil" class="profilepic img-fluid" [src]="myPortfolio.urlFotoPerfil" alt="profile-pic" *ngIf="load">
             <div class="edit-buttons">
-                <i class="fa fa-pencil" aria-hidden="true" *ngIf="!showModifyHeader" (click)="onShowModifyHeader()"></i>
+                <i class="fa fa-pencil" aria-hidden="true" *ngIf="!showModifyUser" (click)="onShowModifyUser()"></i>
             </div>
         </div>
-        <div class="row personal-data">
+        <div class="row personal-data" *ngIf="load">
             <div class="col-xl-3 col-md-6">
                 <div>
                     <p class="title"><b>{{myPortfolio.nombre}} {{myPortfolio.apellido}}</b></p>
                 </div>
                 <div class="info">
-                    <p>{{myPortfolio.descripcion_1}}</p>
-                    <p>{{myPortfolio.descripcion_2}}</p>
-                    <p>{{myPortfolio.fecha_de_nacimiento}}, {{myPortfolio.domicilio}}</p>
-                    <p>{{myPortfolio.correo}}</p>
+                    <p>{{myPortfolio.descripcion1}}</p>
+                    <p>{{myPortfolio.descripcion2}}</p>
+                    <p>{{myPortfolio.fechaNacimiento}}, {{myPortfolio.domicilio}}</p>
+                    <p>{{myPortfolio.correoElectronico}}</p>
                 </div>
             </div>
-            <img id="joblogo" [src]="myPortfolio.url_foto_logo" alt="job-logo">
+            <img id="joblogo" [src]="myPortfolio.urlFotoLogo" alt="job-logo">
         </div>
 
         <!--form for modifying header-->
-        <form class="row container d-flex justify-content-center form-block" *ngIf="showModifyHeader">
+        <form class="row container d-flex justify-content-center form-block" *ngIf="showModifyUser" (ngSubmit)="onSubmitModifyUser(myPortfolio)">
             <div class="col-xl-12">
                 <div class="card proj-progress-card">
                     <div class="card-block d-flex justify-content-between">
@@ -31,55 +31,55 @@
                             <div class="form-group row">
                                 <label for="text" class="col-sm-2 col-form-label">Nombre</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre del usuario">
+                                    <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre del usuario" [(ngModel)]="nombre">
                                 </div>
                             </div>
                             <div class="form-group row form-row">
                                 <label for="text" class="col-sm-2 col-form-label">Apellido</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="apellido" id="apellido" placeholder="Apellido del usuario">
+                                    <input type="text" class="form-control" name="apellido" id="apellido" placeholder="Apellido del usuario" [(ngModel)]="apellido">
                                 </div>
                             </div>
                             <div class="form-group row form-row">
                                 <label for="text" class="col-sm-2 col-form-label">Descripción 1</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="descripcion1" id="descripcion1" placeholder="Descripción 1">
+                                    <input type="text" class="form-control" name="descripcion1" id="descripcion1" placeholder="Descripción 1" [(ngModel)]="descripcion1">
                                 </div>
                             </div>
                             <div class="form-group row form-row">
                                 <label for="text" class="col-sm-2 col-form-label">Descripción 2</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="descripcion2" id="descripcion2" placeholder="Descripción 2">
+                                    <input type="text" class="form-control" name="descripcion2" id="descripcion2" placeholder="Descripción 2" [(ngModel)]="descripcion2">
                                 </div>
                             </div>
                             <div class="form-group row form-row">
                                 <label for="text" class="col-sm-2 col-form-label">Fecha de nacimiento</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="nacimiento" id="nacimiento" placeholder="Fecha de nacimiento (aaaa-mm-dd)">
+                                    <input type="text" class="form-control" name="nacimiento" id="nacimiento" placeholder="Fecha de nacimiento (dd-mm-aaaa)" [(ngModel)]="fechaNacimiento">
                                 </div>
                             </div>
                             <div class="form-group row form-row">
                                 <label for="text" class="col-sm-2 col-form-label">Lugar de residencia</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="residencia" id="residencia" placeholder="Lugar de residencia">
+                                    <input type="text" class="form-control" name="residencia" id="residencia" placeholder="Lugar de residencia" [(ngModel)]="domicilio">
                                 </div>
                             </div>
                             <div class="form-group row form-row">
                                 <label for="text" class="col-sm-2 col-form-label">Correo Electrónico</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="email" id="email" placeholder="Dirección de correo electrónico">
+                                    <input type="text" class="form-control" name="email" id="email" placeholder="Dirección de correo electrónico" [(ngModel)]="correoElectronico">
                                 </div>
                             </div>
                             <div class="form-group row form-row">
                                 <label for="text" class="col-sm-2 col-form-label">URL foto de perfil</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="urlFoto" id="urlFoto" placeholder="URL de la foto de perfil">
+                                    <input type="text" class="form-control" name="urlFoto" id="urlFoto" placeholder="URL de la foto de perfil" [(ngModel)]="urlFotoPerfil">
                                 </div>
                             </div>
                             <div class="form-group row form-row">
                                 <label for="text" class="col-sm-2 col-form-label">URL logo</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="urlLogo" id="urlLogo" placeholder="URL del logo">
+                                    <input type="text" class="form-control" name="urlLogo" id="urlLogo" placeholder="URL del logo" [(ngModel)]="urlFotoLogo">
                                 </div>
                             </div>
                             <div class="form-row d-flex">
@@ -90,7 +90,7 @@
                         </div>
                         <div class="row">
                             <div class="edit-buttons">
-                                <i class="fa fa-close" aria-hidden="true" (click)="onShowModifyHeader()"></i>
+                                <i class="fa fa-close" aria-hidden="true" (click)="onShowModifyUser()"></i>
                             </div>
                         </div>
                     </div>

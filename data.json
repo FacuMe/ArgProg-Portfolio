@@ -2,26 +2,18 @@
   "persona": {
     "nombre": "Facundo",
     "apellido": "Menéndez",
-    "fecha_de_nacimiento": "26/09/1990",
+    "descripcion1": "Desarrollador Web Full-Stack Junior",
+    "descripcion2": "Abogado en Poder Judicial de la Provincia de Buenos Aires",
+    "fechaNacimiento": "26/09/1990",
     "domicilio": "Buenos Aires (Argentina)",
-    "correo": "facufacu@gmail.com",
-    "descripcion_1": "Desarrollador Web Full-Stack Junior",
-    "descripcion_2": "Abogado en Poder Judicial de la Provincia de Buenos Aires",
-    "url_foto_perfil": "/assets/fotoperfil.jpg",
-    "url_foto_logo": "/assets/scba-logo.png",
-    "perfil": "Preparado para frontar los retos y exigencias aportando soluciones ágiles y efectivas, con habilidades para la implementación e integración de las tecnologías del mercado actual, destacándome a través del buen desempeño grupal, el liderazgo y el sentido de responsabilidad."
+    "urlFotoPerfil": "/assets/fotoperfil.jpg",
+    "urlFotoLogo": "/assets/scba-logo.png",
+    "correoElectronico": "facufacu@gmail.com"
+  },
+  "perfil": {
+    "descripcion": "Preparado para frontar los retos y exigencias aportando soluciones ágiles y efectivas, con habilidades para la implementación e integración de las tecnologías del mercado actual, destacándome a través del buen desempeño grupal, el liderazgo y el sentido de responsabilidad."
   },
   "experiencia_laboral": [
-    {
-      "puesto": "puesto 1",
-      "empleador": "empleador 1",
-      "fechaIngreso": "fecha de ingreso 1",
-      "fechaSalida": "fecha de salida 1",
-      "tipoEmpleo": "tipo de empleo 1",
-      "descripcionEmpleo": "descripcion 1",
-      "empleoActual": false,
-      "id": 2
-    },
     {
       "puesto": "puesto 2",
       "empleador": "empleador 2",
@@ -45,30 +37,21 @@
   ],
   "educacion": [
     {
-      "id": 1,
-      "institucion": "institucion 1",
-      "nombre": "nombre 1",
-      "esEstudioActual": false,
-      "fecha_inicio": "fecha inicio 1",
-      "fecha_finalizacion": "fecha finalizacion 1",
-      "descripcion": "descripcion 1"
-    },
-    {
       "id": 2,
       "institucion": "institucion 2",
       "nombre": "nombre 2",
-      "esEstudioActual": false,
-      "fecha_inicio": "fecha inicio 2",
-      "fecha_finalizacion": "fecha finalizacion 2",
+      "estudioActual": false,
+      "fechaInicio": "fecha inicio 2",
+      "fechaFinalizacion": "fecha finalizacion 2",
       "descripcion": "descripcion 2"
     },
     {
       "id": 3,
       "institucion": "institucion 3",
       "nombre": "nombre 3",
-      "esEstudioActual": false,
-      "fecha_inicio": "fecha inicio 3",
-      "fecha_finalizacion": "fecha finalizacion 3",
+      "estudioActual": false,
+      "fechaInicio": "fecha inicio 3",
+      "fechaFinalizacion": "fecha finalizacion 3",
       "descripcion": "descripcion 3"
     }
   ],
@@ -77,27 +60,27 @@
       "id": 1,
       "nombre": "nombre 1",
       "entidad": "entidad 1",
-      "esProyectoActual": false,
-      "fecha_inicio": "fecha inicio 1",
-      "fecha_finalizacion": "fecha finalizacion 1",
+      "proyectoActual": false,
+      "fechaInicio": "fecha inicio 1",
+      "fechaFinalizacion": "fecha finalizacion 1",
       "descripcion": "descripcion 1"
     },
     {
       "id": 2,
       "nombre": "nombre 2",
       "entidad": "entidad 2",
-      "esProyectoActual": false,
-      "fecha_inicio": "fecha inicio 2",
-      "fecha_finalizacion": "fecha finalizacion 2",
+      "proyectoActual": false,
+      "fechaInicio": "fecha inicio 2",
+      "fechaFinalizacion": "fecha finalizacion 2",
       "descripcion": "descripcion 2"
     },
     {
       "id": 3,
       "nombre": "nombre 3",
       "entidad": "entidad 3",
-      "esProyectoActual": false,
-      "fecha_inicio": "fecha inicio 3",
-      "fecha_finalizacion": "fecha finalizacion 3",
+      "proyectoActual": false,
+      "fechaInicio": "fecha inicio 3",
+      "fechaFinalizacion": "fecha finalizacion 3",
       "descripcion": "descripcion 3"
     }
   ],
@@ -106,25 +89,33 @@
       "id": 1,
       "nombre": "HTML",
       "porcentaje": "25",
-      "color": "red"
+      "color": "Rojo"
     },
     {
       "id": 2,
       "nombre": "CSS",
       "porcentaje": "35",
-      "color": "green"
+      "color": "Azul"
     },
     {
       "id": 3,
       "nombre": "Javascript",
       "porcentaje": "85",
-      "color": "blue"
+      "color": "Verde"
     },
     {
       "id": 4,
       "nombre": "Angular",
       "porcentaje": "40",
-      "color": "pink"
+      "color": "Amarillo"
+    },
+    {
+      "nombre": "MySQL",
+      "porcentaje": "65",
+      "color": [
+        "Rosa"
+      ],
+      "id": 5
     }
   ]
 }
