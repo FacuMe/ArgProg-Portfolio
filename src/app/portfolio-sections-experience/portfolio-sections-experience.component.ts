@@ -18,7 +18,7 @@ export class PortfolioSectionsExperienceComponent implements OnInit {
   fechaIngreso:string = "";
   fechaSalida:string = "";
   tipoEmpleo:string = "";
-  descripcionEmpleo:string = "";
+  descripcion:string = "";
   empleoActual:boolean = false;
 
   constructor(private datosPortfolio:PortfolioService) {}
@@ -47,7 +47,7 @@ export class PortfolioSectionsExperienceComponent implements OnInit {
       this.fechaIngreso.length === 0 || 
       this.fechaSalida.length === 0 || 
       this.tipoEmpleo.length === 0 || 
-      this.descripcionEmpleo.length === 0) {
+      this.descripcion.length === 0) {
       alert("Por favor completa todos los campos del empleo");
       return;
     }
@@ -56,12 +56,12 @@ export class PortfolioSectionsExperienceComponent implements OnInit {
       this.fechaIngreso.length > 255 || 
       this.fechaSalida.length > 255 || 
       this.tipoEmpleo.length > 255 || 
-      this.descripcionEmpleo.length > 255 ) {
+      this.descripcion.length > 255 ) {
       alert("Máximo 255 caracteres");
       return;
     }
-    const { puesto, empleador, fechaIngreso, fechaSalida, tipoEmpleo, descripcionEmpleo, empleoActual } = this;
-    const addValues:any= { puesto, empleador, fechaIngreso, fechaSalida, tipoEmpleo, descripcionEmpleo, empleoActual };
+    const { puesto, empleador, fechaIngreso, fechaSalida, tipoEmpleo, descripcion, empleoActual } = this;
+    const addValues:any= { puesto, empleador, fechaIngreso, fechaSalida, tipoEmpleo, descripcion, empleoActual };
     this.datosPortfolio.createExperience(addValues).subscribe(
       () => {
         this.myExperiences.push(addValues);
@@ -78,7 +78,7 @@ export class PortfolioSectionsExperienceComponent implements OnInit {
       this.fechaIngreso.length === 0 || 
       this.fechaSalida.length === 0 || 
       this.tipoEmpleo.length === 0 || 
-      this.descripcionEmpleo.length === 0) {
+      this.descripcion.length === 0) {
       alert("Por favor completa todos los campos del empleo");
       return;
     }
@@ -87,12 +87,12 @@ export class PortfolioSectionsExperienceComponent implements OnInit {
       this.fechaIngreso.length > 255 || 
       this.fechaSalida.length > 255 || 
       this.tipoEmpleo.length > 255 || 
-      this.descripcionEmpleo.length > 255 ) {
+      this.descripcion.length > 255 ) {
       alert("Máximo 255 caracteres");
       return;
     }
-    const { puesto, empleador, fechaIngreso, fechaSalida, tipoEmpleo, descripcionEmpleo, empleoActual } = this;
-    const modifValues:any= { puesto, empleador, fechaIngreso, fechaSalida, tipoEmpleo, descripcionEmpleo, empleoActual};
+    const { puesto, empleador, fechaIngreso, fechaSalida, tipoEmpleo, descripcion, empleoActual } = this;
+    const modifValues:any= { puesto, empleador, fechaIngreso, fechaSalida, tipoEmpleo, descripcion, empleoActual};
     this.datosPortfolio.updateExperience(item, modifValues).subscribe((response) => {
       this.datosPortfolio.readExperience().subscribe(data =>{
         this.myExperiences=data;

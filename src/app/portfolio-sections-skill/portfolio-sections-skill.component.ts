@@ -63,6 +63,7 @@ export class PortfolioSectionsSkillComponent implements OnInit {
     }
     const { nombre, porcentaje, color } = this;
     const addValues:any= { nombre, porcentaje, color };
+    addValues.color = addValues.color.toString();
     this.datosPortfolio.createSkill(addValues).subscribe(
       () => {
         this.mySkills.push(addValues);

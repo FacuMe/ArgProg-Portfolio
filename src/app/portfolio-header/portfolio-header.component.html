@@ -1,8 +1,8 @@
-<div class="container-fluid">
+<div class="container-fluid" *ngFor="let user of myPortfolio">
     <div class="portfolio-header">  
         <img class="img-fluid banner" src="/assets/leadbg3.jpg" alt="banner">
         <div class="photo">
-            <img id="url_foto_perfil" class="profilepic img-fluid" [src]="myPortfolio.urlFotoPerfil" alt="profile-pic" *ngIf="load">
+            <img id="url_foto_perfil" class="profilepic img-fluid" [src]="user.urlFotoPerfil" alt="profile-pic" *ngIf="load">
             <div class="edit-buttons">
                 <i class="fa fa-pencil" aria-hidden="true" *ngIf="!showModifyUser" (click)="onShowModifyUser()"></i>
             </div>
@@ -10,20 +10,20 @@
         <div class="row personal-data" *ngIf="load">
             <div class="col-xl-3 col-md-6">
                 <div>
-                    <p class="title"><b>{{myPortfolio.nombre}} {{myPortfolio.apellido}}</b></p>
+                    <p class="title"><b>{{user.nombre}} {{user.apellido}}</b></p>
                 </div>
                 <div class="info">
-                    <p>{{myPortfolio.descripcion1}}</p>
-                    <p>{{myPortfolio.descripcion2}}</p>
-                    <p>{{myPortfolio.fechaNacimiento}}, {{myPortfolio.domicilio}}</p>
-                    <p>{{myPortfolio.correoElectronico}}</p>
+                    <p>{{user.descripcion1}}</p>
+                    <p>{{user.descripcion2}}</p>
+                    <p>{{user.fechaNacimiento}}, {{user.domicilio}}</p>
+                    <p>{{user.correoElectronico}}</p>
                 </div>
             </div>
-            <img id="joblogo" [src]="myPortfolio.urlFotoLogo" alt="job-logo">
+            <img id="joblogo" [src]="user.urlFotoLogo" alt="job-logo">
         </div>
 
         <!--form for modifying header-->
-        <form class="row container d-flex justify-content-center form-block" *ngIf="showModifyUser" (ngSubmit)="onSubmitModifyUser(myPortfolio)">
+        <form class="row container d-flex justify-content-center form-block" *ngIf="showModifyUser" (ngSubmit)="onSubmitModifyUser(user)">
             <div class="col-xl-12">
                 <div class="card proj-progress-card">
                     <div class="card-block d-flex justify-content-between">
