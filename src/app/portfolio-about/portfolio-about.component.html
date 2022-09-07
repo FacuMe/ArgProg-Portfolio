@@ -3,7 +3,7 @@
         <div class="title">
             <h2>Perfil</h2>
             <div class="edit-buttons">
-                <i class="fa fa-pencil" aria-hidden="true" *ngIf="!showModifyProfile" (click)="onShowModifyProfile()"></i>
+                <i class="fa fa-pencil" aria-hidden="true" *ngIf="!showModifyProfile && isLogged" (click)="onShowModifyProfile()"></i>
             </div>
         </div>
         <div class="description">
@@ -13,7 +13,7 @@
         </div>
     
         <!--form for modifying profile-->
-        <form class="row container d-flex justify-content-center form-block" *ngIf="showModifyProfile" (ngSubmit)="onSubmitModifyProfile(profile)">
+        <form class="row container d-flex justify-content-center form-block" *ngIf="showModifyProfile && isLogged" (ngSubmit)="onSubmitModifyProfile(profile)">
             <div class="col-xl-12">
                 <div class="card proj-progress-card">
                     <div class="card-block d-flex justify-content-between">

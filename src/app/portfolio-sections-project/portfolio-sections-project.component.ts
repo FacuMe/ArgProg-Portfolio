@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PortfolioService } from '../servicios/portfolio.service';
+import { TokenService } from '../servicios/token.service';
 
 @Component({
   selector: 'app-portfolio-sections-project',
@@ -11,6 +12,7 @@ export class PortfolioSectionsProjectComponent implements OnInit {
   myProjects:any;
   showAddProject:boolean = false;
   showModifyProject:boolean[] = [];
+  isLogged: boolean = false;
 
   nombre:string = "";
   entidad:string = "";
@@ -19,7 +21,7 @@ export class PortfolioSectionsProjectComponent implements OnInit {
   descripcion:string = "";
   proyectoActual:boolean = false;
 
-  constructor(private datosPortfolio:PortfolioService) { }
+  constructor(private datosPortfolio:PortfolioService, private tokenService: TokenService) { }
 
   ngOnInit(): void {
 
@@ -30,6 +32,13 @@ export class PortfolioSectionsProjectComponent implements OnInit {
         this.showModifyProject[item.id] = false;
       }
     });
+
+    if(this.tokenService.getToken()){
+      this.isLogged = true;
+    }
+    else{
+      this.isLogged = false;
+    }
 
   }
 

@@ -4,13 +4,13 @@
             <div class="title">          
                 <p>Educación</p>
                 <div class="edit-buttons">
-                    <i class="fa fa-plus-circle" aria-hidden="true" *ngIf="!showAddEducation" (click)="onShowAddEducation()"></i>
+                    <i class="fa fa-plus-circle" aria-hidden="true" *ngIf="!showAddEducation && isLogged" (click)="onShowAddEducation()"></i>
                 </div>
             </div>
             
 
             <!--form for adding new education-->
-            <form class="row container d-flex justify-content-center form-block" *ngIf="showAddEducation" (ngSubmit)="onSubmitAddEducation()">
+            <form class="row container d-flex justify-content-center form-block" *ngIf="showAddEducation && isLogged" (ngSubmit)="onSubmitAddEducation()">
                 <div class="col-xl-12">
                     <div class="card proj-progress-card">
                         <div class="card-block d-flex justify-content-between">
@@ -82,13 +82,13 @@
                         <p>{{educacion.descripcion}}</p>
                     </div>
                     <div class="edit-buttons">
-                        <i class="fa fa-pencil edit-icon" aria-hidden="true" *ngIf="!showModifyEducation[educacion.id]" (click)="onShowModifyEducation(educacion.id)"></i>
-                        <i class="fa fa-trash delete-icon" aria-hidden="true" (click)="onDeleteEducation(educacion)"></i>
+                        <i class="fa fa-pencil edit-icon" aria-hidden="true" *ngIf="!showModifyEducation[educacion.id] && isLogged" (click)="onShowModifyEducation(educacion.id)"></i>
+                        <i class="fa fa-trash delete-icon" aria-hidden="true" *ngIf="isLogged" (click)="onDeleteEducation(educacion)"></i>
                     </div>
                 </div>
 
                 <!--form for modifying education-->
-                <form class="row container d-flex justify-content-center form-block" *ngIf="showModifyEducation[educacion.id]" (ngSubmit)="onSubmitModifyEducation(educacion)">
+                <form class="row container d-flex justify-content-center form-block" *ngIf="showModifyEducation[educacion.id] && isLogged" (ngSubmit)="onSubmitModifyEducation(educacion)">
                     <div class="col-xl-12">
                         <div class="card proj-progress-card">
                             <div class="card-block d-flex justify-content-between">

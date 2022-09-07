@@ -4,12 +4,12 @@
                 <div class="title">
                     <p>Experiencia</p>
                     <div class="edit-buttons">
-                        <i class="fa fa-plus-circle" aria-hidden="true" *ngIf="!showAddExperience" (click)="onShowAddExperience()"></i>
+                        <i class="fa fa-plus-circle" aria-hidden="true" *ngIf="!showAddExperience && isLogged" (click)="onShowAddExperience()"></i>
                     </div>
                 </div>
 
                 <!--form for adding new experience-->
-                <form class="row container d-flex justify-content-center form-block" *ngIf="showAddExperience" (ngSubmit)="onSubmitAddExperience()">
+                <form class="row container d-flex justify-content-center form-block" *ngIf="showAddExperience && isLogged" (ngSubmit)="onSubmitAddExperience()">
                     <div class="col-xl-12">
                         <div class="card proj-progress-card">
                             <div class="card-block d-flex justify-content-between">
@@ -87,13 +87,13 @@
                         </div>
                         
                         <div class="edit-buttons">
-                            <i class="fa fa-pencil edit-icon" aria-hidden="true" *ngIf="!showModifyExperience[experiencia.id]" (click)="onShowModifyExperience(experiencia.id)"></i>
-                            <i class="fa fa-trash delete-icon" aria-hidden="true" (click)="onDeleteExperience(experiencia)"></i>
+                            <i class="fa fa-pencil edit-icon" aria-hidden="true" *ngIf="!showModifyExperience[experiencia.id] && isLogged" (click)="onShowModifyExperience(experiencia.id)"></i>
+                            <i class="fa fa-trash delete-icon" aria-hidden="true" *ngIf="isLogged" (click)="onDeleteExperience(experiencia)"></i>
                         </div>
                     </div>
                         
                     <!--form for modifying experience-->
-                    <form class="row container d-flex justify-content-center form-block" *ngIf="showModifyExperience[experiencia.id]" (ngSubmit)="onSubmitModifyExperience(experiencia)">
+                    <form class="row container d-flex justify-content-center form-block" *ngIf="showModifyExperience[experiencia.id] && isLogged" (ngSubmit)="onSubmitModifyExperience(experiencia)">
                         <div class="col-xl-12">
                             <div class="card proj-progress-card">
                                 <div class="card-block d-flex justify-content-between">
@@ -153,7 +153,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="edit-buttons">
-                                            <i class="fa fa-close" aria-hidden="true" (click)="onShowModifyExperience(experiencia.id)"></i>
+                                            <i class="fa fa-close" aria-hidden="true" *ngIf="isLogged" (click)="onShowModifyExperience(experiencia.id)"></i>
                                         </div>
                                     </div>
                                 </div>

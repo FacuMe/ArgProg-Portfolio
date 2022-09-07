@@ -4,7 +4,7 @@
         <div class="photo">
             <img id="url_foto_perfil" class="profilepic img-fluid" [src]="user.urlFotoPerfil" alt="profile-pic" *ngIf="load">
             <div class="edit-buttons">
-                <i class="fa fa-pencil" aria-hidden="true" *ngIf="!showModifyUser" (click)="onShowModifyUser()"></i>
+                <i class="fa fa-pencil" aria-hidden="true" *ngIf="!showModifyUser && isLogged" (click)="onShowModifyUser()"></i>
             </div>
         </div>
         <div class="row personal-data" *ngIf="load">
@@ -23,7 +23,7 @@
         </div>
 
         <!--form for modifying header-->
-        <form class="row container d-flex justify-content-center form-block" *ngIf="showModifyUser" (ngSubmit)="onSubmitModifyUser(user)">
+        <form class="row container d-flex justify-content-center form-block" *ngIf="showModifyUser && isLogged" (ngSubmit)="onSubmitModifyUser(user)">
             <div class="col-xl-12">
                 <div class="card proj-progress-card">
                     <div class="card-block d-flex justify-content-between">

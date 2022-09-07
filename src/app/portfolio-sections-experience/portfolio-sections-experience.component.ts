@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PortfolioService } from '../servicios/portfolio.service';
+import { TokenService } from '../servicios/token.service';
 
 @Component({
   selector: 'app-portfolio-sections-experience',
@@ -11,6 +12,7 @@ export class PortfolioSectionsExperienceComponent implements OnInit {
   myExperiences:any;
   showAddExperience:boolean = false;
   showModifyExperience:boolean[] = [];
+  isLogged: boolean = false;
  
 
   puesto:string = "";
@@ -21,7 +23,7 @@ export class PortfolioSectionsExperienceComponent implements OnInit {
   descripcion:string = "";
   empleoActual:boolean = false;
 
-  constructor(private datosPortfolio:PortfolioService) {}
+  constructor(private datosPortfolio:PortfolioService, private tokenService: TokenService) {}
 
   ngOnInit(): void {
     this.datosPortfolio.readExperience().subscribe(data =>{
@@ -30,6 +32,13 @@ export class PortfolioSectionsExperienceComponent implements OnInit {
         this.showModifyExperience[item.id] = false;
       }
     });
+
+    if(this.tokenService.getToken()){
+      this.isLogged = true;
+    }
+    else{
+      this.isLogged = false;
+    }
 
   }
 

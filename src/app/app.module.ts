@@ -13,6 +13,8 @@ import { PortfolioSectionsSkillComponent } from './portfolio-sections-skill/port
 import { PortfolioService } from './servicios/portfolio.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { InterceptorProvider } from './servicios/interceptor.service';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { FormsModule } from '@angular/forms';
     PortfolioSectionsExperienceComponent,
     PortfolioSectionsEducationComponent,
     PortfolioSectionsProjectComponent,
-    PortfolioSectionsSkillComponent
+    PortfolioSectionsSkillComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,11 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule 
   ],
-  providers: [PortfolioService],
+  providers: [
+    PortfolioService,
+    InterceptorProvider,
+    LoginComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

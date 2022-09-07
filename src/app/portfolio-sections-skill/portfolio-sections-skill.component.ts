@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PortfolioService } from '../servicios/portfolio.service';
+import { TokenService } from '../servicios/token.service';
 
 @Component({
   selector: 'app-portfolio-sections-skill',
@@ -10,12 +11,13 @@ export class PortfolioSectionsSkillComponent implements OnInit {
 
   mySkills:any;
   showAddSkill:boolean = false;
+  isLogged: boolean = false;
 
   nombre:string = "";
   porcentaje:string = "";
   color:string = "";
 
-  constructor(private datosPortfolio:PortfolioService) { }
+  constructor(private datosPortfolio:PortfolioService, private tokenService: TokenService) { }
 
   ngOnInit(): void {
 
@@ -39,6 +41,13 @@ export class PortfolioSectionsSkillComponent implements OnInit {
         }
       };
     });
+
+    if(this.tokenService.getToken()){
+      this.isLogged = true;
+    }
+    else{
+      this.isLogged = false;
+    }
 
   }
 

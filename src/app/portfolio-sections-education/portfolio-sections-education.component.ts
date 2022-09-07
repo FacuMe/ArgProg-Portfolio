@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PortfolioService } from '../servicios/portfolio.service';
+import { TokenService } from '../servicios/token.service';
 
 @Component({
   selector: 'app-portfolio-sections-education',
@@ -11,6 +12,7 @@ export class PortfolioSectionsEducationComponent implements OnInit {
   myEducations:any;
   showAddEducation:boolean = false;
   showModifyEducation:boolean[] = [];
+  isLogged: boolean = false;
 
   institucion:string = "";
   nombre:string = "";
@@ -19,7 +21,7 @@ export class PortfolioSectionsEducationComponent implements OnInit {
   descripcion:string = "";
   estudioActual:boolean = false;
 
-  constructor(private datosPortfolio:PortfolioService) { }
+  constructor(private datosPortfolio:PortfolioService, private tokenService: TokenService) { }
 
   ngOnInit(): void {
 
@@ -31,6 +33,13 @@ export class PortfolioSectionsEducationComponent implements OnInit {
       }
     });
 
+    if(this.tokenService.getToken()){
+      this.isLogged = true;
+    }
+    else{
+      this.isLogged = false;
+    }
+    
   }
 
   onShowAddEducation(){

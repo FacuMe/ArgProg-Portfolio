@@ -4,12 +4,12 @@
             <div class="title">
                 <p>Habilidades</p>
                 <div class="edit-buttons">
-                    <i class="fa fa-plus-circle" aria-hidden="true" *ngIf="!showAddSkill" (click)="onShowAddSkill()"></i>
+                    <i class="fa fa-plus-circle" aria-hidden="true" *ngIf="!showAddSkill && isLogged" (click)="onShowAddSkill()"></i>
                 </div>
             </div>
 
             <!--form for adding new skill-->
-            <form class="row container d-flex justify-content-center form-block" *ngIf="showAddSkill" (ngSubmit)="onSubmitAddSkill()">
+            <form class="row container d-flex justify-content-center form-block" *ngIf="showAddSkill && isLogged" (ngSubmit)="onSubmitAddSkill()">
                 <div class="col-xl-12">
                     <div class="card proj-progress-card">
                         <div class="card-block d-flex justify-content-between">
@@ -46,7 +46,7 @@
                             </div>
                             <div class="row">
                                 <div class="edit-buttons">
-                                    <i class="fa fa-close" aria-hidden="true" (click)="onShowAddSkill()"></i>
+                                    <i class="fa fa-close" aria-hidden="true" *ngIf="isLogged" (click)="onShowAddSkill()"></i>
                                 </div>
                             </div>
                         </div>
@@ -65,7 +65,7 @@
                                         <div class="d-flex justify-content-between">
                                             <h6>{{habilidad.nombre}}</h6>
                                             <div class="edit-buttons">
-                                                <i class="fa fa-trash delete-icon" aria-hidden="true" (click)="onDeleteSkill(habilidad)"></i>
+                                                <i class="fa fa-trash delete-icon" aria-hidden="true" *ngIf="isLogged" (click)="onDeleteSkill(habilidad)"></i>
                                             </div>
                                         </div>
                                         <h5 class="m-b-30 f-w-700">{{habilidad.porcentaje}}%</h5>

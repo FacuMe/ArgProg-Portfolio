@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PortfolioService } from '../servicios/portfolio.service';
+import { TokenService } from '../servicios/token.service';
 
 @Component({
   selector: 'app-portfolio-header',
@@ -10,6 +11,8 @@ export class PortfolioHeaderComponent implements OnInit {
   myPortfolio:any;
   showModifyUser:boolean = false;
   load:boolean = false;
+  isLogged: boolean = false;
+
 
   nombre:string = "";
   apellido:string = "";
@@ -21,13 +24,19 @@ export class PortfolioHeaderComponent implements OnInit {
   urlFotoLogo:string = "";
   correoElectronico:string = "";
 
-  constructor(private datosPortfolio:PortfolioService) { }
+  constructor(private datosPortfolio:PortfolioService, private tokenService: TokenService) { }
 
   ngOnInit(): void {
     this.datosPortfolio.readUser().subscribe(data =>{
       this.myPortfolio=data;
       this.load = true;
     });
+    if(this.tokenService.getToken()){
+      this.isLogged = true;
+    }
+    else{
+      this.isLogged = false;
+    }
   }
 
   onShowModifyUser() {

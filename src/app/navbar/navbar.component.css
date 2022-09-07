@@ -1,0 +1,45 @@
+  #brand {
+    margin-left: 1.5%;
+  }
+  
+  #brand-name {
+    padding-left: 8%;
+  }
+  
+  #brand-logo {
+    border: 3px solid #cfa329;
+    border-radius: 5px;
+  }
+  
+  .fa {
+    padding: 20px;
+    font-size: 30px;
+    width: 30px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+  }
+  
+  .fa-whatsapp {
+    padding-right: 27px;
+  }
+  
+  .fa:hover {
+    opacity: 0.7;
+  }
+
+  #socialicons {
+    margin-right: 20px;
+  }
+  
+  #loginbutton {
+    margin-right: 1.2%;
+    margin-left: 2.5%;
+  }
+
+  #logoutbutton {
+    margin-right: 1.2%;
+    margin-left: 2.5%;
+  }
+  
+  
