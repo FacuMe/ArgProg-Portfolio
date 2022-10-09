@@ -53,9 +53,15 @@
                                     </div>
                                 </div>
                                 <div class="form-group row form-row mt-1 align-items-center">
+                                    <label for="text" class="col-md-3 col-form-label">URL Foto</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="url-foto-experiencia" id="url-foto-experiencia" placeholder="URL Foto" [(ngModel)]="urlFoto">
+                                    </div>
+                                </div>
+                                <div class="form-group row form-row mt-1 align-items-center">
                                     <label for="text" class="col-md-3 col-form-label">Descripción</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" name="descripcion-proyecto" id="descripcion-proyecto" placeholder="Descripción" [(ngModel)]="descripcion">
+                                        <textarea type="text" class="form-control form-row" rows="3" name="descripcion-proyecto" id="descripcion-proyecto" placeholder="Descripción" [(ngModel)]="descripcion"></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group row form-row mt-1 align-items-center">
@@ -105,7 +111,7 @@
                                                         <h4 style="color:#374054">{{experiencia.empleador}}</h4>
                                                     </div>
                                                     <div class="align-self-center">
-                                                        <img id="url_foto_experiencia" class="experiencepic img-fluid mb-3" src="/assets/leadbg.jpg" alt="experience-pic">  
+                                                        <img id="url_foto_experiencia" class="experiencepic img-fluid mb-3" [src]="experiencia.urlFoto" alt="experience-pic">  
                                                     </div>
                                                 </div>
                                                 
@@ -163,9 +169,15 @@
                                             </div>
                                         </div>
                                         <div class="form-group row form-row mt-1 align-items-center">
+                                            <label for="text" class="col-md-3 col-form-label">URL Foto</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" name="url-foto-experiencia" id="url-foto-experiencia" placeholder="URL Foto" [(ngModel)]="urlFoto">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row form-row mt-1 align-items-center">
                                             <label for="text" class="col-md-3 col-form-label">Descripción</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" name="descripcion-proyecto" id="descripcion-proyecto" placeholder="Descripción" [(ngModel)]="descripcion">
+                                                <textarea type="text" class="form-control form-row" rows="3" name="descripcion-proyecto" id="descripcion-proyecto" placeholder="Descripción" [(ngModel)]="descripcion"></textarea>
                                             </div>
                                         </div>
                                         <div class="form-group row form-row mt-1 align-items-center">

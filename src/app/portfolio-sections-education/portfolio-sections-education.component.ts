@@ -20,6 +20,7 @@ export class PortfolioSectionsEducationComponent implements OnInit {
   fechaFinalizacion:string = "";
   descripcion:string = "";
   estudioActual:boolean = false;
+  urlFoto:string = "";
 
   constructor(private datosPortfolio:PortfolioService, private tokenService: TokenService) { }
 
@@ -56,7 +57,8 @@ export class PortfolioSectionsEducationComponent implements OnInit {
       this.nombre.length === 0 || 
       this.fechaInicio.length === 0 || 
       this.fechaFinalizacion.length === 0 ||  
-      this.descripcion.length === 0) {
+      this.descripcion.length === 0 ||  
+      this.urlFoto.length === 0) {
       alert("Por favor completa todos los campos del estudio");
       return;
     }
@@ -64,12 +66,13 @@ export class PortfolioSectionsEducationComponent implements OnInit {
       this.nombre.length > 255 || 
       this.fechaInicio.length > 255 || 
       this.fechaFinalizacion.length > 255 || 
-      this.descripcion.length > 255 ) {
+      this.descripcion.length > 255 ||  
+      this.urlFoto.length > 255) {
       alert("Máximo 255 caracteres");
       return;
     }
-    const { institucion, nombre,  fechaInicio, fechaFinalizacion, descripcion, estudioActual } = this;
-    const addValues:any= { institucion, nombre,  fechaInicio, fechaFinalizacion, descripcion, estudioActual };
+    const { institucion, nombre,  fechaInicio, fechaFinalizacion, descripcion, estudioActual, urlFoto } = this;
+    const addValues:any= { institucion, nombre,  fechaInicio, fechaFinalizacion, descripcion, estudioActual, urlFoto };
     this.datosPortfolio.createEducation(addValues).subscribe(
       () => {
         this.myEducations.push(addValues);
@@ -85,20 +88,22 @@ export class PortfolioSectionsEducationComponent implements OnInit {
       this.nombre.length === 0 || 
       this.fechaInicio.length === 0 || 
       this.fechaFinalizacion.length === 0 ||  
-      this.descripcion.length === 0) {
-      alert("Por favor completa todos los campos del estudio");
+      this.descripcion.length === 0 ||  
+      this.urlFoto.length === 0) {
+      alert("Por favor modifica todos los campos del estudio");
       return;
     }
     if(this.institucion.length > 255 || 
       this.nombre.length > 255 || 
       this.fechaInicio.length > 255 || 
       this.fechaFinalizacion.length > 255 || 
-      this.descripcion.length > 255 ) {
+      this.descripcion.length > 255 ||  
+      this.urlFoto.length > 255) {
       alert("Máximo 255 caracteres");
       return;
     }
-    const { institucion, nombre,  fechaInicio, fechaFinalizacion, descripcion, estudioActual } = this;
-    const modifValues:any= { institucion, nombre,  fechaInicio, fechaFinalizacion, descripcion, estudioActual };
+    const { institucion, nombre,  fechaInicio, fechaFinalizacion, descripcion, estudioActual, urlFoto } = this;
+    const modifValues:any= { institucion, nombre,  fechaInicio, fechaFinalizacion, descripcion, estudioActual, urlFoto };
     this.datosPortfolio.updateEducation(item, modifValues).subscribe((response) => {
       this.datosPortfolio.readEducation().subscribe(data =>{
         this.myEducations=data;

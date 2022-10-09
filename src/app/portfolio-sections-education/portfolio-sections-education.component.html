@@ -47,9 +47,15 @@
                                     </div>
                                 </div>
                                 <div class="form-group row form-row mt-1 align-items-center">
+                                    <label for="text" class="col-md-3 col-form-label">URL Foto</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="url-foto-educacion" id="url-foto-educacion" placeholder="URL Foto" [(ngModel)]="urlFoto">
+                                    </div>
+                                </div>
+                                <div class="form-group row form-row mt-1 align-items-center">
                                     <label for="text" class="col-md-3 col-form-label">Descripción</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" name="descripcion-estudio" id="descripcion-estudio" placeholder="Descripción" [(ngModel)]="descripcion">
+                                        <textarea type="text" class="form-control form-row" rows="3" name="descripcion-estudio" id="descripcion-estudio" placeholder="Descripción" [(ngModel)]="descripcion"></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group row form-row mt-1 align-items-center">
@@ -99,7 +105,7 @@
                                                     <i class="fa fa-trash delete-icon" aria-hidden="true" *ngIf="isLogged" (click)="onDeleteEducation(educacion)"></i>
                                                 </div>
                                                 <div class="align-self-center">
-                                                    <img id="url_foto_educacion" class="educationpic img-fluid" src="/assets/NoPicture-500x500.jpg" alt="education-pic">
+                                                    <img id="url_foto_educacion" class="educationpic img-fluid" [src]="educacion.urlFoto" alt="education-pic">
                                                 </div>
                                             </div>
                                         </div>
@@ -143,9 +149,15 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group row form-row mt-1 align-items-center">
+                                                            <label for="text" class="col-md-3 col-form-label">URL Foto</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" class="form-control" name="url-foto-educacion" id="url-foto-educacion" placeholder="URL Foto" [(ngModel)]="urlFoto"> 
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row form-row mt-1 align-items-center">
                                                             <label for="text" class="col-md-3 col-form-label">Descripción</label>
                                                             <div class="col-sm-9">
-                                                                <input type="text" class="form-control" name="descripcion-estudio" id="descripcion-estudio" placeholder="Descripción" [(ngModel)]="descripcion">
+                                                                <textarea type="text" class="form-control form-row" rows="3" name="descripcion-estudio" id="descripcion-estudio" placeholder="Descripción" [(ngModel)]="descripcion"></textarea>
                                                             </div>
                                                         </div>
                                                         <div class="form-group row form-row mt-1 align-items-center">

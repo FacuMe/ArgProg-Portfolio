@@ -140,6 +140,7 @@
   overflow: hidden;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
+  max-height: 250px;
 }
 
 img {

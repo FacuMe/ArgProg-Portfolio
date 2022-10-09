@@ -45,9 +45,21 @@
                                     </div>
                                 </div>
                                 <div class="form-group row form-row mt-1 align-items-center">
+                                    <label for="text" class="col-md-3 col-form-label">URL Foto</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="url-foto-proyecto" id="url-foto-proyecto" placeholder="URL Foto" [(ngModel)]="urlFoto">
+                                    </div>
+                                </div>
+                                <div class="form-group row form-row mt-1 align-items-center">
+                                    <label for="text" class="col-md-3 col-form-label">URL Proyecto</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="url-proyecto" id="url-proyecto" placeholder="URL del Proyecto" [(ngModel)]="urlProyecto">
+                                    </div>
+                                </div>
+                                <div class="form-group row form-row mt-1 align-items-center">
                                     <label for="text" class="col-md-3 col-form-label">Descripción</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" name="descripcion-proyecto" id="descripcion-proyecto" placeholder="Descripción" [(ngModel)]="descripcion">
+                                        <textarea type="text" class="form-control form-row" rows="3" name="descripcion-proyecto" id="descripcion-proyecto" placeholder="Descripción" [(ngModel)]="descripcion"></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group row form-row mt-1 align-items-center">
@@ -75,9 +87,9 @@
                     <div class="row people">
                         <div *ngFor="let proyecto of myProjects" class="col-md-6 col-lg-4 item">
                             <div class="box col-11">
-                                <a href="#">
+                                <a [href]="proyecto.urlProyecto">
                                     <div class="imageBox">
-                                        <img src="/assets/leadbg2.jpg">        
+                                        <img [src]="proyecto.urlFoto" alt="project-pic">        
                                     </div>
                                     <h4 class="name">{{proyecto.nombre}}</h4>
                                     <p class="title">{{proyecto.entidad}}</p>
@@ -126,9 +138,21 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group row form-row mt-1 align-items-center">
+                                                        <label for="text" class="col-md-3 col-form-label">URL Foto</label>
+                                                        <div class="col-sm-9">
+                                                            <input type="text" class="form-control" name="url-foto-proyecto" id="url-foto-proyecto" placeholder="URL Foto" [(ngModel)]="urlFoto">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row form-row mt-1 align-items-center">
+                                                        <label for="text" class="col-md-3 col-form-label">URL Proyecto</label>
+                                                        <div class="col-sm-9">
+                                                            <input type="text" class="form-control" name="url-proyecto" id="url-proyecto" placeholder="URL del Proyecto" [(ngModel)]="urlProyecto">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row form-row mt-1 align-items-center">
                                                         <label for="text" class="col-md-3 col-form-label">Descripción</label>
                                                         <div class="col-sm-9">
-                                                            <input type="text" class="form-control" name="descripcion-proyecto" id="descripcion-proyecto" placeholder="Descripción" [(ngModel)]="descripcion">
+                                                            <textarea type="text" class="form-control form-row" ros="3" name="descripcion-proyecto" id="descripcion-proyecto" placeholder="Descripción" [(ngModel)]="descripcion"></textarea>
                                                         </div>
                                                     </div>
                                                     <div class="form-group row form-row mt-1 align-items-center">

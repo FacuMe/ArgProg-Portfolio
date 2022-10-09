@@ -20,6 +20,8 @@ export class PortfolioSectionsProjectComponent implements OnInit {
   fechaFinalizacion:string = "";
   descripcion:string = "";
   proyectoActual:boolean = false;
+  urlFoto:string = "";
+  urlProyecto:string = "";
 
   constructor(private datosPortfolio:PortfolioService, private tokenService: TokenService) { }
 
@@ -56,7 +58,9 @@ export class PortfolioSectionsProjectComponent implements OnInit {
       this.entidad.length === 0 || 
       this.fechaInicio.length === 0 || 
       this.fechaFinalizacion.length === 0 ||  
-      this.descripcion.length === 0) {
+      this.descripcion.length === 0 ||  
+      this.urlFoto.length === 0 ||  
+      this.urlProyecto.length === 0) {
       alert("Por favor completa todos los campos del proyecto");
       return;
     }
@@ -64,12 +68,14 @@ export class PortfolioSectionsProjectComponent implements OnInit {
       this.entidad.length > 255 || 
       this.fechaInicio.length > 255 || 
       this.fechaFinalizacion.length > 255 || 
-      this.descripcion.length > 255 ) {
+      this.descripcion.length > 255 || 
+      this.urlFoto.length > 255 || 
+      this.urlProyecto.length > 255 ) {
       alert("Máximo 255 caracteres");
       return;
     }
-    const { nombre, entidad,  fechaInicio, fechaFinalizacion, descripcion, proyectoActual } = this;
-    const addValues:any= { nombre, entidad,  fechaInicio, fechaFinalizacion, descripcion, proyectoActual };
+    const { nombre, entidad,  fechaInicio, fechaFinalizacion, descripcion, proyectoActual, urlFoto, urlProyecto } = this;
+    const addValues:any= { nombre, entidad,  fechaInicio, fechaFinalizacion, descripcion, proyectoActual, urlFoto, urlProyecto };
     this.datosPortfolio.createProject(addValues).subscribe(
       () => {
         this.myProjects.push(addValues);
@@ -81,24 +87,28 @@ export class PortfolioSectionsProjectComponent implements OnInit {
   }
 
   onSubmitModifyProject(item:any){
-    if(this.nombre.length === 0 && 
-      this.entidad.length === 0 && 
-      this.fechaInicio.length === 0 && 
-      this.fechaFinalizacion.length === 0 &&  
-      this.descripcion.length === 0) {
-      alert("Por favor modificá alguno de los campos del proyecto");
+    if(this.nombre.length === 0 || 
+      this.entidad.length === 0 || 
+      this.fechaInicio.length === 0 || 
+      this.fechaFinalizacion.length === 0 ||  
+      this.descripcion.length === 0 || 
+      this.urlFoto.length === 0 ||  
+      this.urlProyecto.length === 0) {
+      alert("Por favor modifica todos los campos del proyecto");
       return;
     }
     if(this.nombre.length > 255 || 
       this.entidad.length > 255 || 
       this.fechaInicio.length > 255 || 
       this.fechaFinalizacion.length > 255 || 
-      this.descripcion.length > 255 ) {
+      this.descripcion.length > 255 || 
+      this.urlFoto.length > 255 || 
+      this.urlProyecto.length > 255 ) {
       alert("Máximo 255 caracteres");
       return;
     }
-    const { nombre, entidad,  fechaInicio, fechaFinalizacion, descripcion, proyectoActual } = this;
-    const modifValues:any= { nombre, entidad,  fechaInicio, fechaFinalizacion, descripcion, proyectoActual };
+    const { nombre, entidad,  fechaInicio, fechaFinalizacion, descripcion, proyectoActual, urlFoto, urlProyecto } = this;
+    const modifValues:any= { nombre, entidad,  fechaInicio, fechaFinalizacion, descripcion, proyectoActual, urlFoto, urlProyecto };
     this.datosPortfolio.updateProject(item, modifValues).subscribe((response) => {
       this.datosPortfolio.readProject().subscribe(data =>{
         this.myProjects=data;
