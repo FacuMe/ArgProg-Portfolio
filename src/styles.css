@@ -3,3 +3,164 @@ body {
     padding: 0px; 
     background-color: rgb(236, 234, 234);
 }
+
+
+
+
+/**
+template styles
+*/
+
+/*--------------------------------------------------------------
+# General
+--------------------------------------------------------------*/
+body {
+    font-family: "Open Sans", sans-serif;
+    color: #272829;
+}
+
+a {
+    color: #0563bb;
+    text-decoration: none;
+}
+  
+a:hover {
+    color: #067ded;
+    text-decoration: none;
+}
+  
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Raleway", sans-serif;
+}
+
+.title h1 {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 90px;
+    color: #45505b;
+  }
+
+/*--------------------------------------------------------------
+# Back to top button
+--------------------------------------------------------------*/
+.back-to-top {
+    position: fixed;
+    visibility: hidden;
+    opacity: 0;
+    right: 15px;
+    bottom: 15px;
+    z-index: 996;
+    background: #edc24a;
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    transition: all 0.4s;
+  }
+  
+  .back-to-top i {
+    font-size: 18px;
+    color: #fff;
+    line-height: 0;
+  }
+  
+  .back-to-top:hover {
+    background: #c1a350;
+    color: #fff;
+  }
+  
+  .back-to-top.active {
+    visibility: visible;
+    opacity: 1;
+  }
+
+
+  /*--------------------------------------------------------------
+# Sections General
+--------------------------------------------------------------*/
+section {
+    padding: 60px 0;
+    overflow: hidden;
+  }
+  
+  .section-title {
+    text-align: center;
+    padding-bottom: 10px;
+  }
+  
+  .section-title h2 {
+    font-size: 28px;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding-bottom: 10px;
+    position: relative;
+    color: #45505b;
+  }
+  
+  .section-title h2::before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 120px;
+    height: 1px;
+    background: #ddd;
+    bottom: 1px;
+    left: calc(50% - 60px);
+  }
+  
+  .section-title h2::after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 40px;
+    height: 3px;
+    background: #edc24a;
+    bottom: 0;
+    left: calc(50% - 20px);
+  }
+  
+  .section-title p {
+    margin-bottom: 0;
+  }
+  
+
+/*--------------------------------------------------------------
+# About
+--------------------------------------------------------------*/
+.info h3 {
+    font-weight: 700;
+    font-size: 26px;
+    color: #728394;
+  }
+  
+ .info ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+.info ul li {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+  }
+  
+ .info ul strong {
+    margin-right: 10px;
+  }
+  
+.info ul i {
+    font-size: 16px;
+    margin-right: 5px;
+    color: #edc24a;
+    line-height: 0;
+  }
+  
+.info p:last-child {
+    margin-bottom: 0;
+  }
+  

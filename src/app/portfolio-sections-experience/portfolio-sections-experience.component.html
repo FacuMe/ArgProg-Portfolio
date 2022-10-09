@@ -1,167 +1,334 @@
 <div class="container-fluid">
-        <div class="portfolio-sections">  
-            <div class="section">
-                <div class="title">
-                    <p>Experiencia</p>
-                    <div class="edit-buttons">
-                        <i class="fa fa-plus-circle" aria-hidden="true" *ngIf="!showAddExperience && isLogged" (click)="onShowAddExperience()"></i>
+    <div class="portfolio-sections">  
+        <div class="section">
+            <div class="title section-title">
+                <div class="title-name mt-3">
+                    <h2>Experiencia</h2>
+                </div>
+                <div class="edit-buttons">
+                    <div>
+                        <i class="fa fa-plus-circle" aria-hidden="true" *ngIf="isLogged" (click)="onShowAddExperience()" data-bs-toggle="modal" data-bs-target="#staticBackdropNewExperience"></i>
                     </div>
                 </div>
+            </div>
 
-                <!--form for adding new experience-->
-                <form class="row container d-flex justify-content-center form-block" *ngIf="showAddExperience && isLogged" (ngSubmit)="onSubmitAddExperience()">
-                    <div class="col-xl-12">
-                        <div class="card proj-progress-card">
-                            <div class="card-block d-flex justify-content-between">
-                                <div class="row">
-                                    <div class="form-group row">
-                                        <label for="text" class="col-sm-2 col-form-label">Puesto</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="puesto" id="puesto" placeholder="Nombre del puesto" [(ngModel)]="puesto">
-                                        </div>
+            <!-- modal for creating experience-->
+            <div class="modal fade" id="staticBackdropNewExperience" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabelNewExperience" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Agregar Experiencia</h5>
+                            <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-block" (ngSubmit)="onSubmitAddExperience()">
+                                <div class="form-group row align-items-center">
+                                    <label for="text" class="col-md-3 col-form-label">Puesto</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="puesto" id="puesto" placeholder="Nombre del puesto" [(ngModel)]="puesto">
                                     </div>
-                                    <div class="form-group row form-row">
-                                        <label for="text" class="col-sm-2 col-form-label">Empleador</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="empleador" id="empleador" placeholder="Nombre/razón social del empleador" [(ngModel)]="empleador">
-                                        </div>
+                                </div>
+                                <div class="form-group row form-row mt-2 align-items-center">
+                                    <label for="text" class="col-md-3 col-form-label">Empleador</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="empleador" id="empleador" placeholder="Nombre/razón social del empleador" [(ngModel)]="empleador">
                                     </div>
-                                    <div class="form-group row form-row">
-                                        <label for="text" class="col-sm-2 col-form-label">Fecha de Ingreso</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="fecha-ingreso-experiencia" id="fecha-ingreso-experiencia" placeholder="Fecha de ingreso" [(ngModel)]="fechaIngreso">
-                                        </div>
+                                </div>
+                                <div class="form-group row form-row mt-1 align-items-center">
+                                    <label for="text" class="col-md-3 col-form-label">Fecha de Ingreso</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="fecha-ingreso-experiencia" id="fecha-ingreso-experiencia" placeholder="Fecha de ingreso" [(ngModel)]="fechaIngreso">
                                     </div>
-                                    <div class="form-group row form-row">
-                                        <label for="text" class="col-sm-2 col-form-label">Fecha de Salida</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="fecha-salida-experiencia" id="fecha-salida-experiencia" placeholder="Fecha de salida" [(ngModel)]="fechaSalida">
-                                        </div>
+                                </div>
+                                <div class="form-group row form-row mt-1 align-items-center">
+                                    <label for="text" class="col-md-3 col-form-label">Fecha de Salida</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="fecha-salida-experiencia" id="fecha-salida-experiencia" placeholder="Fecha de salida" [(ngModel)]="fechaSalida">
                                     </div>
-                                    <div class="form-group row form-row">
-                                        <label for="text" class="col-sm-2 col-form-label">Tipo de empleo</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="tipo-empleo" id="tipo-empleo" placeholder="Tipo de empleo" [(ngModel)]="tipoEmpleo">
-                                        </div>
+                                </div>
+                                <div class="form-group row form-row mt-1 align-items-center">
+                                    <label for="text" class="col-md-3 col-form-label">Tipo de Empleo</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="tipo-empleo" id="tipo-empleo" placeholder="Tipo de empleo" [(ngModel)]="tipoEmpleo">
                                     </div>
-                                    <div class="form-group row form-row">
-                                        <label for="text" class="col-sm-2 col-form-label">Descripción</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="descripcion" id="descripcion" placeholder="Descripción" [(ngModel)]="descripcion">
-                                        </div>
+                                </div>
+                                <div class="form-group row form-row mt-1 align-items-center">
+                                    <label for="text" class="col-md-3 col-form-label">Descripción</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="descripcion-proyecto" id="descripcion-proyecto" placeholder="Descripción" [(ngModel)]="descripcion">
                                     </div>
-                                    <div class="form-group row form-row">
-                                        <div class="col-sm-2">Empleo actual</div>
-                                        <div class="col-sm-10">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="empleo-actual" id="empleo-actual" [(ngModel)]="empleoActual">
-                                                <label class="form-check-label" for="empleo-actual"></label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-row d-flex">
-                                        <div class="col-sm-10">
-                                            <button type="submit" class="btn btn-warning">Agregar nuevo empleo</button>
+                                </div>
+                                <div class="form-group row form-row mt-1 align-items-center">
+                                    <div class="col-md-3">Empleo Actual</div>
+                                    <div class="col-1">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="empleo-actual" id="empleo-actual" [(ngModel)]="empleoActual">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="edit-buttons">
-                                        <i class="fa fa-close" aria-hidden="true" (click)="onShowAddExperience()"></i>
+                                <div class="form-row">
+                                    <div class="col-md-5 mt-4">
+                                        <button type="submit" class="btn btn-warning" data-bs-dismiss="modal">Agregar Experiencia</button>
+                                    </div>
+                                </div>      
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            
+            <!--list of experiences-->
+            <div class="container-fluid mb-5">
+                <div *ngFor="let experiencia of myExperiences"> 
+                    <div class="subsection">
+                        <div class="container-fluid">
+                            <div id="experience-timeline">
+                                <div class="vtimeline-point">
+                                    <div class="vtimeline-icon">
+                                        <i class="fa fa-map-marker"></i>
+                                    </div>
+                                    <div class="vtimeline-block">
+                                        <span class="vtimeline-date">{{experiencia.fechaIngreso}} – {{experiencia.fechaSalida}}</span>
+                                        <div class="vtimeline-content d-flex justify-content-around">
+                                            <div class="content col-11">
+                                                <div class="d-flex justify-content-end mb-3">
+                                                    <div class="edit-buttons">
+                                                        <i class="fa fa-pencil edit-icon" aria-hidden="true" *ngIf="isLogged" data-bs-toggle="modal" [attr.data-bs-target]="'#staticBackdropExperience' + experiencia.id"></i>
+                                                        <i class="fa fa-trash delete-icon" aria-hidden="true" *ngIf="isLogged" (click)="onDeleteExperience(experiencia)"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex justify-content-between">
+                                                    <div class="d-flex flex-column justify-content-between">
+                                                        <h3>{{experiencia.puesto}}</h3>
+                                                        <h4 style="color:#374054">{{experiencia.empleador}}</h4>
+                                                    </div>
+                                                    <div class="align-self-center">
+                                                        <img id="url_foto_experiencia" class="experiencepic img-fluid mb-3" src="/assets/leadbg.jpg" alt="experience-pic">  
+                                                    </div>
+                                                </div>
+                                                
+                                                <h4>{{experiencia.tipoEmpleo}}</h4>
+                                                <p style="text-align: justify">
+                                                    {{experiencia.descripcion}}
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </form>
-
-                <!--list of experiences-->
-                <div *ngFor="let experiencia of myExperiences"> 
-                    <div class="subsection">
-                        <div class="col-6">
-                            <p>{{experiencia.puesto}}</p>
-                            <p>{{experiencia.empleador}}</p>
-                            <p>{{experiencia.fechaIngreso}} - {{experiencia.fechaSalida}}</p>
-                            <p>{{experiencia.tipoEmpleo}}</p>
-                            <p>{{experiencia.descripcion}}</p>
-                        </div>
-                        
-                        <div class="edit-buttons">
-                            <i class="fa fa-pencil edit-icon" aria-hidden="true" *ngIf="!showModifyExperience[experiencia.id] && isLogged" (click)="onShowModifyExperience(experiencia.id)"></i>
-                            <i class="fa fa-trash delete-icon" aria-hidden="true" *ngIf="isLogged" (click)="onDeleteExperience(experiencia)"></i>
-                        </div>
-                    </div>
-                        
-                    <!--form for modifying experience-->
-                    <form class="row container d-flex justify-content-center form-block" *ngIf="showModifyExperience[experiencia.id] && isLogged" (ngSubmit)="onSubmitModifyExperience(experiencia)">
-                        <div class="col-xl-12">
-                            <div class="card proj-progress-card">
-                                <div class="card-block d-flex justify-content-between">
-                                    <div class="row">
-                                        <div class="form-group row">
-                                            <label for="text" class="col-sm-2 col-form-label">Puesto</label>
-                                            <div class="col-sm-10">
+                       
+                    <!-- Modal -->
+                    <div class="modal fade" [attr.id]="'staticBackdropExperience' + experiencia.id" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabelExperience" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="staticBackdropLabel">Modificar Experiencia: {{experiencia.puesto}}</h5>
+                                    <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <!--form for modifying project-->
+                                    <form class="form-block" (ngSubmit)="onSubmitModifyExperience(experiencia)">
+                                        <div class="form-group row align-items-center">
+                                            <label for="text" class="col-md-3 col-form-label">Puesto</label>
+                                            <div class="col-sm-9">
                                                 <input type="text" class="form-control" name="puesto" id="puesto" placeholder="Nombre del puesto" [(ngModel)]="puesto">
                                             </div>
                                         </div>
-                                        <div class="form-group row form-row">
-                                            <label for="text" class="col-sm-2 col-form-label">Empleador</label>
-                                            <div class="col-sm-10">
+                                        <div class="form-group row form-row mt-2 align-items-center">
+                                            <label for="text" class="col-md-3 col-form-label">Empleador</label>
+                                            <div class="col-sm-9">
                                                 <input type="text" class="form-control" name="empleador" id="empleador" placeholder="Nombre/razón social del empleador" [(ngModel)]="empleador">
                                             </div>
                                         </div>
-                                        <div class="form-group row form-row">
-                                            <label for="text" class="col-sm-2 col-form-label">Fecha de Ingreso</label>
-                                            <div class="col-sm-10">
+                                        <div class="form-group row form-row mt-1 align-items-center">
+                                            <label for="text" class="col-md-3 col-form-label">Fecha de Ingreso</label>
+                                            <div class="col-sm-9">
                                                 <input type="text" class="form-control" name="fecha-ingreso-experiencia" id="fecha-ingreso-experiencia" placeholder="Fecha de ingreso" [(ngModel)]="fechaIngreso">
                                             </div>
                                         </div>
-                                        <div class="form-group row form-row">
-                                            <label for="text" class="col-sm-2 col-form-label">Fecha de Salida</label>
-                                            <div class="col-sm-10">
+                                        <div class="form-group row form-row mt-1 align-items-center">
+                                            <label for="text" class="col-md-3 col-form-label">Fecha de Salida</label>
+                                            <div class="col-sm-9">
                                                 <input type="text" class="form-control" name="fecha-salida-experiencia" id="fecha-salida-experiencia" placeholder="Fecha de salida" [(ngModel)]="fechaSalida">
                                             </div>
                                         </div>
-                                        <div class="form-group row form-row">
-                                            <label for="text" class="col-sm-2 col-form-label">Tipo de empleo</label>
-                                            <div class="col-sm-10">
+                                        <div class="form-group row form-row mt-1 align-items-center">
+                                            <label for="text" class="col-md-3 col-form-label">Tipo de Empleo</label>
+                                            <div class="col-sm-9">
                                                 <input type="text" class="form-control" name="tipo-empleo" id="tipo-empleo" placeholder="Tipo de empleo" [(ngModel)]="tipoEmpleo">
                                             </div>
                                         </div>
-                                        <div class="form-group row form-row">
-                                            <label for="text" class="col-sm-2 col-form-label">Descripción</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="descripcion" id="descripcion" placeholder="Tipo de empleo" [(ngModel)]="descripcion">
+                                        <div class="form-group row form-row mt-1 align-items-center">
+                                            <label for="text" class="col-md-3 col-form-label">Descripción</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" name="descripcion-proyecto" id="descripcion-proyecto" placeholder="Descripción" [(ngModel)]="descripcion">
                                             </div>
                                         </div>
-                                        <div class="form-group row form-row">
-                                        <div class="col-sm-2">Empleo actual</div>
-                                        <div class="col-sm-10">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="empleo-actual" id="empleo-actual" [(ngModel)]="empleoActual">
-                                                <label class="form-check-label" for="empleo-actual">
-                                                    
-                                                </label>
+                                        <div class="form-group row form-row mt-1 align-items-center">
+                                            <div class="col-md-3">Empleo Actual</div>
+                                            <div class="col-1">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" name="empleo-actual" id="empleo-actual" [(ngModel)]="empleoActual">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                        <div class="form-row d-flex">
-                                            <div class="col-sm-10">
-                                                <button type="submit" class="btn btn-warning">Modificar empleo</button>
+                                        <div class="form-row">
+                                            <div class="col-md-5 mt-4">
+                                                <button type="submit" class="btn btn-warning" data-bs-dismiss="modal">Modificar Experiencia</button>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="edit-buttons">
-                                            <i class="fa fa-close" aria-hidden="true" *ngIf="isLogged" (click)="onShowModifyExperience(experiencia.id)"></i>
-                                        </div>
-                                    </div>
+                                        </div>  
+                                    </form>
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    </div>
+                    
                 </div>
             </div>
-   
+
         </div>
+    </div>
 </div>
+
+
+
+
+<!--old form for adding new experience-
+<form class="row container d-flex justify-content-center form-block" *ngIf="showAddExperience && isLogged" (ngSubmit)="onSubmitAddExperience()">
+    <div class="col-xl-12">
+        <div class="card proj-progress-card">
+            <div class="card-block d-flex justify-content-between">
+                <div class="row">
+                    <div class="form-group row">
+                        <label for="text" class="col-sm-2 col-form-label">Puesto</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="puesto" id="puesto" placeholder="Nombre del puesto" [(ngModel)]="puesto">
+                        </div>
+                    </div>
+                    <div class="form-group row form-row">
+                        <label for="text" class="col-sm-2 col-form-label">Empleador</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="empleador" id="empleador" placeholder="Nombre/razón social del empleador" [(ngModel)]="empleador">
+                        </div>
+                    </div>
+                    <div class="form-group row form-row">
+                        <label for="text" class="col-sm-2 col-form-label">Fecha de Ingreso</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="fecha-ingreso-experiencia" id="fecha-ingreso-experiencia" placeholder="Fecha de ingreso" [(ngModel)]="fechaIngreso">
+                        </div>
+                    </div>
+                    <div class="form-group row form-row">
+                        <label for="text" class="col-sm-2 col-form-label">Fecha de Salida</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="fecha-salida-experiencia" id="fecha-salida-experiencia" placeholder="Fecha de salida" [(ngModel)]="fechaSalida">
+                        </div>
+                    </div>
+                    <div class="form-group row form-row">
+                        <label for="text" class="col-sm-2 col-form-label">Tipo de empleo</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="tipo-empleo" id="tipo-empleo" placeholder="Tipo de empleo" [(ngModel)]="tipoEmpleo">
+                        </div>
+                    </div>
+                    <div class="form-group row form-row">
+                        <label for="text" class="col-sm-2 col-form-label">Descripción</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="descripcion" id="descripcion" placeholder="Descripción" [(ngModel)]="descripcion">
+                        </div>
+                    </div>
+                    <div class="form-group row form-row">
+                        <div class="col-sm-2">Empleo actual</div>
+                        <div class="col-sm-10">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="empleo-actual" id="empleo-actual" [(ngModel)]="empleoActual">
+                                <label class="form-check-label" for="empleo-actual"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row d-flex">
+                        <div class="col-sm-10">
+                            <button type="submit" class="btn btn-warning">Agregar nuevo empleo</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="edit-buttons">
+                        <i class="fa fa-close" aria-hidden="true" (click)="onShowAddExperience()"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>-->
+
+<!--old form for modifying experience
+<form class="row container d-flex justify-content-center form-block" *ngIf="showModifyExperience[experiencia.id] && isLogged" (ngSubmit)="onSubmitModifyExperience(experiencia)">
+    <div class="col-xl-12">
+        <div class="card proj-progress-card">
+            <div class="card-block d-flex justify-content-between">
+                <div class="row">
+                    <div class="form-group row">
+                        <label for="text" class="col-sm-2 col-form-label">Puesto</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="puesto" id="puesto" placeholder="Nombre del puesto" [(ngModel)]="puesto">
+                        </div>
+                    </div>
+                    <div class="form-group row form-row">
+                        <label for="text" class="col-sm-2 col-form-label">Empleador</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="empleador" id="empleador" placeholder="Nombre/razón social del empleador" [(ngModel)]="empleador">
+                        </div>
+                    </div>
+                    <div class="form-group row form-row">
+                        <label for="text" class="col-sm-2 col-form-label">Fecha de Ingreso</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="fecha-ingreso-experiencia" id="fecha-ingreso-experiencia" placeholder="Fecha de ingreso" [(ngModel)]="fechaIngreso">
+                        </div>
+                    </div>
+                    <div class="form-group row form-row">
+                        <label for="text" class="col-sm-2 col-form-label">Fecha de Salida</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="fecha-salida-experiencia" id="fecha-salida-experiencia" placeholder="Fecha de salida" [(ngModel)]="fechaSalida">
+                        </div>
+                    </div>
+                    <div class="form-group row form-row">
+                        <label for="text" class="col-sm-2 col-form-label">Tipo de empleo</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="tipo-empleo" id="tipo-empleo" placeholder="Tipo de empleo" [(ngModel)]="tipoEmpleo">
+                        </div>
+                    </div>
+                    <div class="form-group row form-row">
+                        <label for="text" class="col-sm-2 col-form-label">Descripción</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="descripcion" id="descripcion" placeholder="Tipo de empleo" [(ngModel)]="descripcion">
+                        </div>
+                    </div>
+                    <div class="form-group row form-row">
+                    <div class="col-sm-2">Empleo actual</div>
+                    <div class="col-sm-10">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="empleo-actual" id="empleo-actual" [(ngModel)]="empleoActual">
+                            <label class="form-check-label" for="empleo-actual">
+                                
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                    <div class="form-row d-flex">
+                        <div class="col-sm-10">
+                            <button type="submit" class="btn btn-warning">Modificar empleo</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="edit-buttons">
+                        <i class="fa fa-close" aria-hidden="true" *ngIf="isLogged" (click)="onShowModifyExperience(experiencia.id)"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>-->

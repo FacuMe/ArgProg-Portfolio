@@ -1,34 +1,43 @@
 <div class="container-fluid">
     <div class="portfolio-sections"> 
         <div class="section">
-            <div class="title">
-                <p>Habilidades</p>
+            <div class="title section-title">
+                <div class="title-name">
+                    <h2>Habilidades</h2>
+                </div>
                 <div class="edit-buttons">
-                    <i class="fa fa-plus-circle" aria-hidden="true" *ngIf="!showAddSkill && isLogged" (click)="onShowAddSkill()"></i>
+                    <div>
+                        <i class="fa fa-plus-circle" aria-hidden="true" *ngIf="isLogged" (click)="onShowAddSkill()" data-bs-toggle="modal" data-bs-target="#staticBackdropNewSkill"></i>
+                    </div>
                 </div>
             </div>
 
-            <!--form for adding new skill-->
-            <form class="row container d-flex justify-content-center form-block" *ngIf="showAddSkill && isLogged" (ngSubmit)="onSubmitAddSkill()">
-                <div class="col-xl-12">
-                    <div class="card proj-progress-card">
-                        <div class="card-block d-flex justify-content-between">
-                            <div class="row">
-                                <div class="form-group row">
-                                    <label for="text" class="col-sm-2 col-form-label">Nombre</label>
-                                    <div class="col-sm-10">
+
+            <!-- modal for creating skill-->
+            <div class="modal fade" id="staticBackdropNewSkill" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabelNewSkill" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Crear Habilidad</h5>
+                            <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-block" (ngSubmit)="onSubmitAddSkill()">
+                                <div class="form-group row align-items-center">
+                                    <label for="text" class="col-md-3 col-form-label">Nombre</label>
+                                    <div class="col-sm-9">
                                         <input type="text" class="form-control" name="nombre-habilidad" id="nombre-habilidad" placeholder="Nombre de la habilidad" [(ngModel)]="nombre">
                                     </div>
                                 </div>
-                                <div class="form-group row form-row">
-                                    <label for="text" class="col-sm-2 col-form-label">Porcentaje</label>
-                                    <div class="col-sm-10">
+                                <div class="form-group row form-row mt-2 align-items-center">
+                                    <label for="text" class="col-md-3 col-form-label">Porcentaje</label>
+                                    <div class="col-sm-9">
                                         <input type="text" class="form-control" name="porcentaje" id="porcentaje" placeholder="Porcentaje de progreso (0 - 100)" [(ngModel)]="porcentaje">
                                     </div>
                                 </div>
-                                <div class="form-group form-row d-flex">
-                                    <label for="exampleFormControlSelect" class="col-sm-2 col-form-label">Grupo de color</label>
-                                    <div class="col-sm-10">
+                                <div class="form-group row form-row mt-1 align-items-center">
+                                    <label for="exampleFormControlSelect" class="col-md-3 col-form-label">Grupo de color</label>
+                                    <div class="col-sm-9">
                                         <select multiple class="form-control" name="color" id="color" [(ngModel)]="color">
                                             <option>Rojo</option>
                                             <option>Azul</option>
@@ -38,50 +47,139 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-row d-flex">
-                                    <div class="col-sm-10">
-                                        <button type="submit" class="btn btn-warning">Agregar</button>
+                                <div class="form-row">
+                                    <div class="col-md-5 mt-4">
+                                        <button type="submit" class="btn btn-warning" data-bs-dismiss="modal">Crear Habilidad</button>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="edit-buttons">
-                                    <i class="fa fa-close" aria-hidden="true" *ngIf="isLogged" (click)="onShowAddSkill()"></i>
-                                </div>
-                            </div>
+                                </div>      
+                            </form>
                         </div>
                     </div>
                 </div>
-            </form>
-
+            </div>
+            
             <!--list of skills-->
             <div class="subsection">
-                <div class="row container d-flex justify-content-center">
+                <div class="row container-fluid d-flex justify-content-center">
                     <div class="col-xl-12">
-                        <div class="card proj-progress-card">
-                            <div class="card-block">
-                                <div class="row">
-                                    <div *ngFor="let habilidad of mySkills" class="col-xl-3 col-md-6">
-                                        <div class="d-flex justify-content-between">
-                                            <h6>{{habilidad.nombre}}</h6>
-                                            <div class="edit-buttons">
-                                                <i class="fa fa-trash delete-icon" aria-hidden="true" *ngIf="isLogged" (click)="onDeleteSkill(habilidad)"></i>
-                                            </div>
+                        <div class="card-block">
+                            <div class="row">
+                                <div *ngFor="let habilidad of mySkills" class="col-xl-3 col-md-6">
+                                    <div class="d-flex justify-content-between">
+                                        <h6>{{habilidad.nombre}}</h6>
+                                        <div class="edit-buttons">
+                                            <i class="fa fa-pencil edit-icon" aria-hidden="true" *ngIf="isLogged" data-bs-toggle="modal" [attr.data-bs-target]="'#staticBackdropSkill' + habilidad.id"></i>
+                                            <i class="fa fa-trash delete-icon" aria-hidden="true" *ngIf="isLogged" (click)="onDeleteSkill(habilidad)"></i>
                                         </div>
-                                        <h5 class="m-b-30 f-w-700">{{habilidad.porcentaje}}%</h5>
-                                        <div class="progress">
-                                            <div class="progress-bar" [ngStyle]="{
-                                                'width': (habilidad.porcentaje + '%'), 
-                                                'background': habilidad.color}">
+                                    </div>
+                                    <h5 class="m-b-30 f-w-700">{{habilidad.porcentaje}}%</h5>
+                                    <div class="progress">
+                                        <div class="progress-bar" [ngStyle]="{
+                                            'width': (habilidad.porcentaje + '%'), 
+                                            'background': habilidad.color}">
+                                        </div>
+                                    </div>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" [attr.id]="'staticBackdropSkill' + habilidad.id" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabelSkill" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="staticBackdropLabel">Modificar Habilidad: {{habilidad.nombre}}</h5>
+                                                    <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <!--form for modifying skill-->
+                                                    <form class="form-block" (ngSubmit)="onSubmitModifySkill(habilidad)">
+                                                        <div class="form-group row align-items-center">
+                                                            <label for="text" class="col-md-3 col-form-label">Nombre</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" class="form-control" name="nombre-habilidad" id="nombre-habilidad" placeholder="Nombre de la habilidad" [(ngModel)]="nombre">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row form-row mt-2 align-items-center">
+                                                            <label for="text" class="col-md-3 col-form-label">Porcentaje</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" class="form-control" name="porcentaje" id="porcentaje" placeholder="Porcentaje de progreso (0 - 100)" [(ngModel)]="porcentaje">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row form-row mt-1 align-items-center">
+                                                            <label for="exampleFormControlSelect" class="col-md-3 col-form-label">Grupo de color</label>
+                                                            <div class="col-sm-9">
+                                                                <select multiple class="form-control" name="color" id="color" [(ngModel)]="color">
+                                                                    <option>Rojo</option>
+                                                                    <option>Azul</option>
+                                                                    <option>Verde</option>
+                                                                    <option>Amarillo</option>
+                                                                    <option>Rosa</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-row">
+                                                            <div class="col-md-5 mt-4">
+                                                                <button type="submit" class="btn btn-warning" data-bs-dismiss="modal">Modificar Habilidad</button>
+                                                            </div>
+                                                        </div>      
+                                                    </form>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
+
+ <!--old form for adding new skill
+ <form class="row container d-flex justify-content-center form-block" *ngIf="showAddSkill && isLogged" (ngSubmit)="onSubmitAddSkill()">
+    <div class="col-xl-12">
+        <div class="card proj-progress-card">
+            <div class="card-block d-flex justify-content-between">
+                <div class="row">
+                    <div class="form-group row">
+                        <label for="text" class="col-sm-2 col-form-label">Nombre</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="nombre-habilidad" id="nombre-habilidad" placeholder="Nombre de la habilidad" [(ngModel)]="nombre">
+                        </div>
+                    </div>
+                    <div class="form-group row form-row">
+                        <label for="text" class="col-sm-2 col-form-label">Porcentaje</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="porcentaje" id="porcentaje" placeholder="Porcentaje de progreso (0 - 100)" [(ngModel)]="porcentaje">
+                        </div>
+                    </div>
+                    <div class="form-group form-row d-flex">
+                        <label for="exampleFormControlSelect" class="col-sm-2 col-form-label">Grupo de color</label>
+                        <div class="col-sm-10">
+                            <select multiple class="form-control" name="color" id="color" [(ngModel)]="color">
+                                <option>Rojo</option>
+                                <option>Azul</option>
+                                <option>Verde</option>
+                                <option>Amarillo</option>
+                                <option>Rosa</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row d-flex">
+                        <div class="col-sm-10">
+                            <button type="submit" class="btn btn-warning">Agregar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="edit-buttons">
+                        <i class="fa fa-close" aria-hidden="true" *ngIf="isLogged" (click)="onShowAddSkill()"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>-->
+

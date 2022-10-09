@@ -13,14 +13,14 @@
 }
 
 .photo {
-    margin-top: -5%;
+    margin-top: -5.8%;
     padding-left: 2.5%;
     display: flex;
 }
 
 .profilepic {
-    height: 150px;
-    width: 150px;
+    height: 170px;
+    width: 170px;
     border-radius:  50%;
     border: 0.5px solid black;
 }

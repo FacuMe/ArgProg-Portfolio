@@ -81,12 +81,12 @@ export class PortfolioSectionsProjectComponent implements OnInit {
   }
 
   onSubmitModifyProject(item:any){
-    if(this.nombre.length === 0 || 
-      this.entidad.length === 0 || 
-      this.fechaInicio.length === 0 || 
-      this.fechaFinalizacion.length === 0 ||  
+    if(this.nombre.length === 0 && 
+      this.entidad.length === 0 && 
+      this.fechaInicio.length === 0 && 
+      this.fechaFinalizacion.length === 0 &&  
       this.descripcion.length === 0) {
-      alert("Por favor completa todos los campos del proyecto");
+      alert("Por favor modificá alguno de los campos del proyecto");
       return;
     }
     if(this.nombre.length > 255 || 

@@ -8,20 +8,28 @@
 
 .title {
     font-size: 28px;
-    padding-left: 2.5%;
-    margin-top: 1%;
+    margin-top: 2%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+}
+
+.title-content {
+    margin-left: auto;
 }
 
 .description {
-    padding-left: 2.5%;
-    text-align: justify;
+    font-size: 16px;
+    margin-top: 2%;
+    margin-bottom: 1.5%;
+    padding-left: 10%;
+    padding-right: 10%;
+    text-align: center;
 }
 
 .edit-buttons {
     margin-right: 2.5%;
     margin-top: 1%;
+    margin-left: auto;
     display: flex;
     font-size: 20px;
 }

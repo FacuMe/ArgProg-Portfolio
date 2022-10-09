@@ -1,45 +1,75 @@
 <div class="container-fluid" *ngFor="let profile of myProfile">
     <div class="about">
-        <div class="title">
-            <h2>Perfil</h2>
+        <div class="title section-title">
+            <div class="title-content">
+                <h2>Perfil</h2>
+                <div class="description">
+                    <div>
+                        <p *ngIf="load" class="fst-italic">{{profile.descripcion}}</p>
+                    </div>    
+                </div>
+            </div>
             <div class="edit-buttons">
-                <i class="fa fa-pencil" aria-hidden="true" *ngIf="!showModifyProfile && isLogged" (click)="onShowModifyProfile()"></i>
+                <i class="fa fa-pencil" aria-hidden="true" *ngIf="isLogged" data-bs-toggle="modal" data-bs-target="#staticBackdropProfile"></i>
             </div>
         </div>
-        <div class="description">
-            <div class="col-8">
-                <p *ngIf="load">{{profile.descripcion}}</p>
-            </div>    
-        </div>
-    
-        <!--form for modifying profile-->
-        <form class="row container d-flex justify-content-center form-block" *ngIf="showModifyProfile && isLogged" (ngSubmit)="onSubmitModifyProfile(profile)">
-            <div class="col-xl-12">
-                <div class="card proj-progress-card">
-                    <div class="card-block d-flex justify-content-between">
-                        <div class="row d-flex justify-content-between col-sm-10">
-                            <div>
-                                <div class="form-group row form-row">
-                                    <label for="text" class="col-sm-2 col-form-label">Descripción</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control form-row" name="descripcion" id="descripcion" placeholder="Descripcion" [(ngModel)]="descripcion">
-                                    </div>
+
+        <!-- modal for modifying profile-->
+        <div class="modal fade" id="staticBackdropProfile" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabelProfile" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Modificar Perfil</h5>
+                        <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-block" (ngSubmit)="onSubmitModifyProfile(profile)">
+                            <div class="form-group row align-items-center">
+                                <label for="text" class="col-md-3 col-form-label">Descripción</label>
+                                <div class="col-sm-9">
+                                    <textarea type="text" class="form-control form-row" name="descripcion" id="descripcion" placeholder="Descripcion" rows="3" [(ngModel)]="descripcion"></textarea>
                                 </div>
                             </div>
                             <div class="form-row">
-                                <div>
-                                    <button type="submit" class="btn btn-warning form-row">Modificar perfil</button>
+                                <div class="col-md-5 mt-4">
+                                    <button type="submit" class="btn btn-warning" data-bs-dismiss="modal">Modificar Perfil</button>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="edit-buttons">
-                                <i class="fa fa-close" aria-hidden="true" (click)="onShowModifyProfile()"></i>
-                            </div>
-                        </div>
+                            </div>      
+                        </form>
                     </div>
                 </div>
             </div>
-        </form>
+        </div>
+        
     </div>
 </div>
+
+<!--form for modifying profile
+<form class="row container d-flex justify-content-center form-block" *ngIf="showModifyProfile && isLogged" (ngSubmit)="onSubmitModifyProfile(profile)">
+    <div class="col-xl-12">
+        <div class="card proj-progress-card">
+            <div class="card-block d-flex justify-content-between">
+                <div class="row d-flex justify-content-between col-sm-10">
+                    <div>
+                        <div class="form-group row form-row">
+                            <label for="text" class="col-sm-2 col-form-label">Descripción</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control form-row" name="descripcion" id="descripcion" placeholder="Descripcion" [(ngModel)]="descripcion">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div>
+                            <button type="submit" class="btn btn-warning form-row">Modificar perfil</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="edit-buttons">
+                        <i class="fa fa-close" aria-hidden="true" (click)="onShowModifyProfile()"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>-->

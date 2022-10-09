@@ -74,6 +74,10 @@ export class PortfolioService {
     return this.http.post<any>(this.apiUrl + 'new/skill/', item)
   }
 
+  updateSkill(item:any, modifValues:any):Observable<any>{
+    return this.http.put<any>(this.apiUrl + 'save/skill/' + item.id, modifValues, httpOptions);
+  }
+
   deleteSkill(item:any):Observable<any>{
     return this.http.delete<any>(this.apiUrl + 'delete/skill/' + item.id);
   }
