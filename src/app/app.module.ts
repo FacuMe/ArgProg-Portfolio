@@ -12,7 +12,7 @@ import { PortfolioSectionsProjectComponent } from './portfolio-sections-project/
 import { PortfolioSectionsSkillComponent } from './portfolio-sections-skill/portfolio-sections-skill.component';
 import { PortfolioService } from './servicios/portfolio.service';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InterceptorProvider } from './servicios/interceptor.service';
 import { NavbarComponent } from './navbar/navbar.component';
 
@@ -33,7 +33,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     BrowserModule,
     AppRoutingModule, 
     HttpClientModule,
-    FormsModule 
+    FormsModule, 
+    ReactiveFormsModule
   ],
   providers: [
     PortfolioService,

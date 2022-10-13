@@ -48,6 +48,8 @@ export class PortfolioAboutComponent implements OnInit {
       this.datosPortfolio.readProfile().subscribe(data =>{
         this.myProfile=data;
       });
+    }, err => {
+      alert("No se pudo modificar, verifique si ha ingresado como usuario administrador");
     });
   }
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PortfolioService } from '../servicios/portfolio.service';
 import { TokenService } from '../servicios/token.service';
 
+
 @Component({
   selector: 'app-portfolio-sections-project',
   templateUrl: './portfolio-sections-project.component.html',
@@ -33,6 +34,11 @@ export class PortfolioSectionsProjectComponent implements OnInit {
       for (let item of this.myProjects) {
         this.showModifyProject[item.id] = false;
       }
+      for (let item of this.myProjects) {
+        if(item.urlFoto == null || item.urlFoto == ''){
+          item.urlFoto = "/assets/leadbg2.jpg";
+        }
+      }
     });
 
     if(this.tokenService.getToken()){
@@ -58,10 +64,8 @@ export class PortfolioSectionsProjectComponent implements OnInit {
       this.entidad.length === 0 || 
       this.fechaInicio.length === 0 || 
       this.fechaFinalizacion.length === 0 ||  
-      this.descripcion.length === 0 ||  
-      this.urlFoto.length === 0 ||  
-      this.urlProyecto.length === 0) {
-      alert("Por favor completa todos los campos del proyecto");
+      this.descripcion.length === 0) {
+      alert("Por favor completa todos los campos");
       return;
     }
     if(this.nombre.length > 255 || 
@@ -70,8 +74,8 @@ export class PortfolioSectionsProjectComponent implements OnInit {
       this.fechaFinalizacion.length > 255 || 
       this.descripcion.length > 255 || 
       this.urlFoto.length > 255 || 
-      this.urlProyecto.length > 255 ) {
-      alert("Máximo 255 caracteres");
+      this.urlProyecto.length > 255) {
+      alert("Máximo 255 caracteres por campo");
       return;
     }
     const { nombre, entidad,  fechaInicio, fechaFinalizacion, descripcion, proyectoActual, urlFoto, urlProyecto } = this;
@@ -81,8 +85,15 @@ export class PortfolioSectionsProjectComponent implements OnInit {
         this.myProjects.push(addValues);
         this.datosPortfolio.readProject().subscribe(data =>{
           this.myProjects=data;
+          for (let item of this.myProjects) {
+            if(item.urlFoto == null || item.urlFoto == ''){
+              item.urlFoto = "/assets/leadbg2.jpg";
+            }
+          }
         });
-      },
+      }, err => {
+        alert("No se pudo agregar, verifique si ha ingresado como usuario administrador");
+      }
     );
   }
 
@@ -91,10 +102,8 @@ export class PortfolioSectionsProjectComponent implements OnInit {
       this.entidad.length === 0 || 
       this.fechaInicio.length === 0 || 
       this.fechaFinalizacion.length === 0 ||  
-      this.descripcion.length === 0 || 
-      this.urlFoto.length === 0 ||  
-      this.urlProyecto.length === 0) {
-      alert("Por favor modifica todos los campos del proyecto");
+      this.descripcion.length === 0) {
+        alert("Por favor completa todos los campos");
       return;
     }
     if(this.nombre.length > 255 || 
@@ -103,8 +112,8 @@ export class PortfolioSectionsProjectComponent implements OnInit {
       this.fechaFinalizacion.length > 255 || 
       this.descripcion.length > 255 || 
       this.urlFoto.length > 255 || 
-      this.urlProyecto.length > 255 ) {
-      alert("Máximo 255 caracteres");
+      this.urlProyecto.length > 255) {
+        alert("Máximo 255 caracteres por campo");
       return;
     }
     const { nombre, entidad,  fechaInicio, fechaFinalizacion, descripcion, proyectoActual, urlFoto, urlProyecto } = this;
@@ -112,7 +121,14 @@ export class PortfolioSectionsProjectComponent implements OnInit {
     this.datosPortfolio.updateProject(item, modifValues).subscribe((response) => {
       this.datosPortfolio.readProject().subscribe(data =>{
         this.myProjects=data;
+        for (let item of this.myProjects) {
+          if(item.urlFoto == null || item.urlFoto == ''){
+            item.urlFoto = "/assets/leadbg2.jpg";
+          }
+        }
       });
+    }, err => {
+      alert("No se pudo modificar, verifique si ha ingresado como usuario administrador");
     });
   }
 
@@ -125,6 +141,8 @@ export class PortfolioSectionsProjectComponent implements OnInit {
             return t.id !== item.id;
           }
         );
+      }, err => {
+        alert("No se pudo eliminar, verifique si ha ingresado como usuario administrador");
       }
     );
   }

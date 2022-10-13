@@ -71,6 +71,8 @@ export class PortfolioHeaderComponent implements OnInit {
       this.datosPortfolio.readUser().subscribe(data =>{
         this.myPortfolio=data;
       });
+    }, err => {
+      alert("No se pudo modificar, verifique si ha ingresado como usuario administrador");
     });
   }
 

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { LoginUsuario } from '../models/login-usuario';
 import { AuthService } from '../servicios/auth.service';
 import { TokenService } from '../servicios/token.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -13,13 +14,26 @@ export class LoginComponent implements OnInit {
 
   isLogged = false;
   isLoginFail = false;
+  isValidationFail = false;
   loginUsuario!: LoginUsuario;
-  nombreUsuario!: string;
-  password!: string;
   roles: string[] = [];
   errMsj!: string;
+  form: FormGroup;
 
-  constructor(private tokenService: TokenService, private authService: AuthService, private router: Router) { }
+  constructor(private tokenService: TokenService, private authService: AuthService, private router: Router, private FormBuilder:FormBuilder) { 
+    this.form = this.FormBuilder.group({
+      nombreUsuario: ['',[Validators.required]],
+      password: ['',[Validators.required]],
+    })
+  }
+
+  get nombreUsuario(){
+    return this.form.get('nombreUsuario');
+  }
+
+  get password(){
+    return this.form.get('password');
+  }
 
   ngOnInit(): void {
     if(this.tokenService.getToken()){
@@ -30,7 +44,11 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(): void {
-    this.loginUsuario = new LoginUsuario(this.nombreUsuario, this.password); 
+    if(this.nombreUsuario?.errors || this.password?.errors){
+      this.isValidationFail = true;
+      return;
+    }
+    this.loginUsuario = new LoginUsuario(this.form.value.nombreUsuario, this.form.value.password); 
     this.authService.login(this.loginUsuario).subscribe(data => {
       this.isLogged = true;
       this.isLoginFail = false;
@@ -44,7 +62,7 @@ export class LoginComponent implements OnInit {
     }, err => {
       this.isLogged = false;
       this.isLoginFail = true;
-      this.errMsj = err.console.error.mensaje;
+      this.errMsj = err.error.mensaje;
       console.log(this.errMsj);
     })
   }

@@ -32,6 +32,11 @@ export class PortfolioSectionsEducationComponent implements OnInit {
       for (let item of this.myEducations) {
         this.showModifyEducation[item.id] = false;
       }
+      for (let item of this.myEducations) {
+        if(item.urlFoto == null || item.urlFoto == ''){
+          item.urlFoto = "/assets/yelloweduclogo2.png";
+        }
+      }
     });
 
     if(this.tokenService.getToken()){
@@ -57,8 +62,7 @@ export class PortfolioSectionsEducationComponent implements OnInit {
       this.nombre.length === 0 || 
       this.fechaInicio.length === 0 || 
       this.fechaFinalizacion.length === 0 ||  
-      this.descripcion.length === 0 ||  
-      this.urlFoto.length === 0) {
+      this.descripcion.length === 0) {
       alert("Por favor completa todos los campos del estudio");
       return;
     }
@@ -78,8 +82,15 @@ export class PortfolioSectionsEducationComponent implements OnInit {
         this.myEducations.push(addValues);
         this.datosPortfolio.readEducation().subscribe(data =>{
           this.myEducations=data;
+          for (let item of this.myEducations) {
+            if(item.urlFoto == null || item.urlFoto == ''){
+              item.urlFoto = "/assets/yelloweduclogo2.png";
+            }
+          }
         });
-      },
+      }, err => {
+        alert("No se pudo agregar, verifique si ha ingresado como usuario administrador");
+      }
     );
   }
 
@@ -88,8 +99,7 @@ export class PortfolioSectionsEducationComponent implements OnInit {
       this.nombre.length === 0 || 
       this.fechaInicio.length === 0 || 
       this.fechaFinalizacion.length === 0 ||  
-      this.descripcion.length === 0 ||  
-      this.urlFoto.length === 0) {
+      this.descripcion.length === 0) {
       alert("Por favor modifica todos los campos del estudio");
       return;
     }
@@ -107,7 +117,14 @@ export class PortfolioSectionsEducationComponent implements OnInit {
     this.datosPortfolio.updateEducation(item, modifValues).subscribe((response) => {
       this.datosPortfolio.readEducation().subscribe(data =>{
         this.myEducations=data;
+        for (let item of this.myEducations) {
+          if(item.urlFoto == null || item.urlFoto == ''){
+            item.urlFoto = "/assets/yelloweduclogo2.png";
+          }
+        }
       });
+    }, err => {
+      alert("No se pudo modificar, verifique si ha ingresado como usuario administrador");
     });
   }
 
@@ -120,6 +137,8 @@ export class PortfolioSectionsEducationComponent implements OnInit {
             return t.id !== item.id;
           }
         );
+      }, err => {
+        alert("No se pudo eliminar, verifique si ha ingresado como usuario administrador");
       }
     );
   }

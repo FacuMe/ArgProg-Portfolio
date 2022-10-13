@@ -14,7 +14,7 @@
 
 .photo {
     margin-top: -5.8%;
-    padding-left: 2.5%;
+    padding-left: 3.5%;
     display: flex;
 }
 
@@ -34,12 +34,16 @@
 .fa:hover {
     opacity: 0.7;
     cursor: pointer;
-  }
+}
+
+.fa-chevron-right:hover{
+    cursor: default;
+}
 
 .personal-data {
     display: flex;
     justify-content: space-between;
-    padding-left: 2.5%;
+    padding-left: 3.5%;
 }
 
 .title {
@@ -47,11 +51,34 @@
     text-shadow: 1px 1px 2px #ced4da;
 }
 
+.argproglogo{
+    display: flex;
+    flex-direction: column;
+}
+
 #joblogo {
-    width: 16%;
-    height: 16%;
+    width: 30%;
+    height: 30%;
     padding-bottom: 1%;
     padding-right: 3%;
+    margin-left: auto;
+    margin-right: 30%;
+}
+
+@media (max-width:750px){
+    .personal-data{
+        flex-direction: column;
+    }
+    .typing {
+        margin-left: 0 !important;
+        margin-right: 0% !important;
+    }
+    #joblogo {
+        margin-left: 0;
+        margin-right: 0%;
+        width: 40%;
+        height: 40%;
+    }
 }
 
 /* los originales
@@ -81,3 +108,78 @@
     border-color: rgba(132, 131, 131, 0.015);
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #f0bc2c;
 }
+
+
+.typing {
+    align-items: center;
+    box-sizing: border-box;
+    margin-left: auto;
+    margin-right: 29.5%;
+    margin-top: 2%;
+}
+
+.wrapper {
+    display: inline-flex;
+}
+
+.wrapper .static-txt {
+    color: rgb(21, 17, 17);
+    font-size: 20px;
+    font-weight: 200;
+}
+
+.wrapper .dynamic-txts {
+    margin-left: 5px;
+    height: 25px;
+    line-height: 25px;
+    overflow: hidden;
+}
+
+.dynamic-txts li {
+    color: #f0bc2c;
+    list-style: none;
+    font-size: 20px;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+    position: relative;
+    top: 0;
+    animation: slide 6s steps(2) infinite;
+}
+
+@keyframes slide {
+    100% {
+        top: -50px;
+    }
+}
+
+.dynamic-txts li span {
+    position: relative;
+}
+
+.dynamic-txts li span::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    height: 120%;
+    width: 100%;
+    background: #fff;
+    border-left: 2px solid #0f0f0d;
+    animation: typing 3s steps(18) infinite;
+}
+
+
+@keyframes typing {
+    40%, 60%{
+      left: calc(100% + 0px);
+    }
+    100%{
+      left: 2px;
+    }
+}
+
+/*@keyframes typing {
+    100% {
+        left: 100%;
+        margin: 0 -0px 0 11px;
+    }
+}*/

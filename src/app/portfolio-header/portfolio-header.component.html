@@ -7,8 +7,8 @@
                 <i class="fa fa-pencil" aria-hidden="true" *ngIf="isLogged"  data-bs-toggle="modal" data-bs-target="#staticBackdropHeader"></i>
             </div>
         </div>
-        <div class="row personal-data" *ngIf="load">
-            <div class="col-xl-3 col-md-6">
+        <div class="personal-data" *ngIf="load">
+            <div class="col-sm-6">
                 <div class="title">
                     <h1>
                         <b>{{user.nombre}} {{user.apellido}}</b>
@@ -35,7 +35,18 @@
                     </ul>
                 </div>
             </div>
-            <img id="joblogo" src="/assets/scba-logo.png" alt="portfolio-logo">
+            <div class="argproglogo align-self-center">
+                <img id="joblogo" src="/assets/mineconlogo2.png" alt="portfolio-logo">
+                <div class="typing">
+                    <div class="wrapper">
+                        <div class="static-txt"></div>
+                        <ul class="dynamic-txts">
+                          <li><span>Argentina Programa</span></li>
+                          <li><span>#YoProgramo</span></li>
+                        </ul>
+                      </div>
+                </div>
+            </div>
         </div>
 
         <!-- modal for modifying header-->
@@ -47,7 +58,7 @@
                         <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form class="form-block" (ngSubmit)="onSubmitModifyUser(user)">
+                        <form class="form-block" (ngSubmit)="onSubmitModifyUser(user)" autocomplete="off">
                             <div class="form-group row align-items-center">
                                 <label for="text" class="col-md-3 col-form-label">Nombre</label>
                                 <div class="col-sm-9">

@@ -163,3 +163,8 @@ img {
   -o-transform:scale(1.15);
   transform:scale(1.15);
 }
+
+.linkDeactivated {
+  pointer-events: none style;
+  cursor: default
+}

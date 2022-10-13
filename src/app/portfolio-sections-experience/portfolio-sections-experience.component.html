@@ -21,7 +21,7 @@
                             <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form class="form-block" (ngSubmit)="onSubmitAddExperience()">
+                            <form class="form-block" (ngSubmit)="onSubmitAddExperience()" autocomplete="off">
                                 <div class="form-group row align-items-center">
                                     <label for="text" class="col-md-3 col-form-label">Puesto</label>
                                     <div class="col-sm-9">
@@ -105,13 +105,13 @@
                                                         <i class="fa fa-trash delete-icon" aria-hidden="true" *ngIf="isLogged" (click)="onDeleteExperience(experiencia)"></i>
                                                     </div>
                                                 </div>
-                                                <div class="d-flex justify-content-between">
+                                                <div class="card-top-items d-flex justify-content-between">
                                                     <div class="d-flex flex-column justify-content-between">
                                                         <h3>{{experiencia.puesto}}</h3>
                                                         <h4 style="color:#374054">{{experiencia.empleador}}</h4>
                                                     </div>
                                                     <div class="align-self-center">
-                                                        <img id="url_foto_experiencia" class="experiencepic img-fluid mb-3" [src]="experiencia.urlFoto" alt="experience-pic">  
+                                                        <img *ngIf="experiencia.urlFoto && experiencia.urlFoto != ''" id="url_foto_experiencia" class="experiencepic img-fluid mb-3" [src]="experiencia.urlFoto" alt="experience-pic">  
                                                     </div>
                                                 </div>
                                                 
@@ -137,7 +137,7 @@
                                 </div>
                                 <div class="modal-body">
                                     <!--form for modifying project-->
-                                    <form class="form-block" (ngSubmit)="onSubmitModifyExperience(experiencia)">
+                                    <form class="form-block" (ngSubmit)="onSubmitModifyExperience(experiencia)" autocomplete="off">
                                         <div class="form-group row align-items-center">
                                             <label for="text" class="col-md-3 col-form-label">Puesto</label>
                                             <div class="col-sm-9">

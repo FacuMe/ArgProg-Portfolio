@@ -19,7 +19,7 @@
                             <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form class="form-block" (ngSubmit)="onSubmitAddProject()">
+                            <form class="form-block" (ngSubmit)="onSubmitAddProject()" autocomplete="off">
                                 <div class="form-group row align-items-center">
                                     <label for="text" class="col-md-3 col-form-label">Nombre</label>
                                     <div class="col-sm-9">
@@ -87,7 +87,7 @@
                     <div class="row people">
                         <div *ngFor="let proyecto of myProjects" class="col-md-6 col-lg-4 item">
                             <div class="box col-11">
-                                <a [href]="proyecto.urlProyecto">
+                                <a [ngClass]="{'linkDeactivated': proyecto.urlProyecto == null || proyecto.urlProyecto == ''}" [href]="proyecto.urlProyecto">
                                     <div class="imageBox">
                                         <img [src]="proyecto.urlFoto" alt="project-pic">        
                                     </div>
@@ -112,7 +112,7 @@
                                             </div>
                                             <div class="modal-body">
                                                 <!--form for modifying project-->
-                                                <form class="form-block" (ngSubmit)="onSubmitModifyProject(proyecto)">
+                                                <form class="form-block" (ngSubmit)="onSubmitModifyProject(proyecto)" autocomplete="off">
                                                     <div class="form-group row align-items-center">
                                                         <label for="text" class="col-md-3 col-form-label">Nombre</label>
                                                         <div class="col-sm-9">
@@ -167,7 +167,7 @@
                                                         <div class="col-md-5 mt-4">
                                                             <button type="submit" class="btn btn-warning" data-bs-dismiss="modal">Modificar Proyecto</button>
                                                         </div>
-                                                    </div>      
+                                                    </div> 
                                                 </form>
                                             </div>
                                         </div>

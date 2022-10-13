@@ -96,7 +96,9 @@ export class PortfolioSectionsSkillComponent implements OnInit {
             }
           };
         });
-      },
+      }, err => {
+        alert("No se pudo agregar, verifique si ha ingresado como usuario administrador");
+      }
     );
   }
 
@@ -140,6 +142,8 @@ export class PortfolioSectionsSkillComponent implements OnInit {
           }
         };
       });
+    }, err => {
+      alert("No se pudo modificar, verifique si ha ingresado como usuario administrador");
     });
   }
 
@@ -152,6 +156,8 @@ export class PortfolioSectionsSkillComponent implements OnInit {
             return t.id !== item.id;
           }
         );
+      }, err => {
+        alert("No se pudo eliminar, verifique si ha ingresado como usuario administrador");
       }
     );
   }

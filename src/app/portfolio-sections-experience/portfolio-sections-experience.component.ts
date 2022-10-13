@@ -32,6 +32,11 @@ export class PortfolioSectionsExperienceComponent implements OnInit {
       for (let item of this.myExperiences) {
         this.showModifyExperience[item.id] = false;
       }
+      for (let item of this.myExperiences) {
+        if(item.urlFoto == null || item.urlFoto == ''){
+          item.urlFoto = "/assets/yellowjoblogo2.png";
+        }
+      }
     });
 
     if(this.tokenService.getToken()){
@@ -40,7 +45,7 @@ export class PortfolioSectionsExperienceComponent implements OnInit {
     else{
       this.isLogged = false;
     }
-
+    
   }
 
   onShowAddExperience(){
@@ -57,8 +62,7 @@ export class PortfolioSectionsExperienceComponent implements OnInit {
       this.fechaIngreso.length === 0 || 
       this.fechaSalida.length === 0 || 
       this.tipoEmpleo.length === 0 || 
-      this.descripcion.length === 0 || 
-      this.urlFoto.length === 0) {
+      this.descripcion.length === 0) {
       alert("Por favor completa todos los campos del empleo");
       return;
     }
@@ -79,8 +83,15 @@ export class PortfolioSectionsExperienceComponent implements OnInit {
         this.myExperiences.push(addValues);
         this.datosPortfolio.readExperience().subscribe(data =>{
           this.myExperiences=data;
+          for (let item of this.myExperiences) {
+            if(item.urlFoto == null || item.urlFoto == ''){
+              item.urlFoto = "/assets/yellowjoblogo2.png";
+            }
+          }
         });
-      },
+      }, err => {
+        alert("No se pudo agregar, verifique si ha ingresado como usuario administrador");
+      }
     );
   }
 
@@ -90,8 +101,7 @@ export class PortfolioSectionsExperienceComponent implements OnInit {
       this.fechaIngreso.length === 0 || 
       this.fechaSalida.length === 0 || 
       this.tipoEmpleo.length === 0 || 
-      this.descripcion.length === 0 || 
-      this.urlFoto.length === 0) {
+      this.descripcion.length === 0) {
       alert("Por favor modifica todos los campos del empleo");
       return;
     }
@@ -110,7 +120,14 @@ export class PortfolioSectionsExperienceComponent implements OnInit {
     this.datosPortfolio.updateExperience(item, modifValues).subscribe((response) => {
       this.datosPortfolio.readExperience().subscribe(data =>{
         this.myExperiences=data;
-      });
+        for (let item of this.myExperiences) {
+          if(item.urlFoto == null || item.urlFoto == ''){
+            item.urlFoto = "/assets/yellowjoblogo2.png";
+          }
+        }
+        });
+    }, err => {
+      alert("No se pudo modificar, verifique si ha ingresado como usuario administrador");
     });
   }
 
@@ -123,7 +140,9 @@ export class PortfolioSectionsExperienceComponent implements OnInit {
             return t.id !== item.id;
           }
         );
-      },
+      }, err => {
+        alert("No se pudo eliminar, verifique si ha ingresado como usuario administrador");
+      }
     );
   }
 

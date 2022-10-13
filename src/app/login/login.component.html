@@ -1,4 +1,45 @@
 <div class="container">
+    <form [formGroup]="form" class="login-form" (ngSubmit)="onLogin()" autocomplete="off">
+        <h1 class="h3 mb-3 fw-normal">
+            Acceder a la plataforma
+        </h1>
+
+        <div class="mt-5">
+            <div class="form-floating login-element form-element">
+                <input formControlName="nombreUsuario" [ngClass]="{'is-invalid': nombreUsuario?.errors && nombreUsuario?.touched}" type="text" class="form-control" id="nombreUsuario" name="nombreUsuario" placeholder="Usuario">
+                <label for="floatingInput">Usuario</label>
+            </div>
+            <div *ngIf="(nombreUsuario?.errors && nombreUsuario?.touched) || isValidationFail" class="errorMsj">
+                <p *ngIf="nombreUsuario?.hasError('required')" class="text-danger">
+                    El usuario es requerido
+                </p>
+            </div>
+            
+            <div class="form-floating login-element">
+                <input formControlName="password" [ngClass]="{'is-invalid': password?.errors && password?.touched}" type="password" class="form-control" id="password" name="password" placeholder="Password">
+                <label for="floatingPassword">Contraseña</label>
+            </div>
+            <div *ngIf="(password?.errors && password?.touched) || isValidationFail" class="errorMsj">
+                <p *ngIf="password?.hasError('required')" class="text-danger">
+                    La contraseña es requerida
+                </p>
+            </div>
+            <button class="w-100 btn btn-lg btn-dark login-element mt-5" type="submit">Ingresar</button>
+        </div>
+
+        <div *ngIf="isLoginFail" class="mt-3 errorMsj">
+            <p class="text-danger">
+                Usuario o contraseña incorrecto
+            </p>
+        </div>
+        
+        <p class="mt-5 mb-3 text-muted login-element">© 2022</p>
+    </form>
+</div>
+
+
+<!--
+    <div class="container">
     <form class="login-form">
         <h1 class="h3 mb-3 fw-normal">
             Acceder a la plataforma
@@ -13,16 +54,18 @@
                 <input type="password" class="form-control" id="password" name="password" placeholder="Password" [(ngModel)]="password" required>
                 <label for="floatingPassword">Contraseña</label>
             </div>
-            <!--
+            <!- -
             <div class="checkbox mb-3 login-element">
                 <label>
                     <input type="checkbox" value="remember-me"> Recordarme
                 </label>
             </div>
-            -->
+            -- >
             <button class="w-100 btn btn-lg btn-dark login-element mt-5" type="submit">Ingresar</button>
         </form>
         
         <p class="mt-5 mb-3 text-muted login-element">© 2022</p>
     </form>
 </div>
+
+-->

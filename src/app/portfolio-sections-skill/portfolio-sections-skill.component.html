@@ -22,7 +22,7 @@
                             <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form class="form-block" (ngSubmit)="onSubmitAddSkill()">
+                            <form class="form-block" (ngSubmit)="onSubmitAddSkill()" autocomplete="off">
                                 <div class="form-group row align-items-center">
                                     <label for="text" class="col-md-3 col-form-label">Nombre</label>
                                     <div class="col-sm-9">
@@ -90,7 +90,7 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <!--form for modifying skill-->
-                                                    <form class="form-block" (ngSubmit)="onSubmitModifySkill(habilidad)">
+                                                    <form class="form-block" (ngSubmit)="onSubmitModifySkill(habilidad)" autocomplete="off">
                                                         <div class="form-group row align-items-center">
                                                             <label for="text" class="col-md-3 col-form-label">Nombre</label>
                                                             <div class="col-sm-9">
