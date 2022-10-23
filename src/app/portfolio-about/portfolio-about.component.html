@@ -20,19 +20,29 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="staticBackdropLabel">Modificar Perfil</h5>
-                        <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button id="closeButtonProf" type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close" (click)="resetValidations()"></button>
                     </div>
                     <div class="modal-body">
                         <form class="form-block" (ngSubmit)="onSubmitModifyProfile(profile)" autocomplete="off">
                             <div class="form-group row align-items-center">
-                                <label for="text" class="col-md-3 col-form-label">Descripción</label>
+                                <label for="text" class="col-md-3 col-form-label">Descripción <span *ngIf="errorValidation1" class="text-danger">*</span> <span *ngIf="errorValidation2" class="text-danger">*(255)</span> </label>
                                 <div class="col-sm-9">
                                     <textarea type="text" class="form-control form-row" name="descripcion" id="descripcion" placeholder="Descripcion" rows="3" [(ngModel)]="descripcion"></textarea>
                                 </div>
                             </div>
+                            <div *ngIf="errorValidation1" class="errorMsj">
+                                <p class="text-danger col-form-label">
+                                    * Por favor completa el campo requerido
+                                </p>
+                            </div>
+                            <div *ngIf="errorValidation2" class="errorMsj">
+                                <p class="text-danger col-form-label">
+                                    * Máximo de caracteres superado, verifique el campo
+                                </p>
+                            </div>
                             <div class="form-row">
-                                <div class="col-md-5 mt-4">
-                                    <button type="submit" class="btn btn-warning" data-bs-dismiss="modal">Modificar Perfil</button>
+                                <div class="col-md-5 mt-2">
+                                    <button type="submit" class="btn btn-warning">Modificar Perfil</button>
                                 </div>
                             </div>      
                         </form>

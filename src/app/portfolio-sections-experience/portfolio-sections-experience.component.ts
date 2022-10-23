@@ -8,12 +8,13 @@ import { TokenService } from '../servicios/token.service';
   styleUrls: ['./portfolio-sections-experience.component.css']
 })
 export class PortfolioSectionsExperienceComponent implements OnInit {
-  
+
   myExperiences:any;
   showAddExperience:boolean = false;
   showModifyExperience:boolean[] = [];
   isLogged: boolean = false;
- 
+  errorValidation1: boolean = false;
+  errorValidation2: boolean = false;
 
   puesto:string = "";
   empleador:string = "";
@@ -34,7 +35,10 @@ export class PortfolioSectionsExperienceComponent implements OnInit {
       }
       for (let item of this.myExperiences) {
         if(item.urlFoto == null || item.urlFoto == ''){
-          item.urlFoto = "/assets/yellowjoblogo2.png";
+          item.urlFoto = "/assets/yellowjoblogo3.png";
+        }
+        if(item.empleoActual){
+          item.fechaSalida = 'Presente';
         }
       }
     });
@@ -46,6 +50,11 @@ export class PortfolioSectionsExperienceComponent implements OnInit {
       this.isLogged = false;
     }
     
+  }
+
+  resetValidations(){
+    this.errorValidation1 = false;
+    this.errorValidation2 = false;
   }
 
   onShowAddExperience(){
@@ -60,20 +69,22 @@ export class PortfolioSectionsExperienceComponent implements OnInit {
     if(this.puesto.length === 0 || 
       this.empleador.length === 0 || 
       this.fechaIngreso.length === 0 || 
-      this.fechaSalida.length === 0 || 
+      (this.fechaSalida.length === 0 && !this.empleoActual) || 
       this.tipoEmpleo.length === 0 || 
       this.descripcion.length === 0) {
-      alert("Por favor completa todos los campos del empleo");
+      this.errorValidation1 = true;
+      this.errorValidation2 = false;
       return;
     }
-    if(this.puesto.length > 255 || 
-      this.empleador.length > 255 || 
-      this.fechaIngreso.length > 255 || 
-      this.fechaSalida.length > 255 || 
-      this.tipoEmpleo.length > 255 || 
+    if(this.puesto.length > 40 || 
+      this.empleador.length > 40 || 
+      this.fechaIngreso.length > 40 || 
+      this.fechaSalida.length > 40 || 
+      this.tipoEmpleo.length > 40 || 
       this.descripcion.length > 255 || 
-      this.urlFoto.length > 255 ) {
-      alert("Máximo 255 caracteres");
+      this.urlFoto.length > 100 ) {
+      this.errorValidation1 = false;
+      this.errorValidation2 = true;
       return;
     }
     const { puesto, empleador, fechaIngreso, fechaSalida, tipoEmpleo, descripcion, empleoActual, urlFoto } = this;
@@ -85,34 +96,42 @@ export class PortfolioSectionsExperienceComponent implements OnInit {
           this.myExperiences=data;
           for (let item of this.myExperiences) {
             if(item.urlFoto == null || item.urlFoto == ''){
-              item.urlFoto = "/assets/yellowjoblogo2.png";
+              item.urlFoto = "/assets/yellowjoblogo3.png";
+            }
+            if(item.empleoActual){
+              item.fechaSalida = 'Presente';
             }
           }
         });
       }, err => {
-        alert("No se pudo agregar, verifique si ha ingresado como usuario administrador");
+        alert("No se pudo agregar, verifique estado de sesión e ingreso como usuario administrador");
       }
     );
+    this.errorValidation1 = false;
+    this.errorValidation2 = false;
+    document.getElementById('closeButtonExp')?.click();
   }
 
   onSubmitModifyExperience(item:any){
     if(this.puesto.length === 0 || 
       this.empleador.length === 0 || 
       this.fechaIngreso.length === 0 || 
-      this.fechaSalida.length === 0 || 
+      (this.fechaSalida.length === 0 && !this.empleoActual) || 
       this.tipoEmpleo.length === 0 || 
       this.descripcion.length === 0) {
-      alert("Por favor modifica todos los campos del empleo");
+      this.errorValidation1 = true;
+      this.errorValidation2 = false;
       return;
     }
-    if(this.puesto.length > 255 || 
-      this.empleador.length > 255 || 
-      this.fechaIngreso.length > 255 || 
-      this.fechaSalida.length > 255 || 
-      this.tipoEmpleo.length > 255 || 
+    if(this.puesto.length > 40 || 
+      this.empleador.length > 40 || 
+      this.fechaIngreso.length > 40 || 
+      this.fechaSalida.length > 40 || 
+      this.tipoEmpleo.length > 40 || 
       this.descripcion.length > 255 || 
-      this.urlFoto.length > 255 ) {
-      alert("Máximo 255 caracteres");
+      this.urlFoto.length > 100 ) {
+      this.errorValidation1 = false;
+      this.errorValidation2 = true;
       return;
     }
     const { puesto, empleador, fechaIngreso, fechaSalida, tipoEmpleo, descripcion, empleoActual, urlFoto } = this;
@@ -122,13 +141,19 @@ export class PortfolioSectionsExperienceComponent implements OnInit {
         this.myExperiences=data;
         for (let item of this.myExperiences) {
           if(item.urlFoto == null || item.urlFoto == ''){
-            item.urlFoto = "/assets/yellowjoblogo2.png";
+            item.urlFoto = "/assets/yellowjoblogo3.png";
+          }
+          if(item.empleoActual){
+            item.fechaSalida = 'Presente';
           }
         }
-        });
+      });
     }, err => {
-      alert("No se pudo modificar, verifique si ha ingresado como usuario administrador");
+      alert("No se pudo modificar, verifique estado de sesión e ingreso como usuario administrador");
     });
+    this.errorValidation1 = false;
+    this.errorValidation2 = false;
+    document.getElementById('closeButtonExp' + item.id)?.click();
   }
 
   onDeleteExperience(item: any) {
@@ -141,9 +166,10 @@ export class PortfolioSectionsExperienceComponent implements OnInit {
           }
         );
       }, err => {
-        alert("No se pudo eliminar, verifique si ha ingresado como usuario administrador");
+        alert("No se pudo eliminar, verifique estado de sesión e ingreso como usuario administrador");
       }
     );
+    document.getElementById('closeButtonExperienceDelete' + item.id)?.click();
   }
 
 }

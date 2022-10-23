@@ -18,42 +18,42 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="staticBackdropLabel">Agregar Educación</h5>
-                            <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button id="closeButtonEduc" type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close" (click)="resetValidations()"></button>
                         </div>
                         <div class="modal-body">
                             <form class="form-block" (ngSubmit)="onSubmitAddEducation()" autocomplete="off">
                                 <div class="form-group row align-items-center">
-                                    <label for="text" class="col-md-3 col-form-label">Institución</label>
+                                    <label for="text" class="col-md-3 col-form-label">Institución <span *ngIf="errorValidation1" class="text-danger">*</span> <span *ngIf="errorValidation2" class="text-danger">*(40)</span> </label>
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control" name="institucion" id="institucion" placeholder="Nombre de la institución" [(ngModel)]="institucion">
                                     </div>
                                 </div>
                                 <div class="form-group row form-row mt-2 align-items-center">
-                                    <label for="text" class="col-md-3 col-form-label">Nombre</label>
+                                    <label for="text" class="col-md-3 col-form-label">Nombre <span *ngIf="errorValidation1" class="text-danger">*</span> <span *ngIf="errorValidation2" class="text-danger">*(40)</span> </label>
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control" name="nombre-estudio" id="nombre-estudio" placeholder="Nombre del curso, estudio o capacitación" [(ngModel)]="nombre">
                                     </div>
                                 </div>
                                 <div class="form-group row form-row mt-1 align-items-center">
-                                    <label for="text" class="col-md-3 col-form-label">Fecha de Inicio</label>
+                                    <label for="text" class="col-md-3 col-form-label">Fecha de Inicio <span *ngIf="errorValidation1" class="text-danger">*</span> <span *ngIf="errorValidation2" class="text-danger">*(40)</span> </label>
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control" name="fecha-inicio-estudio" id="fecha-inicio-estudio" placeholder="Fecha de inicio" [(ngModel)]="fechaInicio">
                                     </div>
                                 </div>
                                 <div class="form-group row form-row mt-1 align-items-center">
-                                    <label for="text" class="col-md-3 col-form-label">Fecha de Finalización</label>
+                                    <label for="text" class="col-md-3 col-form-label">Fecha de Finalización <span *ngIf="errorValidation1" class="text-danger">*</span> <span *ngIf="errorValidation2" class="text-danger">*(40)</span> </label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" name="fecha-finalizacion-estudio" id="fecha-finalizacion-estudio" placeholder="Fecha de finalización" [(ngModel)]="fechaFinalizacion">
+                                        <input [disabled]="checkbox.checked" type="text" class="form-control" name="fecha-finalizacion-estudio" id="fecha-finalizacion-estudio" placeholder="Fecha de finalización" [(ngModel)]="fechaFinalizacion">
                                     </div>
                                 </div>
                                 <div class="form-group row form-row mt-1 align-items-center">
-                                    <label for="text" class="col-md-3 col-form-label">URL Foto</label>
+                                    <label for="text" class="col-md-3 col-form-label">URL Foto (Opcional) <span *ngIf="errorValidation2" class="text-danger">*(100)</span> </label>
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control" name="url-foto-educacion" id="url-foto-educacion" placeholder="URL Foto" [(ngModel)]="urlFoto">
                                     </div>
                                 </div>
                                 <div class="form-group row form-row mt-1 align-items-center">
-                                    <label for="text" class="col-md-3 col-form-label">Descripción</label>
+                                    <label for="text" class="col-md-3 col-form-label">Descripción <span *ngIf="errorValidation1" class="text-danger">*</span> <span *ngIf="errorValidation2" class="text-danger">*(255)</span></label>
                                     <div class="col-sm-9">
                                         <textarea type="text" class="form-control form-row" rows="3" name="descripcion-estudio" id="descripcion-estudio" placeholder="Descripción" [(ngModel)]="descripcion"></textarea>
                                     </div>
@@ -62,13 +62,23 @@
                                     <div class="col-md-3">Estudio Actual</div>
                                     <div class="col-1">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="estudio-actual" id="estudio-actual" [(ngModel)]="estudioActual">
+                                            <input #checkbox class="form-check-input" type="checkbox" name="estudio-actual" id="estudio-actual" [(ngModel)]="estudioActual">
                                         </div>
                                     </div>
                                 </div>
+                                <div *ngIf="errorValidation1" class="errorMsj">
+                                    <p class="text-danger">
+                                        * Por favor completa los campos obligatorios del empleo
+                                    </p>
+                                </div>
+                                <div *ngIf="errorValidation2" class="errorMsj">
+                                    <p class="text-danger">
+                                        * Máximo de caracteres superado, verifique los campos
+                                    </p>
+                                </div>
                                 <div class="form-row">
-                                    <div class="col-md-5 mt-4">
-                                        <button type="submit" class="btn btn-warning" data-bs-dismiss="modal">Agregar Educación</button>
+                                    <div class="col-md-5 mt-2">
+                                        <button type="submit" class="btn btn-warning">Agregar Educación</button>
                                     </div>
                                 </div>      
                             </form>
@@ -110,7 +120,7 @@
                                         </p>
                                         <div class="edit-buttons">
                                             <i class="fa fa-pencil edit-icon" aria-hidden="true" *ngIf="isLogged" data-bs-toggle="modal" [attr.data-bs-target]="'#staticBackdropEducation' + educacion.id"></i>
-                                            <i class="fa fa-trash delete-icon" aria-hidden="true" *ngIf="isLogged" (click)="onDeleteEducation(educacion)"></i>
+                                            <i class="fa fa-trash delete-icon" aria-hidden="true" *ngIf="isLogged" data-bs-toggle="modal" [attr.data-bs-target]="'#staticBackdropEducationDelete' + educacion.id"></i>
                                         </div>
                                     </div>
 
@@ -120,42 +130,42 @@
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title" id="staticBackdropLabel">Modificar Educación: {{educacion.nombre}}</h5>
-                                                    <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    <button [attr.id]="'closeButtonEduc' + educacion.id" type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close" (click)="resetValidations()"></button>
                                                 </div>
                                                 <div class="modal-body">
                                                     <form class="form-block" (ngSubmit)="onSubmitModifyEducation(educacion)" autocomplete="off">
                                                         <div class="form-group row align-items-center">
-                                                            <label for="text" class="col-md-3 col-form-label">Institución</label>
+                                                            <label for="text" class="col-md-3 col-form-label">Institución <span *ngIf="errorValidation1" class="text-danger">*</span> <span *ngIf="errorValidation2" class="text-danger">*(40)</span> </label>
                                                             <div class="col-sm-9">
                                                                 <input type="text" class="form-control" name="institucion" id="institucion" placeholder="Nombre de la institución" [(ngModel)]="institucion">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row form-row mt-2 align-items-center">
-                                                            <label for="text" class="col-md-3 col-form-label">Nombre</label>
+                                                            <label for="text" class="col-md-3 col-form-label">Nombre <span *ngIf="errorValidation1" class="text-danger">*</span> <span *ngIf="errorValidation2" class="text-danger">*(40)</span> </label>
                                                             <div class="col-sm-9">
                                                                 <input type="text" class="form-control" name="nombre-estudio" id="nombre-estudio" placeholder="Nombre del curso, estudio o capacitación" [(ngModel)]="nombre">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row form-row mt-1 align-items-center">
-                                                            <label for="text" class="col-md-3 col-form-label">Fecha de Inicio</label>
+                                                            <label for="text" class="col-md-3 col-form-label">Fecha de Inicio <span *ngIf="errorValidation1" class="text-danger">*</span> <span *ngIf="errorValidation2" class="text-danger">*(40)</span> </label>
                                                             <div class="col-sm-9">
                                                                 <input type="text" class="form-control" name="fecha-inicio-estudio" id="fecha-inicio-estudio" placeholder="Fecha de inicio" [(ngModel)]="fechaInicio">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row form-row mt-1 align-items-center">
-                                                            <label for="text" class="col-md-3 col-form-label">Fecha de Finalización</label>
+                                                            <label for="text" class="col-md-3 col-form-label">Fecha de Finalización <span *ngIf="errorValidation1" class="text-danger">*</span> <span *ngIf="errorValidation2" class="text-danger">*(40)</span> </label>
                                                             <div class="col-sm-9">
-                                                                <input type="text" class="form-control" name="fecha-finalizacion-estudio" id="fecha-finalizacion-estudio" placeholder="Fecha de finalización" [(ngModel)]="fechaFinalizacion">
+                                                                <input [disabled]="checkbox.checked" type="text" class="form-control" name="fecha-finalizacion-estudio" id="fecha-finalizacion-estudio" placeholder="Fecha de finalización" [(ngModel)]="fechaFinalizacion">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row form-row mt-1 align-items-center">
-                                                            <label for="text" class="col-md-3 col-form-label">URL Foto</label>
+                                                            <label for="text" class="col-md-3 col-form-label">URL Foto (Opcional)<span *ngIf="errorValidation2" class="text-danger">*(100)</span> </label>
                                                             <div class="col-sm-9">
-                                                                <input type="text" class="form-control" name="url-foto-educacion" id="url-foto-educacion" placeholder="URL Foto" [(ngModel)]="urlFoto"> 
+                                                                <input type="text" class="form-control" name="url-foto-educacion" id="url-foto-educacion" placeholder="URL Foto" [(ngModel)]="urlFoto">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row form-row mt-1 align-items-center">
-                                                            <label for="text" class="col-md-3 col-form-label">Descripción</label>
+                                                            <label for="text" class="col-md-3 col-form-label">Descripción <span *ngIf="errorValidation1" class="text-danger">*</span> <span *ngIf="errorValidation2" class="text-danger">*(255)</span></label>
                                                             <div class="col-sm-9">
                                                                 <textarea type="text" class="form-control form-row" rows="3" name="descripcion-estudio" id="descripcion-estudio" placeholder="Descripción" [(ngModel)]="descripcion"></textarea>
                                                             </div>
@@ -164,15 +174,48 @@
                                                             <div class="col-md-3">Estudio Actual</div>
                                                             <div class="col-1">
                                                                 <div class="form-check">
-                                                                    <input class="form-check-input" type="checkbox" name="estudio-actual" id="estudio-actual" [(ngModel)]="estudioActual">
+                                                                    <input #checkbox class="form-check-input" type="checkbox" name="estudio-actual" id="estudio-actual" [(ngModel)]="estudioActual">
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        <div *ngIf="errorValidation1" class="errorMsj">
+                                                            <p class="text-danger">
+                                                                * Por favor completa los campos obligatorios del empleo
+                                                            </p>
+                                                        </div>
+                                                        <div *ngIf="errorValidation2" class="errorMsj">
+                                                            <p class="text-danger">
+                                                                * Máximo de caracteres superado, verifique los campos
+                                                            </p>
+                                                        </div>
                                                         <div class="form-row">
-                                                            <div class="col-md-5 mt-4">
-                                                                <button type="submit" class="btn btn-warning" data-bs-dismiss="modal">Modificar Educación</button>
+                                                            <div class="col-md-5 mt-2">
+                                                                <button type="submit" class="btn btn-warning">Modificar Educación</button>
                                                             </div>
                                                         </div>      
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Modal for deleting-->
+                                    <div class="modal fade" [attr.id]="'staticBackdropEducationDelete' + educacion.id" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabelEducationDelete" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="staticBackdropLabel">Borrar Educación: {{educacion.nombre}}</h5>
+                                                    <button [attr.id]="'closeButtonEducationDelete' + educacion.id" type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <!--form for deleting skill-->
+                                                    <form class="form-block" (ngSubmit)="onDeleteEducation(educacion)" autocomplete="off">
+                                                        <div class="form-group row align-items-center">
+                                                            <label for="text" class="col-md-9 col-form-label">¿Seguro desea eliminar la educación?</label>
+                                                        </div>
+                                                        <div class="col-md-5 mt-4">
+                                                            <button type="submit" class="btn btn-warning">Eliminar Educación</button>
+                                                        </div>     
                                                     </form>
                                                 </div>
                                             </div>

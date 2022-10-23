@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InterceptorProvider } from './servicios/interceptor.service';
 import { NavbarComponent } from './navbar/navbar.component';
+import { FooterComponent } from './portfolio-footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     PortfolioSectionsEducationComponent,
     PortfolioSectionsProjectComponent,
     PortfolioSectionsSkillComponent,
-    NavbarComponent
+    NavbarComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

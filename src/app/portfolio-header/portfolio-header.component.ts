@@ -12,6 +12,8 @@ export class PortfolioHeaderComponent implements OnInit {
   showModifyUser:boolean = false;
   load:boolean = false;
   isLogged: boolean = false;
+  errorValidation1: boolean = false;
+  errorValidation2: boolean = false;
 
 
   nombre:string = "";
@@ -29,6 +31,11 @@ export class PortfolioHeaderComponent implements OnInit {
     this.datosPortfolio.readUser().subscribe(data =>{
       this.myPortfolio=data;
       this.load = true;
+      for (let user of this.myPortfolio) {
+        if(user.urlFotoPerfil == null || user.urlFotoPerfil == ''){
+          user.urlFotoPerfil = "/assets/NoPicture-500x500.jpg";
+        }
+      }
     });
     if(this.tokenService.getToken()){
       this.isLogged = true;
@@ -36,6 +43,11 @@ export class PortfolioHeaderComponent implements OnInit {
     else{
       this.isLogged = false;
     }
+  }
+
+  resetValidations(){
+    this.errorValidation1 = false;
+    this.errorValidation2 = false;
   }
 
   onShowModifyUser() {
@@ -46,34 +58,42 @@ export class PortfolioHeaderComponent implements OnInit {
     if(this.nombre.length === 0 || 
       this.apellido.length === 0 || 
       this.descripcion1.length === 0 || 
-      this.descripcion2.length === 0 || 
       this.fechaNacimiento.length === 0 || 
-      this.domicilio.length === 0 ||  
-      this.urlFotoPerfil.length === 0||  
+      this.domicilio.length === 0 ||   
       this.correoElectronico.length === 0) {
-      alert("Por favor completa todos los campos de la información personal");
-      return;
+        this.errorValidation1 = true;
+        this.errorValidation2 = false;
+        return;
     }
-    if(this.nombre.length > 255 || 
-      this.apellido.length > 255 || 
-      this.descripcion1.length > 255 || 
-      this.descripcion2.length > 255 || 
-      this.fechaNacimiento.length > 255 || 
-      this.domicilio.length > 255 ||  
+    if(this.nombre.length > 40 || 
+      this.apellido.length > 40 || 
+      this.descripcion1.length > 70 || 
+      this.descripcion2.length > 70 || 
+      this.fechaNacimiento.length > 40 || 
+      this.domicilio.length > 50 ||  
       this.urlFotoPerfil.length > 255 || 
-      this.correoElectronico.length > 255) {
-      alert("Máximo 255 caracteres");
-      return;
+      this.correoElectronico.length > 50) {
+        this.errorValidation1 = false;
+        this.errorValidation2 = true;
+        return;
     }
     const { nombre, apellido, descripcion1, descripcion2, fechaNacimiento, domicilio, urlFotoPerfil, correoElectronico } = this;
     const modifValues:any= { nombre, apellido, descripcion1, descripcion2, fechaNacimiento, domicilio, urlFotoPerfil, correoElectronico };
     this.datosPortfolio.updateUser(item, modifValues).subscribe((response) => {
       this.datosPortfolio.readUser().subscribe(data =>{
         this.myPortfolio=data;
+        for (let user of this.myPortfolio) {
+          if(user.urlFotoPerfil == null || user.urlFotoPerfil == ''){
+            user.urlFotoPerfil = "/assets/NoPicture-500x500.jpg";
+          }
+        }
       });
     }, err => {
-      alert("No se pudo modificar, verifique si ha ingresado como usuario administrador");
+      alert("No se pudo modificar, verifique estado de sesión e ingreso como usuario administrador");
     });
+    this.errorValidation1 = false;
+    this.errorValidation2 = false;
+    document.getElementById('closeButtonHeader')?.click();
   }
 
 }

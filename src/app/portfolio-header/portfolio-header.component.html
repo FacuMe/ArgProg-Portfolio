@@ -9,7 +9,7 @@
         </div>
         <div class="personal-data" *ngIf="load">
             <div class="col-sm-6">
-                <div class="title">
+                <div class="title col-xl-10">
                     <h1>
                         <b>{{user.nombre}} {{user.apellido}}</b>
                     </h1> 
@@ -17,20 +17,28 @@
                 <div class="info">
                     <ul>
                         <li>
-                            <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                            <p>{{user.descripcion1}}</p>
+                            <div class="infocard">
+                                <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                                <p>{{user.descripcion1}}</p>
+                            </div>
+                        </li>
+                        <li *ngIf="user.descripcion2">
+                            <div class="infocard">
+                                <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                                <p>{{user.descripcion2}}</p>
+                            </div>
                         </li>
                         <li>
-                            <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                            <p>{{user.descripcion2}}</p>
+                            <div class="infocard">
+                                <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                                <p>{{user.fechaNacimiento}}, {{user.domicilio}}</p>
+                            </div>
                         </li>
                         <li>
-                            <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                            <p>{{user.fechaNacimiento}}, {{user.domicilio}}</p>
-                        </li>
-                        <li>
-                            <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                            <p>{{user.correoElectronico}}</p>
+                            <div class="infocard">
+                                <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                                <p>{{user.correoElectronico}}</p>
+                            </div>
                         </li>
                     </ul>
                 </div>
@@ -41,10 +49,10 @@
                     <div class="wrapper">
                         <div class="static-txt"></div>
                         <ul class="dynamic-txts">
-                          <li><span>Argentina Programa</span></li>
-                          <li><span>#YoProgramo</span></li>
+                            <li><span>Argentina Programa</span></li>
+                            <li><span>#YoProgramo</span></li>
                         </ul>
-                      </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -55,61 +63,71 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="staticBackdropLabel">Modificar Información</h5>
-                        <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button id="closeButtonHeader" type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close" (click)="resetValidations()"></button>
                     </div>
                     <div class="modal-body">
                         <form class="form-block" (ngSubmit)="onSubmitModifyUser(user)" autocomplete="off">
                             <div class="form-group row align-items-center">
-                                <label for="text" class="col-md-3 col-form-label">Nombre</label>
+                                <label for="text" class="col-md-3 col-form-label">Nombre <span *ngIf="errorValidation1" class="text-danger">*</span> <span *ngIf="errorValidation2" class="text-danger">*(40)</span> </label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre del usuario" [(ngModel)]="nombre">
                                 </div>
                             </div>
                             <div class="form-group row form-row mt-2 align-items-center">
-                                <label for="text" class="col-md-3 col-form-label">Apellido</label>
+                                <label for="text" class="col-md-3 col-form-label">Apellido <span *ngIf="errorValidation1" class="text-danger">*</span> <span *ngIf="errorValidation2" class="text-danger">*(40)</span> </label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" name="apellido" id="apellido" placeholder="Apellido del usuario" [(ngModel)]="apellido">
                                 </div>
                             </div>
                             <div class="form-group row form-row mt-1 align-items-center">
-                                <label for="text" class="col-md-3 col-form-label">Descripción 1</label>
+                                <label for="text" class="col-md-3 col-form-label">Descripción 1 <span *ngIf="errorValidation1" class="text-danger">*</span> <span *ngIf="errorValidation2" class="text-danger">*(70)</span> </label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" name="descripcion1" id="descripcion1" placeholder="Descripción 1" [(ngModel)]="descripcion1">
                                 </div>
                             </div>
                             <div class="form-group row form-row mt-1 align-items-center">
-                                <label for="text" class="col-md-3 col-form-label">Descripción 2</label>
+                                <label for="text" class="col-md-3 col-form-label">Descripción 2 (Opcional) <span *ngIf="errorValidation2" class="text-danger">*(70)</span> </label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" name="descripcion2" id="descripcion2" placeholder="Descripción 2" [(ngModel)]="descripcion2">
                                 </div>
                             </div>
                             <div class="form-group row form-row mt-1 align-items-center">
-                                <label for="text" class="col-md-3 col-form-label">Fecha de Nacimiento</label>
+                                <label for="text" class="col-md-3 col-form-label">Fecha de Nacimiento <span *ngIf="errorValidation1" class="text-danger">*</span> <span *ngIf="errorValidation2" class="text-danger">*(40)</span> </label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" name="nacimiento" id="nacimiento" placeholder="Fecha de nacimiento (dd-mm-aaaa)" [(ngModel)]="fechaNacimiento">
                                 </div>
                             </div>
                             <div class="form-group row form-row mt-1 align-items-center">
-                                <label for="text" class="col-md-3 col-form-label">Lugar de Residencia</label>
+                                <label for="text" class="col-md-3 col-form-label">Lugar de Residencia <span *ngIf="errorValidation1" class="text-danger">*</span> <span *ngIf="errorValidation2" class="text-danger">*(50)</span> </label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" name="residencia" id="residencia" placeholder="Lugar de residencia" [(ngModel)]="domicilio">
                                 </div>
                             </div>
                             <div class="form-group row form-row mt-1 align-items-center">
-                                <label for="text" class="col-md-3 col-form-label">Correo Electrónico</label>
+                                <label for="text" class="col-md-3 col-form-label">Correo Electrónico <span *ngIf="errorValidation1" class="text-danger">*</span> <span *ngIf="errorValidation2" class="text-danger">*(50)</span> </label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" name="email" id="email" placeholder="Dirección de correo electrónico" [(ngModel)]="correoElectronico">
                                 </div>
                             </div>
                             <div class="form-group row form-row mt-1 align-items-center">
-                                <label for="text" class="col-md-3 col-form-label">URL foto de perfil</label>
+                                <label for="text" class="col-md-3 col-form-label">URL foto de perfil (Opcional)<span *ngIf="errorValidation2" class="text-danger">*(255)</span></label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" name="urlFoto" id="urlFoto" placeholder="URL de la foto de perfil" [(ngModel)]="urlFotoPerfil">
                                 </div>
                             </div>
+                            <div *ngIf="errorValidation1" class="errorMsj">
+                                <p class="text-danger col-form-label">
+                                    * Por favor completa los campos obligatorios del empleo
+                                </p>
+                            </div>
+                            <div *ngIf="errorValidation2" class="errorMsj">
+                                <p class="text-danger col-form-label">
+                                    * Máximo de caracteres superado, verifique los campos
+                                </p>
+                            </div>
                             <div class="form-row">
-                                <div class="col-md-5 mt-4">
-                                    <button type="submit" class="btn btn-warning" data-bs-dismiss="modal">Modificar Información</button>
+                                <div class="col-md-5 mt-2">
+                                    <button type="submit" class="btn btn-warning">Modificar Información</button>
                                 </div>
                             </div>      
                         </form>

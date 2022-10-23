@@ -1,3 +1,4 @@
+import { NumberFormatStyle, NumberSymbol } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { PortfolioService } from '../servicios/portfolio.service';
 import { TokenService } from '../servicios/token.service';
@@ -12,6 +13,9 @@ export class PortfolioSectionsSkillComponent implements OnInit {
   mySkills:any;
   showAddSkill:boolean = false;
   isLogged: boolean = false;
+  errorValidation1: boolean = false;
+  errorValidation2: boolean = false;
+  errorValidation3: boolean = false;
 
   nombre:string = "";
   porcentaje:string = "";
@@ -51,6 +55,12 @@ export class PortfolioSectionsSkillComponent implements OnInit {
 
   }
 
+  resetValidations(){
+    this.errorValidation1 = false;
+    this.errorValidation2 = false;
+    this.errorValidation3 = false;
+  }
+
   onShowAddSkill(){
     this.showAddSkill = !this.showAddSkill;
   }
@@ -59,15 +69,21 @@ export class PortfolioSectionsSkillComponent implements OnInit {
     if(this.nombre.length === 0 || 
       this.porcentaje.length === 0 || 
       this.color.length === 0) {
-      alert("Por favor completa todos los campos de la habilidad");
+        this.errorValidation1 = true;
+        this.errorValidation2 = false;
+        this.errorValidation3 = false;
+        return;
+    }
+    if(this.nombre.length > 40) {
+      this.errorValidation1 = false;
+      this.errorValidation2 = true;
+      this.errorValidation3 = false;
       return;
     }
-    if(this.nombre.length > 255) {
-      alert("Máximo 255 caracteres");
-      return;
-    }
-    if(this.porcentaje.length > 3) {
-      alert("Ingresar porcentaje válido (0-100)");
+    if(Number(this.porcentaje) < 0 || Number(this.porcentaje) > 100 || Number.isNaN(Number(this.porcentaje))) {
+      this.errorValidation1 = false;
+      this.errorValidation2 = false;
+      this.errorValidation3 = true;
       return;
     }
     const { nombre, porcentaje, color } = this;
@@ -97,24 +113,34 @@ export class PortfolioSectionsSkillComponent implements OnInit {
           };
         });
       }, err => {
-        alert("No se pudo agregar, verifique si ha ingresado como usuario administrador");
+        alert("No se pudo agregar, verifique estado de sesión e ingreso como usuario administrador");
       }
     );
+    this.errorValidation1 = false;
+    this.errorValidation2 = false;
+    this.errorValidation3 = false;
+    document.getElementById('closeButtonSkill')?.click();
   }
 
   onSubmitModifySkill(item:any){
     if(this.nombre.length === 0 || 
       this.porcentaje.length === 0 || 
       this.color.length === 0) {
-      alert("Por favor completa todos los campos de la habilidad");
+        this.errorValidation1 = true;
+        this.errorValidation2 = false;
+        this.errorValidation3 = false;
+        return;
+    }
+    if(this.nombre.length > 40) {
+      this.errorValidation1 = false;
+      this.errorValidation2 = true;
+      this.errorValidation3 = false;
       return;
     }
-    if(this.nombre.length > 255) {
-      alert("Máximo 255 caracteres");
-      return;
-    }
-    if(this.porcentaje.length > 3) {
-      alert("Ingresar porcentaje válido (0-100)");
+    if(Number(this.porcentaje) < 0 || Number(this.porcentaje) > 100 || Number.isNaN(Number(this.porcentaje))) {
+      this.errorValidation1 = false;
+      this.errorValidation2 = false;
+      this.errorValidation3 = true;
       return;
     }
     const { nombre, porcentaje, color } = this;
@@ -143,8 +169,12 @@ export class PortfolioSectionsSkillComponent implements OnInit {
         };
       });
     }, err => {
-      alert("No se pudo modificar, verifique si ha ingresado como usuario administrador");
+      alert("No se pudo modificar, verifique estado de sesión e ingreso como usuario administrador");
     });
+    this.errorValidation1 = false;
+    this.errorValidation2 = false;
+    this.errorValidation3 = false;
+    document.getElementById('closeButtonSkill' + item.id)?.click();
   }
 
   onDeleteSkill(item: any) {
@@ -157,9 +187,10 @@ export class PortfolioSectionsSkillComponent implements OnInit {
           }
         );
       }, err => {
-        alert("No se pudo eliminar, verifique si ha ingresado como usuario administrador");
+        alert("No se pudo eliminar, verifique estado de sesión e ingreso como usuario administrador");
       }
     );
+    document.getElementById('closeButtonSkillDelete' + item.id)?.click();
   }
 
 

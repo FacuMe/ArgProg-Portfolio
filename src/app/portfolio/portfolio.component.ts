@@ -5,6 +5,7 @@ import { PortfolioSectionsExperienceComponent } from '../portfolio-sections-expe
 import { PortfolioSectionsEducationComponent } from '../portfolio-sections-education/portfolio-sections-education.component';
 import { PortfolioSectionsSkillComponent } from '../portfolio-sections-skill/portfolio-sections-skill.component';
 import { PortfolioSectionsProjectComponent } from '../portfolio-sections-project/portfolio-sections-project.component';
+import { FooterComponent } from '../portfolio-footer/footer.component'; 
 
 @Component({
   selector: 'app-portfolio',
@@ -13,9 +14,13 @@ import { PortfolioSectionsProjectComponent } from '../portfolio-sections-project
 })
 export class PortfolioComponent implements OnInit {
 
+  windowScrolled:boolean = false;
   constructor() { }
 
   ngOnInit(): void {
+    window.addEventListener('scroll', () => {
+      this.windowScrolled = window.pageYOffset !== 0;
+    });
   }
 
 }

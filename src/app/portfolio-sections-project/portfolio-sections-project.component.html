@@ -16,63 +16,73 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="staticBackdropLabel">Crear Proyecto</h5>
-                            <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button id="closeButtonProj" type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close" (click)="resetValidations()"></button>
                         </div>
                         <div class="modal-body">
                             <form class="form-block" (ngSubmit)="onSubmitAddProject()" autocomplete="off">
                                 <div class="form-group row align-items-center">
-                                    <label for="text" class="col-md-3 col-form-label">Nombre</label>
+                                    <label for="text" class="col-md-3 col-form-label">Nombre <span *ngIf="errorValidation1" class="text-danger">*</span> <span *ngIf="errorValidation2" class="text-danger">*(40)</span> </label>
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control" name="nombre-proyecto" id="nombre-proyecto" placeholder="Nombre del proyecto" [(ngModel)]="nombre">
                                     </div>
                                 </div>
                                 <div class="form-group row form-row mt-2 align-items-center">
-                                    <label for="text" class="col-md-3 col-form-label">Entidad</label>
+                                    <label for="text" class="col-md-3 col-form-label">Entidad <span *ngIf="errorValidation1" class="text-danger">*</span> <span *ngIf="errorValidation2" class="text-danger">*(40)</span> </label>
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control" name="entidad" id="entidad" placeholder="Nombre de la entidad" [(ngModel)]="entidad">
                                     </div>
                                 </div>
                                 <div class="form-group row form-row mt-1 align-items-center">
-                                    <label for="text" class="col-md-3 col-form-label">Fecha de Inicio</label>
+                                    <label for="text" class="col-md-3 col-form-label">Fecha de Inicio <span *ngIf="errorValidation1" class="text-danger">*</span> <span *ngIf="errorValidation2" class="text-danger">*(40)</span> </label>
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control" name="fecha-inicio-proyecto" id="fecha-inicio-proyecto" placeholder="Fecha de inicio" [(ngModel)]="fechaInicio">
                                     </div>
                                 </div>
                                 <div class="form-group row form-row mt-1 align-items-center">
-                                    <label for="text" class="col-md-3 col-form-label">Fecha de Finalización</label>
+                                    <label for="text" class="col-md-3 col-form-label">Fecha de Finalización <span *ngIf="errorValidation1" class="text-danger">*</span> <span *ngIf="errorValidation2" class="text-danger">*(40)</span> </label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" name="fecha-finalizacion-proyecto" id="fecha-finalizacion-proyecto" placeholder="Fecha de finalización" [(ngModel)]="fechaFinalizacion">
+                                        <input [disabled]="checkbox.checked" type="text" class="form-control" name="fecha-finalizacion-proyecto" id="fecha-finalizacion-proyecto" placeholder="Fecha de finalización" [(ngModel)]="fechaFinalizacion">
                                     </div>
                                 </div>
                                 <div class="form-group row form-row mt-1 align-items-center">
-                                    <label for="text" class="col-md-3 col-form-label">URL Foto</label>
+                                    <label for="text" class="col-md-3 col-form-label">URL Foto (Opcional) <span *ngIf="errorValidation2" class="text-danger">*(100)</span> </label>
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control" name="url-foto-proyecto" id="url-foto-proyecto" placeholder="URL Foto" [(ngModel)]="urlFoto">
                                     </div>
                                 </div>
                                 <div class="form-group row form-row mt-1 align-items-center">
-                                    <label for="text" class="col-md-3 col-form-label">URL Proyecto</label>
+                                    <label for="text" class="col-md-3 col-form-label">URL Proyecto (Opcional) <span *ngIf="errorValidation2" class="text-danger">*(100)</span> </label>
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control" name="url-proyecto" id="url-proyecto" placeholder="URL del Proyecto" [(ngModel)]="urlProyecto">
                                     </div>
                                 </div>
                                 <div class="form-group row form-row mt-1 align-items-center">
-                                    <label for="text" class="col-md-3 col-form-label">Descripción</label>
+                                    <label for="text" class="col-md-3 col-form-label">Descripción <span *ngIf="errorValidation1" class="text-danger">*</span> <span *ngIf="errorValidation2" class="text-danger">*(255)</span> </label>
                                     <div class="col-sm-9">
                                         <textarea type="text" class="form-control form-row" rows="3" name="descripcion-proyecto" id="descripcion-proyecto" placeholder="Descripción" [(ngModel)]="descripcion"></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group row form-row mt-1 align-items-center">
-                                    <div class="col-md-3">Proyecto Actual</div>
+                                    <label class="col-md-3 col-form-label">Proyecto Actual</label>
                                     <div class="col-1">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="proyecto-actual" id="proyecto-actual" [(ngModel)]="proyectoActual">
+                                            <input #checkbox class="form-check-input" type="checkbox" name="proyecto-actual" id="proyecto-actual" [(ngModel)]="proyectoActual">
                                         </div>
                                     </div>
                                 </div>
+                                <div *ngIf="errorValidation1" class="errorMsj">
+                                    <p class="text-danger col-form-label">
+                                        * Por favor completa los campos obligatorios del empleo
+                                    </p>
+                                </div>
+                                <div *ngIf="errorValidation2" class="errorMsj">
+                                    <p class="text-danger col-form-label">
+                                        * Máximo de caracteres superado, verifique los campos
+                                    </p>
+                                </div>
                                 <div class="form-row">
                                     <div class="col-md-5 mt-4">
-                                        <button type="submit" class="btn btn-warning" data-bs-dismiss="modal">Crear Proyecto</button>
+                                        <button type="submit" class="btn btn-warning">Agregar Proyecto</button>
                                     </div>
                                 </div>      
                             </form>
@@ -99,75 +109,108 @@
 
                                 <div class="edit-buttons justify-content-center mt-3">
                                     <i class="fa fa-pencil edit-icon" aria-hidden="true" *ngIf="isLogged" data-bs-toggle="modal" [attr.data-bs-target]="'#staticBackdropProject' + proyecto.id"></i>
-                                    <i class="fa fa-trash delete-icon" aria-hidden="true" *ngIf="isLogged" (click)="onDeleteProject(proyecto)"></i>
+                                    <i class="fa fa-trash delete-icon" aria-hidden="true" *ngIf="isLogged" data-bs-toggle="modal" [attr.data-bs-target]="'#staticBackdropProjectDelete' + proyecto.id"></i>
                                 </div>
 
-                                <!-- Modal -->
+                                <!-- Modal for editing-->
                                 <div class="modal fade" [attr.id]="'staticBackdropProject' + proyecto.id" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabelProject" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="staticBackdropLabel">Modificar Proyecto: {{proyecto.nombre}}</h5>
-                                                <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                <button [attr.id]="'closeButtonProj' + proyecto.id" type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close" (click)="resetValidations()"></button>
                                             </div>
                                             <div class="modal-body">
                                                 <!--form for modifying project-->
                                                 <form class="form-block" (ngSubmit)="onSubmitModifyProject(proyecto)" autocomplete="off">
                                                     <div class="form-group row align-items-center">
-                                                        <label for="text" class="col-md-3 col-form-label">Nombre</label>
+                                                        <label for="text" class="col-md-3 col-form-label">Nombre <span *ngIf="errorValidation1" class="text-danger">*</span> <span *ngIf="errorValidation2" class="text-danger">*(40)</span> </label>
                                                         <div class="col-sm-9">
                                                             <input type="text" class="form-control" name="nombre-proyecto" id="nombre-proyecto" placeholder="Nombre del proyecto" [(ngModel)]="nombre">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row form-row mt-2 align-items-center">
-                                                        <label for="text" class="col-md-3 col-form-label">Entidad</label>
+                                                        <label for="text" class="col-md-3 col-form-label">Entidad <span *ngIf="errorValidation1" class="text-danger">*</span> <span *ngIf="errorValidation2" class="text-danger">*(40)</span> </label>
                                                         <div class="col-sm-9">
                                                             <input type="text" class="form-control" name="entidad" id="entidad" placeholder="Nombre de la entidad" [(ngModel)]="entidad">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row form-row mt-1 align-items-center">
-                                                        <label for="text" class="col-md-3 col-form-label">Fecha de Inicio</label>
+                                                        <label for="text" class="col-md-3 col-form-label">Fecha de Inicio <span *ngIf="errorValidation1" class="text-danger">*</span> <span *ngIf="errorValidation2" class="text-danger">*(40)</span> </label>
                                                         <div class="col-sm-9">
                                                             <input type="text" class="form-control" name="fecha-inicio-proyecto" id="fecha-inicio-proyecto" placeholder="Fecha de inicio" [(ngModel)]="fechaInicio">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row form-row mt-1 align-items-center">
-                                                        <label for="text" class="col-md-3 col-form-label">Fecha de Finalización</label>
+                                                        <label for="text" class="col-md-3 col-form-label">Fecha de Finalización <span *ngIf="errorValidation1" class="text-danger">*</span> <span *ngIf="errorValidation2" class="text-danger">*(40)</span> </label>
                                                         <div class="col-sm-9">
-                                                            <input type="text" class="form-control" name="fecha-finalizacion-proyecto" id="fecha-finalizacion-proyecto" placeholder="Fecha de finalización" [(ngModel)]="fechaFinalizacion">
+                                                            <input [disabled]="checkbox.checked" type="text" class="form-control" name="fecha-finalizacion-proyecto" id="fecha-finalizacion-proyecto" placeholder="Fecha de finalización" [(ngModel)]="fechaFinalizacion">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row form-row mt-1 align-items-center">
-                                                        <label for="text" class="col-md-3 col-form-label">URL Foto</label>
+                                                        <label for="text" class="col-md-3 col-form-label">URL Foto (Opcional) <span *ngIf="errorValidation2" class="text-danger">*(100)</span> </label>
                                                         <div class="col-sm-9">
                                                             <input type="text" class="form-control" name="url-foto-proyecto" id="url-foto-proyecto" placeholder="URL Foto" [(ngModel)]="urlFoto">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row form-row mt-1 align-items-center">
-                                                        <label for="text" class="col-md-3 col-form-label">URL Proyecto</label>
+                                                        <label for="text" class="col-md-3 col-form-label">URL Proyecto (Opcional) <span *ngIf="errorValidation2" class="text-danger">*(100)</span> </label>
                                                         <div class="col-sm-9">
                                                             <input type="text" class="form-control" name="url-proyecto" id="url-proyecto" placeholder="URL del Proyecto" [(ngModel)]="urlProyecto">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row form-row mt-1 align-items-center">
-                                                        <label for="text" class="col-md-3 col-form-label">Descripción</label>
+                                                        <label for="text" class="col-md-3 col-form-label">Descripción <span *ngIf="errorValidation1" class="text-danger">*</span> <span *ngIf="errorValidation2" class="text-danger">*(255)</span> </label>
                                                         <div class="col-sm-9">
-                                                            <textarea type="text" class="form-control form-row" ros="3" name="descripcion-proyecto" id="descripcion-proyecto" placeholder="Descripción" [(ngModel)]="descripcion"></textarea>
+                                                            <textarea type="text" class="form-control form-row" rows="3" name="descripcion-proyecto" id="descripcion-proyecto" placeholder="Descripción" [(ngModel)]="descripcion"></textarea>
                                                         </div>
                                                     </div>
                                                     <div class="form-group row form-row mt-1 align-items-center">
-                                                        <div class="col-md-3">Proyecto Actual</div>
+                                                        <label class="col-md-3 col-form-label">Proyecto Actual</label>
                                                         <div class="col-1">
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="checkbox" name="proyecto-actual" id="proyecto-actual" [(ngModel)]="proyectoActual">
+                                                                <input #checkbox class="form-check-input" type="checkbox" name="proyecto-actual" id="proyecto-actual" [(ngModel)]="proyectoActual">
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <div *ngIf="errorValidation1" class="errorMsj">
+                                                        <p class="text-danger col-form-label">
+                                                            * Por favor completa los campos obligatorios del empleo
+                                                        </p>
+                                                    </div>
+                                                    <div *ngIf="errorValidation2" class="errorMsj">
+                                                        <p class="text-danger col-form-label">
+                                                            * Máximo de caracteres superado, verifique los campos
+                                                        </p>
+                                                    </div>
                                                     <div class="form-row">
-                                                        <div class="col-md-5 mt-4">
-                                                            <button type="submit" class="btn btn-warning" data-bs-dismiss="modal">Modificar Proyecto</button>
+                                                        <div class="col-md-5 mt-4 col-form-label">
+                                                            <button type="submit" class="btn btn-warning">Modificar Proyecto</button>
                                                         </div>
                                                     </div> 
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Modal for deleting-->
+                                <div class="modal fade" [attr.id]="'staticBackdropProjectDelete' + proyecto.id" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabelProjectDelete" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="staticBackdropLabel">Borrar Proyecto: {{proyecto.nombre}}</h5>
+                                                <button [attr.id]="'closeButtonProjectDelete' + proyecto.id" type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <!--form for deleting skill-->
+                                                <form class="form-block" (ngSubmit)="onDeleteProject(proyecto)" autocomplete="off">
+                                                    <div class="form-group row align-items-center">
+                                                        <label for="text" class="col-md-9 col-form-label">¿Seguro desea eliminar el proyecto?</label>
+                                                    </div>
+                                                    <div class="col-md-5 mt-4">
+                                                        <button type="submit" class="btn btn-warning">Eliminar Proyecto</button>
+                                                    </div>     
                                                 </form>
                                             </div>
                                         </div>
@@ -183,7 +226,6 @@
         </div>
     </div>
 </div>
-
 
 <!--old form for adding new project
 <form class="row container d-flex justify-content-center form-block" *ngIf="showAddProject && isLogged" (ngSubmit)="onSubmitAddProject()">

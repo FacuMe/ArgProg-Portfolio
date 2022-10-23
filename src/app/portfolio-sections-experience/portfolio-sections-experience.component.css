@@ -186,7 +186,9 @@
 
 .experiencepic {
     height: 80px;
-    width: 80px
+    width: 80px;
+    object-fit:cover;
+    border-radius: 10%;
 }
 
 @media only screen and (max-width: 750px) {
@@ -217,5 +219,9 @@
 @media (max-width:900px){
     .card-top-items{
         flex-direction: column-reverse;
+    }
+    .experiencepic{
+        height: 70px;
+        width: 70px;
     }
 }

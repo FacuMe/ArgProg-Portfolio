@@ -13,6 +13,8 @@ export class PortfolioAboutComponent implements OnInit {
   descripcion:string = "";
   load:boolean = false;
   isLogged: boolean = false;
+  errorValidation1: boolean = false;
+  errorValidation2: boolean = false;
 
   constructor(private datosPortfolio:PortfolioService, private tokenService: TokenService) { }
 
@@ -29,17 +31,24 @@ export class PortfolioAboutComponent implements OnInit {
     }
   }
 
+  resetValidations(){
+    this.errorValidation1 = false;
+    this.errorValidation2 = false;
+  }
+
   onShowModifyProfile(){
     this.showModifyProfile = !this.showModifyProfile;
   }
 
   onSubmitModifyProfile(item:any){
     if(this.descripcion.length === 0) {
-      alert("Por favor completa la descripción del perfil");
+      this.errorValidation1 = true;
+      this.errorValidation2 = false;
       return;
     }
     if(this.descripcion.length > 255 ) {
-      alert("Máximo 255 caracteres");
+      this.errorValidation1 = false;
+      this.errorValidation2 = true;
       return;
     }
     const { descripcion } = this;
@@ -49,8 +58,11 @@ export class PortfolioAboutComponent implements OnInit {
         this.myProfile=data;
       });
     }, err => {
-      alert("No se pudo modificar, verifique si ha ingresado como usuario administrador");
+      alert("No se pudo modificar, verifique estado de sesión e ingreso como usuario administrador");
     });
+    this.errorValidation1 = false;
+    this.errorValidation2 = false;
+    document.getElementById('closeButtonProf')?.click();
   }
 
 }

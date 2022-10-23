@@ -101,6 +101,8 @@
 .educationpic {
     height: 80px;
     width: 80px;
+    object-fit:cover;
+    border-radius: 10%;
 }
 
 .card-top-items{
@@ -114,5 +116,9 @@
 
     .edit-icon{
         padding-left: 45%;
+    }
+    .educationpic{
+        height: 70px;
+        width: 70px;
     }
 }

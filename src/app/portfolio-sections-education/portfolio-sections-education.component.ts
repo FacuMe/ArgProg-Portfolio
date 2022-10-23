@@ -13,6 +13,8 @@ export class PortfolioSectionsEducationComponent implements OnInit {
   showAddEducation:boolean = false;
   showModifyEducation:boolean[] = [];
   isLogged: boolean = false;
+  errorValidation1: boolean = false;
+  errorValidation2: boolean = false;
 
   institucion:string = "";
   nombre:string = "";
@@ -34,7 +36,10 @@ export class PortfolioSectionsEducationComponent implements OnInit {
       }
       for (let item of this.myEducations) {
         if(item.urlFoto == null || item.urlFoto == ''){
-          item.urlFoto = "/assets/yelloweduclogo2.png";
+          item.urlFoto = "/assets/yelloweduclogo3.png";
+        }
+        if(item.estudioActual){
+          item.fechaFinalizacion = 'Presente';
         }
       }
     });
@@ -46,6 +51,11 @@ export class PortfolioSectionsEducationComponent implements OnInit {
       this.isLogged = false;
     }
     
+  }
+
+  resetValidations(){
+    this.errorValidation1 = false;
+    this.errorValidation2 = false;
   }
 
   onShowAddEducation(){
@@ -61,18 +71,20 @@ export class PortfolioSectionsEducationComponent implements OnInit {
     if(this.institucion.length === 0 || 
       this.nombre.length === 0 || 
       this.fechaInicio.length === 0 || 
-      this.fechaFinalizacion.length === 0 ||  
+      (this.fechaFinalizacion.length === 0 && !this.estudioActual) ||  
       this.descripcion.length === 0) {
-      alert("Por favor completa todos los campos del estudio");
+      this.errorValidation1 = true;
+      this.errorValidation2 = false;
       return;
     }
-    if(this.institucion.length > 255 || 
-      this.nombre.length > 255 || 
-      this.fechaInicio.length > 255 || 
-      this.fechaFinalizacion.length > 255 || 
+    if(this.institucion.length > 40 || 
+      this.nombre.length > 40 || 
+      this.fechaInicio.length > 40 || 
+      this.fechaFinalizacion.length > 40 || 
       this.descripcion.length > 255 ||  
-      this.urlFoto.length > 255) {
-      alert("Máximo 255 caracteres");
+      this.urlFoto.length > 100) {
+      this.errorValidation1 = false;
+      this.errorValidation2 = true;
       return;
     }
     const { institucion, nombre,  fechaInicio, fechaFinalizacion, descripcion, estudioActual, urlFoto } = this;
@@ -84,32 +96,40 @@ export class PortfolioSectionsEducationComponent implements OnInit {
           this.myEducations=data;
           for (let item of this.myEducations) {
             if(item.urlFoto == null || item.urlFoto == ''){
-              item.urlFoto = "/assets/yelloweduclogo2.png";
+              item.urlFoto = "/assets/yelloweduclogo3.png";
+            }
+            if(item.estudioActual){
+              item.fechaFinalizacion = 'Presente';
             }
           }
         });
       }, err => {
-        alert("No se pudo agregar, verifique si ha ingresado como usuario administrador");
+        alert("No se pudo agregar, verifique estado de sesión e ingreso como usuario administrador");
       }
     );
+    this.errorValidation1 = false;
+    this.errorValidation2 = false;
+    document.getElementById('closeButtonEduc')?.click();
   }
 
   onSubmitModifyEducation(item:any){
     if(this.institucion.length === 0 || 
       this.nombre.length === 0 || 
       this.fechaInicio.length === 0 || 
-      this.fechaFinalizacion.length === 0 ||  
+      (this.fechaFinalizacion.length === 0 && !this.estudioActual) ||  
       this.descripcion.length === 0) {
-      alert("Por favor modifica todos los campos del estudio");
+      this.errorValidation1 = true;
+      this.errorValidation2 = false;
       return;
     }
-    if(this.institucion.length > 255 || 
-      this.nombre.length > 255 || 
-      this.fechaInicio.length > 255 || 
-      this.fechaFinalizacion.length > 255 || 
+    if(this.institucion.length > 40 || 
+      this.nombre.length > 40 || 
+      this.fechaInicio.length > 40 || 
+      this.fechaFinalizacion.length > 40 || 
       this.descripcion.length > 255 ||  
-      this.urlFoto.length > 255) {
-      alert("Máximo 255 caracteres");
+      this.urlFoto.length > 100) {
+      this.errorValidation1 = false;
+      this.errorValidation2 = true;
       return;
     }
     const { institucion, nombre,  fechaInicio, fechaFinalizacion, descripcion, estudioActual, urlFoto } = this;
@@ -119,13 +139,19 @@ export class PortfolioSectionsEducationComponent implements OnInit {
         this.myEducations=data;
         for (let item of this.myEducations) {
           if(item.urlFoto == null || item.urlFoto == ''){
-            item.urlFoto = "/assets/yelloweduclogo2.png";
+            item.urlFoto = "/assets/yelloweduclogo3.png";
+          }
+          if(item.estudioActual){
+            item.fechaFinalizacion = 'Presente';
           }
         }
       });
     }, err => {
-      alert("No se pudo modificar, verifique si ha ingresado como usuario administrador");
+      alert("No se pudo modificar, verifique estado de sesión e ingreso como usuario administrador");
     });
+    this.errorValidation1 = false;
+    this.errorValidation2 = false;
+    document.getElementById('closeButtonEduc' + item.id)?.click();
   }
 
   onDeleteEducation(item: any) {
@@ -138,8 +164,9 @@ export class PortfolioSectionsEducationComponent implements OnInit {
           }
         );
       }, err => {
-        alert("No se pudo eliminar, verifique si ha ingresado como usuario administrador");
+        alert("No se pudo eliminar, verifique estado de sesión e ingreso como usuario administrador");
       }
     );
+    document.getElementById('closeButtonEducationDelete' + item.id)?.click();
   }
 }

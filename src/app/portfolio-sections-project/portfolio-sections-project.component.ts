@@ -14,6 +14,8 @@ export class PortfolioSectionsProjectComponent implements OnInit {
   showAddProject:boolean = false;
   showModifyProject:boolean[] = [];
   isLogged: boolean = false;
+  errorValidation1: boolean = false;
+  errorValidation2: boolean = false;
 
   nombre:string = "";
   entidad:string = "";
@@ -38,6 +40,9 @@ export class PortfolioSectionsProjectComponent implements OnInit {
         if(item.urlFoto == null || item.urlFoto == ''){
           item.urlFoto = "/assets/leadbg2.jpg";
         }
+        if(item.proyectoActual){
+          item.fechaFinalizacion = 'Presente';
+        }
       }
     });
 
@@ -48,6 +53,11 @@ export class PortfolioSectionsProjectComponent implements OnInit {
       this.isLogged = false;
     }
 
+  }
+
+  resetValidations(){
+    this.errorValidation1 = false;
+    this.errorValidation2 = false;
   }
 
   onShowAddProject(){
@@ -63,19 +73,21 @@ export class PortfolioSectionsProjectComponent implements OnInit {
     if(this.nombre.length === 0 || 
       this.entidad.length === 0 || 
       this.fechaInicio.length === 0 || 
-      this.fechaFinalizacion.length === 0 ||  
-      this.descripcion.length === 0) {
-      alert("Por favor completa todos los campos");
+      this.descripcion.length === 0 || 
+      (this.fechaFinalizacion.length === 0 && !this.proyectoActual)) {
+      this.errorValidation1 = true;
+      this.errorValidation2 = false;
       return;
     }
-    if(this.nombre.length > 255 || 
-      this.entidad.length > 255 || 
-      this.fechaInicio.length > 255 || 
-      this.fechaFinalizacion.length > 255 || 
+    if(this.nombre.length > 40 || 
+      this.entidad.length > 40 || 
+      this.fechaInicio.length > 40 || 
+      this.fechaFinalizacion.length > 40 || 
       this.descripcion.length > 255 || 
-      this.urlFoto.length > 255 || 
-      this.urlProyecto.length > 255) {
-      alert("Máximo 255 caracteres por campo");
+      this.urlFoto.length > 100 || 
+      this.urlProyecto.length > 100) {
+      this.errorValidation1 = false;
+      this.errorValidation2 = true;
       return;
     }
     const { nombre, entidad,  fechaInicio, fechaFinalizacion, descripcion, proyectoActual, urlFoto, urlProyecto } = this;
@@ -89,31 +101,39 @@ export class PortfolioSectionsProjectComponent implements OnInit {
             if(item.urlFoto == null || item.urlFoto == ''){
               item.urlFoto = "/assets/leadbg2.jpg";
             }
+            if(item.proyectoActual){
+              item.fechaFinalizacion = 'Presente';
+            }
           }
         });
       }, err => {
-        alert("No se pudo agregar, verifique si ha ingresado como usuario administrador");
+        alert("No se pudo agregar, verifique estado de sesión e ingreso como usuario administrador");
       }
     );
+    this.errorValidation1 = false;
+    this.errorValidation2 = false;
+    document.getElementById('closeButtonProj')?.click();
   }
 
   onSubmitModifyProject(item:any){
     if(this.nombre.length === 0 || 
       this.entidad.length === 0 || 
-      this.fechaInicio.length === 0 || 
-      this.fechaFinalizacion.length === 0 ||  
-      this.descripcion.length === 0) {
-        alert("Por favor completa todos los campos");
+      this.fechaInicio.length === 0 ||  
+      this.descripcion.length === 0 ||  
+      (this.fechaFinalizacion.length === 0 && !this.proyectoActual)) {
+      this.errorValidation1 = true;
+      this.errorValidation2 = false;
       return;
     }
-    if(this.nombre.length > 255 || 
-      this.entidad.length > 255 || 
-      this.fechaInicio.length > 255 || 
-      this.fechaFinalizacion.length > 255 || 
+    if(this.nombre.length > 40 || 
+      this.entidad.length > 40 || 
+      this.fechaInicio.length > 40 || 
+      this.fechaFinalizacion.length > 40 || 
       this.descripcion.length > 255 || 
-      this.urlFoto.length > 255 || 
-      this.urlProyecto.length > 255) {
-        alert("Máximo 255 caracteres por campo");
+      this.urlFoto.length > 100 || 
+      this.urlProyecto.length > 100) {
+      this.errorValidation1 = false;
+      this.errorValidation2 = true;
       return;
     }
     const { nombre, entidad,  fechaInicio, fechaFinalizacion, descripcion, proyectoActual, urlFoto, urlProyecto } = this;
@@ -125,11 +145,17 @@ export class PortfolioSectionsProjectComponent implements OnInit {
           if(item.urlFoto == null || item.urlFoto == ''){
             item.urlFoto = "/assets/leadbg2.jpg";
           }
+          if(item.proyectoActual){
+              item.fechaFinalizacion = 'Presente';
+          }
         }
       });
     }, err => {
-      alert("No se pudo modificar, verifique si ha ingresado como usuario administrador");
+      alert("No se pudo modificar, verifique estado de sesión e ingreso como usuario administrador");
     });
+    this.errorValidation1 = false;
+    this.errorValidation2 = false;
+    document.getElementById('closeButtonProj' + item.id)?.click();
   }
 
   onDeleteProject(item: any) {
@@ -142,8 +168,9 @@ export class PortfolioSectionsProjectComponent implements OnInit {
           }
         );
       }, err => {
-        alert("No se pudo eliminar, verifique si ha ingresado como usuario administrador");
+        alert("No se pudo eliminar, verifique estado de sesión e ingreso como usuario administrador");
       }
     );
+    document.getElementById('closeButtonProjectDelete' + item.id)?.click();
   }
 }
