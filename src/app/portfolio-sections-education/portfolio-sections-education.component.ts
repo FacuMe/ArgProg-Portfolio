@@ -10,8 +10,6 @@ import { TokenService } from '../servicios/token.service';
 export class PortfolioSectionsEducationComponent implements OnInit {
 
   myEducations:any;
-  showAddEducation:boolean = false;
-  showModifyEducation:boolean[] = [];
   isLogged: boolean = false;
   errorValidation1: boolean = false;
   errorValidation2: boolean = false;
@@ -24,22 +22,31 @@ export class PortfolioSectionsEducationComponent implements OnInit {
   estudioActual:boolean = false;
   urlFoto:string = "";
 
+  institucionCargados:string [] = [];
+  nombreCargados:string [] = [];
+  fechaInicioCargados:string [] = [];
+  fechaFinalizacionCargados:string [] = [];
+  descripcionCargados:string [] = [];
+  estudioActualCargados:boolean [] = [];
+  urlFotoCargados:string [] = [];
+
   constructor(private datosPortfolio:PortfolioService, private tokenService: TokenService) { }
 
   ngOnInit(): void {
 
     this.datosPortfolio.readEducation().subscribe(data =>{
       this.myEducations=data;
+      for (let item of this.myEducations) {
+        this.institucionCargados[item.id] = item.institucion;
+        this.nombreCargados[item.id] =item.nombre;
+        this.fechaInicioCargados[item.id] = item.fechaInicio;
+        this.fechaFinalizacionCargados[item.id] = item.fechaFinalizacion;
+        this.descripcionCargados[item.id] = item.descripcion;
+        this.estudioActualCargados[item.id] = item.estudioActual;
+        this.urlFotoCargados[item.id] = item.urlFoto;
 
-      for (let item of this.myEducations) {
-        this.showModifyEducation[item.id] = false;
-      }
-      for (let item of this.myEducations) {
         if(item.urlFoto == null || item.urlFoto == ''){
           item.urlFoto = "/assets/yelloweduclogo3.png";
-        }
-        if(item.estudioActual){
-          item.fechaFinalizacion = 'Presente';
         }
       }
     });
@@ -57,15 +64,6 @@ export class PortfolioSectionsEducationComponent implements OnInit {
     this.errorValidation1 = false;
     this.errorValidation2 = false;
   }
-
-  onShowAddEducation(){
-    this.showAddEducation = !this.showAddEducation;
-  }
-
-  onShowModifyEducation(item:any){
-    this.showModifyEducation[item] = !this.showModifyEducation[item];
-  }
-
 
   onSubmitAddEducation(){
     if(this.institucion.length === 0 || 
@@ -87,6 +85,9 @@ export class PortfolioSectionsEducationComponent implements OnInit {
       this.errorValidation2 = true;
       return;
     }
+    if(this.estudioActual == true){
+      this.fechaFinalizacion = "Presente";
+    }
     const { institucion, nombre,  fechaInicio, fechaFinalizacion, descripcion, estudioActual, urlFoto } = this;
     const addValues:any= { institucion, nombre,  fechaInicio, fechaFinalizacion, descripcion, estudioActual, urlFoto };
     this.datosPortfolio.createEducation(addValues).subscribe(
@@ -95,11 +96,15 @@ export class PortfolioSectionsEducationComponent implements OnInit {
         this.datosPortfolio.readEducation().subscribe(data =>{
           this.myEducations=data;
           for (let item of this.myEducations) {
+            this.institucionCargados[item.id] = item.institucion;
+            this.nombreCargados[item.id] =item.nombre;
+            this.fechaInicioCargados[item.id] = item.fechaInicio;
+            this.fechaFinalizacionCargados[item.id] = item.fechaFinalizacion;
+            this.descripcionCargados[item.id] = item.descripcion;
+            this.estudioActualCargados[item.id] = item.estudioActual;
+            this.urlFotoCargados[item.id] = item.urlFoto;
             if(item.urlFoto == null || item.urlFoto == ''){
               item.urlFoto = "/assets/yelloweduclogo3.png";
-            }
-            if(item.estudioActual){
-              item.fechaFinalizacion = 'Presente';
             }
           }
         });
@@ -113,36 +118,50 @@ export class PortfolioSectionsEducationComponent implements OnInit {
   }
 
   onSubmitModifyEducation(item:any){
-    if(this.institucion.length === 0 || 
-      this.nombre.length === 0 || 
-      this.fechaInicio.length === 0 || 
-      (this.fechaFinalizacion.length === 0 && !this.estudioActual) ||  
-      this.descripcion.length === 0) {
+    if(this.institucionCargados[item.id].length === 0 || 
+      this.nombreCargados[item.id].length === 0 || 
+      this.fechaInicioCargados[item.id].length === 0 || 
+      (this.fechaFinalizacionCargados[item.id].length === 0 && !this.estudioActualCargados[item.id]) ||  
+      this.descripcionCargados[item.id].length === 0) {
       this.errorValidation1 = true;
       this.errorValidation2 = false;
       return;
     }
-    if(this.institucion.length > 40 || 
-      this.nombre.length > 40 || 
-      this.fechaInicio.length > 40 || 
-      this.fechaFinalizacion.length > 40 || 
-      this.descripcion.length > 255 ||  
-      this.urlFoto.length > 100) {
+    if(this.institucionCargados[item.id].length > 40 || 
+      this.nombreCargados[item.id].length > 40 || 
+      this.fechaInicioCargados[item.id].length > 40 || 
+      this.fechaFinalizacionCargados[item.id].length > 40 || 
+      this.descripcionCargados[item.id].length > 255 ||  
+      this.urlFotoCargados[item.id].length > 100) {
       this.errorValidation1 = false;
       this.errorValidation2 = true;
       return;
     }
-    const { institucion, nombre,  fechaInicio, fechaFinalizacion, descripcion, estudioActual, urlFoto } = this;
+    if(this.estudioActualCargados[item.id] == true){
+      this.fechaFinalizacionCargados[item.id] = "Presente";
+    }
+    const institucion = this.institucionCargados[item.id];
+    const nombre = this.nombreCargados[item.id];
+    const fechaInicio = this.fechaInicioCargados[item.id]; 
+    const fechaFinalizacion = this.fechaFinalizacionCargados[item.id];
+    const descripcion = this.descripcionCargados[item.id];
+    const estudioActual = this.estudioActualCargados[item.id];
+    const urlFoto = this.urlFotoCargados[item.id];
     const modifValues:any= { institucion, nombre,  fechaInicio, fechaFinalizacion, descripcion, estudioActual, urlFoto };
     this.datosPortfolio.updateEducation(item, modifValues).subscribe((response) => {
       this.datosPortfolio.readEducation().subscribe(data =>{
         this.myEducations=data;
         for (let item of this.myEducations) {
+          this.institucionCargados[item.id] = item.institucion;
+          this.nombreCargados[item.id] =item.nombre;
+          this.fechaInicioCargados[item.id] = item.fechaInicio;
+          this.fechaFinalizacionCargados[item.id] = item.fechaFinalizacion;
+          this.descripcionCargados[item.id] = item.descripcion;
+          this.estudioActualCargados[item.id] = item.estudioActual;
+          this.urlFotoCargados[item.id] = item.urlFoto;
+
           if(item.urlFoto == null || item.urlFoto == ''){
             item.urlFoto = "/assets/yelloweduclogo3.png";
-          }
-          if(item.estudioActual){
-            item.fechaFinalizacion = 'Presente';
           }
         }
       });

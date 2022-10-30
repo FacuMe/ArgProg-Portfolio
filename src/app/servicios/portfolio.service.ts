@@ -13,7 +13,11 @@ const httpOptions = {
 })
 export class PortfolioService {
 
-  private apiUrl = 'http://localhost:8080/';
+  /**testing local
+   * private apiUrl = 'http://localhost:8080/';
+   * */
+  
+  private apiUrl = 'https://back-proyectofinal-argprog.herokuapp.com/';
 
   constructor(private http:HttpClient) { }
 

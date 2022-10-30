@@ -7,7 +7,7 @@
                 </div>
                 <div class="edit-buttons create-icon">
                     <div>
-                        <i class="fa fa-plus-circle" aria-hidden="true" *ngIf="isLogged" (click)="onShowAddEducation()" data-bs-toggle="modal" data-bs-target="#staticBackdropNewEducation"></i>
+                        <i class="fa fa-plus-circle" aria-hidden="true" *ngIf="isLogged" data-bs-toggle="modal" data-bs-target="#staticBackdropNewEducation"></i>
                     </div>
                 </div>
             </div>
@@ -137,51 +137,50 @@
                                                         <div class="form-group row align-items-center">
                                                             <label for="text" class="col-md-3 col-form-label">Institución <span *ngIf="errorValidation1" class="text-danger">*</span> <span *ngIf="errorValidation2" class="text-danger">*(40)</span> </label>
                                                             <div class="col-sm-9">
-                                                                <input type="text" class="form-control" name="institucion" id="institucion" placeholder="Nombre de la institución" [(ngModel)]="institucion">
+                                                                <input type="text" class="form-control" name="institucion" id="institucion" placeholder="Nombre de la institución" [(ngModel)]="institucionCargados[educacion.id]">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row form-row mt-2 align-items-center">
                                                             <label for="text" class="col-md-3 col-form-label">Nombre <span *ngIf="errorValidation1" class="text-danger">*</span> <span *ngIf="errorValidation2" class="text-danger">*(40)</span> </label>
                                                             <div class="col-sm-9">
-                                                                <input type="text" class="form-control" name="nombre-estudio" id="nombre-estudio" placeholder="Nombre del curso, estudio o capacitación" [(ngModel)]="nombre">
+                                                                <input type="text" class="form-control" name="nombre-estudio" id="nombre-estudio" placeholder="Nombre del curso, estudio o capacitación" [(ngModel)]="nombreCargados[educacion.id]">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row form-row mt-1 align-items-center">
                                                             <label for="text" class="col-md-3 col-form-label">Fecha de Inicio <span *ngIf="errorValidation1" class="text-danger">*</span> <span *ngIf="errorValidation2" class="text-danger">*(40)</span> </label>
                                                             <div class="col-sm-9">
-                                                                <input type="text" class="form-control" name="fecha-inicio-estudio" id="fecha-inicio-estudio" placeholder="Fecha de inicio" [(ngModel)]="fechaInicio">
+                                                                <input type="text" class="form-control" name="fecha-inicio-estudio" id="fecha-inicio-estudio" placeholder="Fecha de inicio" [(ngModel)]="fechaInicioCargados[educacion.id]">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row form-row mt-1 align-items-center">
                                                             <label for="text" class="col-md-3 col-form-label">Fecha de Finalización <span *ngIf="errorValidation1" class="text-danger">*</span> <span *ngIf="errorValidation2" class="text-danger">*(40)</span> </label>
                                                             <div class="col-sm-9">
-                                                                <input [disabled]="checkbox.checked" type="text" class="form-control" name="fecha-finalizacion-estudio" id="fecha-finalizacion-estudio" placeholder="Fecha de finalización" [(ngModel)]="fechaFinalizacion">
+                                                                <input [disabled]="checkbox.checked" type="text" class="form-control" name="fecha-finalizacion-estudio" id="fecha-finalizacion-estudio" placeholder="Fecha de finalización" [(ngModel)]="fechaFinalizacionCargados[educacion.id]">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row form-row mt-1 align-items-center">
                                                             <label for="text" class="col-md-3 col-form-label">URL Foto (Opcional)<span *ngIf="errorValidation2" class="text-danger">*(100)</span> </label>
                                                             <div class="col-sm-9">
-                                                                <input type="text" class="form-control" name="url-foto-educacion" id="url-foto-educacion" placeholder="URL Foto" [(ngModel)]="urlFoto">
+                                                                <input type="text" class="form-control" name="url-foto-educacion" id="url-foto-educacion" placeholder="URL Foto" [(ngModel)]="urlFotoCargados[educacion.id]">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row form-row mt-1 align-items-center">
                                                             <label for="text" class="col-md-3 col-form-label">Descripción <span *ngIf="errorValidation1" class="text-danger">*</span> <span *ngIf="errorValidation2" class="text-danger">*(255)</span></label>
                                                             <div class="col-sm-9">
-                                                                <textarea type="text" class="form-control form-row" rows="3" name="descripcion-estudio" id="descripcion-estudio" placeholder="Descripción" [(ngModel)]="descripcion"></textarea>
+                                                                <textarea type="text" class="form-control form-row" rows="3" name="descripcion-estudio" id="descripcion-estudio" placeholder="Descripción" [(ngModel)]="descripcionCargados[educacion.id]"></textarea>
                                                             </div>
                                                         </div>
                                                         <div class="form-group row form-row mt-1 align-items-center">
                                                             <div class="col-md-3">Estudio Actual</div>
                                                             <div class="col-1">
                                                                 <div class="form-check">
-                                                                    <input #checkbox class="form-check-input" type="checkbox" name="estudio-actual" id="estudio-actual" [(ngModel)]="estudioActual">
+                                                                    <input #checkbox class="form-check-input" type="checkbox" name="estudio-actual" id="estudio-actual" [(ngModel)]="estudioActualCargados[educacion.id]">
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div *ngIf="errorValidation1" class="errorMsj">
                                                             <p class="text-danger">
-                                                                * Por favor completa los campos obligatorios del empleo
-                                                            </p>
+                                                                * Por favor completa los campos obligatorios de la educación
                                                         </div>
                                                         <div *ngIf="errorValidation2" class="errorMsj">
                                                             <p class="text-danger">
@@ -233,129 +232,3 @@
         </div>
     </div>
 </div>
-
-<!--old form for adding new education-
-<form class="row container d-flex justify-content-center form-block" *ngIf="showAddEducation && isLogged" (ngSubmit)="onSubmitAddEducation()">
-    <div class="col-xl-12">
-        <div class="card proj-progress-card">
-            <div class="card-block d-flex justify-content-between">
-                <div class="row">
-                    <div class="form-group row">
-                        <label for="text" class="col-sm-2 col-form-label">Institución</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="institucion" id="institucion" placeholder="Nombre de la institución" [(ngModel)]="institucion">
-                        </div>
-                    </div>
-                    <div class="form-group row form-row">
-                        <label for="text" class="col-sm-2 col-form-label">Nombre</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="nombre-estudio" id="nombre-estudio" placeholder="Nombre del curso, estudio o capacitación" [(ngModel)]="nombre">
-                        </div>
-                    </div>
-                    <div class="form-group row form-row">
-                        <label for="text" class="col-sm-2 col-form-label">Fecha de Inicio</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="fecha-inicio-estudio" id="fecha-inicio-estudio" placeholder="Fecha de inicio" [(ngModel)]="fechaInicio">
-                        </div>
-                    </div>
-                    <div class="form-group row form-row">
-                        <label for="text" class="col-sm-2 col-form-label">Fecha de Finalización</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="fecha-finalizacion-estudio" id="fecha-finalizacion-estudio" placeholder="Fecha de finalización" [(ngModel)]="fechaFinalizacion">
-                        </div>
-                    </div>
-                    <div class="form-group row form-row">
-                        <label for="text" class="col-sm-2 col-form-label">Descripción</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="descripcion-estudio" id="descripcion-estudio" placeholder="Descripción" [(ngModel)]="descripcion">
-                        </div>
-                    </div>
-                    <div class="form-group row form-row">
-                    <div class="col-sm-2">Estudio actual</div>
-                    <div class="col-sm-10">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="estudio-actual" id="estudio-actual" [(ngModel)]="estudioActual">
-                            <label class="form-check-label" for="estudio-actual">
-                                
-                            </label>
-                        </div>
-                    </div>
-                    </div>
-                    <div class="form-row d-flex">
-                        <div class="col-sm-10">
-                            <button type="submit" class="btn btn-warning">Agregar estudio</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="edit-buttons">
-                        <i class="fa fa-close" aria-hidden="true" (click)="onShowAddEducation()"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</form>-->
-
-<!--old form for modifying education
-<form class="row container d-flex justify-content-center form-block" *ngIf="showModifyEducation[educacion.id] && isLogged" (ngSubmit)="onSubmitModifyEducation(educacion)">
-    <div class="col-xl-12">
-        <div class="card proj-progress-card">
-            <div class="card-block d-flex justify-content-between">
-                <div class="row">
-                    <div class="form-group row">
-                        <label for="text" class="col-sm-2 col-form-label">Institución</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="institucion" id="institucion" placeholder="Nombre de la institución" [(ngModel)]="institucion">
-                        </div>
-                    </div>
-                    <div class="form-group row form-row">
-                        <label for="text" class="col-sm-2 col-form-label">Nombre</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="nombre-estudio" id="nombre-estudio" placeholder="Nombre del curso, estudio o capacitación" [(ngModel)]="nombre">
-                        </div>
-                    </div>
-                    <div class="form-group row form-row">
-                        <label for="text" class="col-sm-2 col-form-label">Fecha de Inicio</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="fecha-inicio-estudio" id="fecha-inicio-estudio" placeholder="Fecha de inicio" [(ngModel)]="fechaInicio">
-                        </div>
-                    </div>
-                    <div class="form-group row form-row">
-                        <label for="text" class="col-sm-2 col-form-label">Fecha de Finalización</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="fecha-finalizacion-estudio" id="fecha-finalizacion-estudio" placeholder="Fecha de finalización" [(ngModel)]="fechaFinalizacion">
-                        </div>
-                    </div>
-                    <div class="form-group row form-row">
-                        <label for="text" class="col-sm-2 col-form-label">Descripción</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="descripcion-estudio" id="descripcion-estudio" placeholder="Descripción" [(ngModel)]="descripcion"> 
-                        </div>
-                    </div>
-                    <div class="form-group row form-row">
-                    <div class="col-sm-2">Estudio actual</div>
-                    <div class="col-sm-10">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="estudio-actual" id="estudio-actual" [(ngModel)]="estudioActual">
-                            <label class="form-check-label" for="estudio-actual">
-                                
-                            </label>
-                        </div>
-                    </div>
-                    </div>
-                    <div class="form-row d-flex">
-                        <div class="col-sm-10">
-                            <button type="submit" class="btn btn-warning">Modificar estudio</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="edit-buttons">
-                        <i class="fa fa-close" aria-hidden="true" (click)="onShowModifyEducation(educacion.id)"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</form>-->

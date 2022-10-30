@@ -32,12 +32,12 @@
 }
 
 .edit-icon {
-    padding-right: 20px;
+    margin-right: 20px;
     font-size: 20px;
 }
 
 .delete-icon {
-    padding-right: 0.7px;
+    margin-right: 0.7px;
     font-size: 20px;
 }
 
@@ -187,7 +187,7 @@
 .experiencepic {
     height: 80px;
     width: 80px;
-    object-fit:cover;
+    object-fit:contain;
     border-radius: 10%;
 }
 

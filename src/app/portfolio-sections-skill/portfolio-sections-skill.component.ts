@@ -11,8 +11,8 @@ import { TokenService } from '../servicios/token.service';
 export class PortfolioSectionsSkillComponent implements OnInit {
 
   mySkills:any;
-  showAddSkill:boolean = false;
   isLogged: boolean = false;
+  isLoad: boolean = false;
   errorValidation1: boolean = false;
   errorValidation2: boolean = false;
   errorValidation3: boolean = false;
@@ -21,6 +21,10 @@ export class PortfolioSectionsSkillComponent implements OnInit {
   porcentaje:string = "";
   color:string = "";
 
+  nombreCargados:string [] = [];
+  porcentajeCargados:string [] = [];
+  colorCargados:string [] = [];
+
   constructor(private datosPortfolio:PortfolioService, private tokenService: TokenService) { }
 
   ngOnInit(): void {
@@ -28,6 +32,10 @@ export class PortfolioSectionsSkillComponent implements OnInit {
     this.datosPortfolio.readSkill().subscribe(data =>{
       this.mySkills=data;
       for(let skill of this.mySkills){
+        this.nombreCargados[skill.id] = skill.nombre;
+        this.porcentajeCargados[skill.id] = skill.porcentaje;
+        this.colorCargados[skill.id] = skill.color;
+
         if(skill.color == "Rojo"){
           skill.color = "#FF5370";
         }
@@ -44,6 +52,7 @@ export class PortfolioSectionsSkillComponent implements OnInit {
           skill.color = "pink";
         }
       };
+      this.isLoad = !this.isLoad;
     });
 
     if(this.tokenService.getToken()){
@@ -59,10 +68,6 @@ export class PortfolioSectionsSkillComponent implements OnInit {
     this.errorValidation1 = false;
     this.errorValidation2 = false;
     this.errorValidation3 = false;
-  }
-
-  onShowAddSkill(){
-    this.showAddSkill = !this.showAddSkill;
   }
 
   onSubmitAddSkill(){
@@ -86,6 +91,7 @@ export class PortfolioSectionsSkillComponent implements OnInit {
       this.errorValidation3 = true;
       return;
     }
+    this.isLoad = !this.isLoad;
     const { nombre, porcentaje, color } = this;
     const addValues:any= { nombre, porcentaje, color };
     addValues.color = addValues.color.toString();
@@ -95,6 +101,10 @@ export class PortfolioSectionsSkillComponent implements OnInit {
         this.datosPortfolio.readSkill().subscribe(data =>{
           this.mySkills=data;
           for(let skill of this.mySkills){
+            this.nombreCargados[skill.id] = skill.nombre;
+            this.porcentajeCargados[skill.id] = skill.porcentaje;
+            this.colorCargados[skill.id] = skill.color;
+
             if(skill.color == "Rojo"){
               skill.color = "#FF5370";
             }
@@ -119,38 +129,45 @@ export class PortfolioSectionsSkillComponent implements OnInit {
     this.errorValidation1 = false;
     this.errorValidation2 = false;
     this.errorValidation3 = false;
+    this.isLoad = !this.isLoad;
     document.getElementById('closeButtonSkill')?.click();
   }
 
   onSubmitModifySkill(item:any){
-    if(this.nombre.length === 0 || 
-      this.porcentaje.length === 0 || 
-      this.color.length === 0) {
+    if(this.nombreCargados[item.id].length === 0 || 
+      this.porcentajeCargados[item.id].length === 0 || 
+      this.colorCargados[item.id].length === 0) {
         this.errorValidation1 = true;
         this.errorValidation2 = false;
         this.errorValidation3 = false;
         return;
     }
-    if(this.nombre.length > 40) {
+    if(this.nombreCargados[item.id].length > 40) {
       this.errorValidation1 = false;
       this.errorValidation2 = true;
       this.errorValidation3 = false;
       return;
     }
-    if(Number(this.porcentaje) < 0 || Number(this.porcentaje) > 100 || Number.isNaN(Number(this.porcentaje))) {
+    if(Number(this.porcentajeCargados[item.id]) < 0 || Number(this.porcentajeCargados[item.id]) > 100 || Number.isNaN(Number(this.porcentajeCargados[item.id]))) {
       this.errorValidation1 = false;
       this.errorValidation2 = false;
       this.errorValidation3 = true;
       return;
     }
-    const { nombre, porcentaje, color } = this;
+    const nombre = this.nombreCargados[item.id];
+    const porcentaje = this.porcentajeCargados[item.id];
+    const color = this.colorCargados[item.id];
     const modifValues:any= { nombre, porcentaje, color};
     modifValues.color = modifValues.color.toString();
-    console.log(modifValues);
     this.datosPortfolio.updateSkill(item, modifValues).subscribe((response) => {
+      this.isLoad = !this.isLoad;
       this.datosPortfolio.readSkill().subscribe(data =>{
         this.mySkills=data;
         for(let skill of this.mySkills){
+          this.nombreCargados[skill.id] = skill.nombre;
+          this.porcentajeCargados[skill.id] = skill.porcentaje;
+          this.colorCargados[skill.id] = skill.color;
+
           if(skill.color == "Rojo"){
             skill.color = "#FF5370";
           }
@@ -168,6 +185,7 @@ export class PortfolioSectionsSkillComponent implements OnInit {
           }
         };
       });
+      this.isLoad = !this.isLoad;
     }, err => {
       alert("No se pudo modificar, verifique estado de sesión e ingreso como usuario administrador");
     });
@@ -178,7 +196,6 @@ export class PortfolioSectionsSkillComponent implements OnInit {
   }
 
   onDeleteSkill(item: any) {
-    console.log(item);
     this.datosPortfolio.deleteSkill(item).subscribe(
       () => {
         this.mySkills = this.mySkills.filter( 

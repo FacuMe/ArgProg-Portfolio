@@ -1,3 +1,4 @@
+import { isNgTemplate } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { PortfolioService } from '../servicios/portfolio.service';
 import { TokenService } from '../servicios/token.service';
@@ -9,7 +10,6 @@ import { TokenService } from '../servicios/token.service';
 })
 export class PortfolioHeaderComponent implements OnInit {
   myPortfolio:any;
-  showModifyUser:boolean = false;
   load:boolean = false;
   isLogged: boolean = false;
   errorValidation1: boolean = false;
@@ -25,6 +25,15 @@ export class PortfolioHeaderComponent implements OnInit {
   urlFotoPerfil:string = "";
   correoElectronico:string = "";
 
+  nombreCargados:string [] = [];
+  apellidoCargados:string [] = [];
+  descripcion1Cargados:string [] = [];
+  descripcion2Cargados:string [] = [];
+  fechaNacimientoCargados:string [] = [];
+  domicilioCargados:string [] = [];
+  urlFotoPerfilCargados:string [] = [];
+  correoElectronicoCargados:string [] = [];
+
   constructor(private datosPortfolio:PortfolioService, private tokenService: TokenService) { }
 
   ngOnInit(): void {
@@ -32,6 +41,14 @@ export class PortfolioHeaderComponent implements OnInit {
       this.myPortfolio=data;
       this.load = true;
       for (let user of this.myPortfolio) {
+        this.nombreCargados[user.id] = user.nombre; 
+        this.apellidoCargados[user.id] = user.apellido; 
+        this.descripcion1Cargados[user.id] = user.descripcion1; 
+        this.descripcion2Cargados[user.id] = user.descripcion2; 
+        this.fechaNacimientoCargados[user.id] = user.fechaNacimiento; 
+        this.domicilioCargados[user.id] = user.domicilio; 
+        this.urlFotoPerfilCargados[user.id] = user.urlFotoPerfil; 
+        this.correoElectronicoCargados[user.id] = user.correoElectronico; 
         if(user.urlFotoPerfil == null || user.urlFotoPerfil == ''){
           user.urlFotoPerfil = "/assets/NoPicture-500x500.jpg";
         }
@@ -50,39 +67,51 @@ export class PortfolioHeaderComponent implements OnInit {
     this.errorValidation2 = false;
   }
 
-  onShowModifyUser() {
-    this.showModifyUser = !this.showModifyUser;
-  }
-
   onSubmitModifyUser(item:any){
-    if(this.nombre.length === 0 || 
-      this.apellido.length === 0 || 
-      this.descripcion1.length === 0 || 
-      this.fechaNacimiento.length === 0 || 
-      this.domicilio.length === 0 ||   
-      this.correoElectronico.length === 0) {
+    if(this.nombreCargados[item.id].length === 0 || 
+      this.apellidoCargados[item.id].length === 0 || 
+      this.descripcion1Cargados[item.id].length === 0 || 
+      this.fechaNacimientoCargados[item.id].length === 0 || 
+      this.domicilioCargados[item.id].length === 0 ||   
+      this.correoElectronicoCargados[item.id].length === 0) {
         this.errorValidation1 = true;
         this.errorValidation2 = false;
         return;
     }
-    if(this.nombre.length > 40 || 
-      this.apellido.length > 40 || 
-      this.descripcion1.length > 70 || 
-      this.descripcion2.length > 70 || 
-      this.fechaNacimiento.length > 40 || 
-      this.domicilio.length > 50 ||  
-      this.urlFotoPerfil.length > 255 || 
-      this.correoElectronico.length > 50) {
+    if(this.nombreCargados[item.id].length > 40 || 
+      this.apellidoCargados[item.id].length > 40 || 
+      this.descripcion1Cargados[item.id].length > 70 || 
+      this.descripcion2Cargados[item.id].length > 70 || 
+      this.fechaNacimientoCargados[item.id].length > 40 || 
+      this.domicilioCargados[item.id].length > 50 ||  
+      this.urlFotoPerfilCargados[item.id].length > 255 || 
+      this.correoElectronicoCargados[item.id].length > 50) {
         this.errorValidation1 = false;
         this.errorValidation2 = true;
         return;
     }
-    const { nombre, apellido, descripcion1, descripcion2, fechaNacimiento, domicilio, urlFotoPerfil, correoElectronico } = this;
+    const nombre = this.nombreCargados[item.id];
+    const apellido = this.apellidoCargados[item.id];
+    const descripcion1 = this.descripcion1Cargados[item.id]; 
+    const descripcion2 = this.descripcion2Cargados[item.id];
+    const fechaNacimiento = this.fechaNacimientoCargados[item.id];
+    const domicilio = this.domicilioCargados[item.id];
+    const urlFotoPerfil = this.urlFotoPerfilCargados[item.id];
+    const correoElectronico = this.correoElectronicoCargados[item.id];
     const modifValues:any= { nombre, apellido, descripcion1, descripcion2, fechaNacimiento, domicilio, urlFotoPerfil, correoElectronico };
     this.datosPortfolio.updateUser(item, modifValues).subscribe((response) => {
       this.datosPortfolio.readUser().subscribe(data =>{
         this.myPortfolio=data;
         for (let user of this.myPortfolio) {
+          this.nombreCargados[user.id] = user.nombre; 
+          this.apellidoCargados[user.id] = user.apellido; 
+          this.descripcion1Cargados[user.id] = user.descripcion1; 
+          this.descripcion2Cargados[user.id] = user.descripcion2; 
+          this.fechaNacimientoCargados[user.id] = user.fechaNacimiento; 
+          this.domicilioCargados[user.id] = user.domicilio; 
+          this.urlFotoPerfilCargados[user.id] = user.urlFotoPerfil; 
+          this.correoElectronicoCargados[user.id] = user.correoElectronico; 
+
           if(user.urlFotoPerfil == null || user.urlFotoPerfil == ''){
             user.urlFotoPerfil = "/assets/NoPicture-500x500.jpg";
           }

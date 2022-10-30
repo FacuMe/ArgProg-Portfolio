@@ -6,7 +6,7 @@
                     <h2>Proyectos</h2>
                 </div>
                 <div class="edit-buttons">
-                    <i class="fa fa-plus-circle" aria-hidden="true" *ngIf="isLogged" (click)="onShowAddProject()" data-bs-toggle="modal" data-bs-target="#staticBackdropNewProject"></i>
+                    <i class="fa fa-plus-circle" aria-hidden="true" *ngIf="isLogged" data-bs-toggle="modal" data-bs-target="#staticBackdropNewProject"></i>
                 </div>
             </div>
 
@@ -126,56 +126,56 @@
                                                     <div class="form-group row align-items-center">
                                                         <label for="text" class="col-md-3 col-form-label">Nombre <span *ngIf="errorValidation1" class="text-danger">*</span> <span *ngIf="errorValidation2" class="text-danger">*(40)</span> </label>
                                                         <div class="col-sm-9">
-                                                            <input type="text" class="form-control" name="nombre-proyecto" id="nombre-proyecto" placeholder="Nombre del proyecto" [(ngModel)]="nombre">
+                                                            <input type="text" class="form-control" name="nombre-proyecto" id="nombre-proyecto" placeholder="Nombre del proyecto" [(ngModel)]="nombreCargados[proyecto.id]">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row form-row mt-2 align-items-center">
                                                         <label for="text" class="col-md-3 col-form-label">Entidad <span *ngIf="errorValidation1" class="text-danger">*</span> <span *ngIf="errorValidation2" class="text-danger">*(40)</span> </label>
                                                         <div class="col-sm-9">
-                                                            <input type="text" class="form-control" name="entidad" id="entidad" placeholder="Nombre de la entidad" [(ngModel)]="entidad">
+                                                            <input type="text" class="form-control" name="entidad" id="entidad" placeholder="Nombre de la entidad" [(ngModel)]="entidadCargados[proyecto.id]">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row form-row mt-1 align-items-center">
                                                         <label for="text" class="col-md-3 col-form-label">Fecha de Inicio <span *ngIf="errorValidation1" class="text-danger">*</span> <span *ngIf="errorValidation2" class="text-danger">*(40)</span> </label>
                                                         <div class="col-sm-9">
-                                                            <input type="text" class="form-control" name="fecha-inicio-proyecto" id="fecha-inicio-proyecto" placeholder="Fecha de inicio" [(ngModel)]="fechaInicio">
+                                                            <input type="text" class="form-control" name="fecha-inicio-proyecto" id="fecha-inicio-proyecto" placeholder="Fecha de inicio" [(ngModel)]="fechaInicioCargados[proyecto.id]">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row form-row mt-1 align-items-center">
                                                         <label for="text" class="col-md-3 col-form-label">Fecha de Finalización <span *ngIf="errorValidation1" class="text-danger">*</span> <span *ngIf="errorValidation2" class="text-danger">*(40)</span> </label>
                                                         <div class="col-sm-9">
-                                                            <input [disabled]="checkbox.checked" type="text" class="form-control" name="fecha-finalizacion-proyecto" id="fecha-finalizacion-proyecto" placeholder="Fecha de finalización" [(ngModel)]="fechaFinalizacion">
+                                                            <input [disabled]="checkbox.checked" type="text" class="form-control" name="fecha-finalizacion-proyecto" id="fecha-finalizacion-proyecto" placeholder="Fecha de finalización" [(ngModel)]="fechaFinalizacionCargados[proyecto.id]">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row form-row mt-1 align-items-center">
                                                         <label for="text" class="col-md-3 col-form-label">URL Foto (Opcional) <span *ngIf="errorValidation2" class="text-danger">*(100)</span> </label>
                                                         <div class="col-sm-9">
-                                                            <input type="text" class="form-control" name="url-foto-proyecto" id="url-foto-proyecto" placeholder="URL Foto" [(ngModel)]="urlFoto">
+                                                            <input type="text" class="form-control" name="url-foto-proyecto" id="url-foto-proyecto" placeholder="URL Foto" [(ngModel)]="urlFotoCargados[proyecto.id]">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row form-row mt-1 align-items-center">
                                                         <label for="text" class="col-md-3 col-form-label">URL Proyecto (Opcional) <span *ngIf="errorValidation2" class="text-danger">*(100)</span> </label>
                                                         <div class="col-sm-9">
-                                                            <input type="text" class="form-control" name="url-proyecto" id="url-proyecto" placeholder="URL del Proyecto" [(ngModel)]="urlProyecto">
+                                                            <input type="text" class="form-control" name="url-proyecto" id="url-proyecto" placeholder="URL del Proyecto" [(ngModel)]="urlProyectoCargados[proyecto.id]">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row form-row mt-1 align-items-center">
                                                         <label for="text" class="col-md-3 col-form-label">Descripción <span *ngIf="errorValidation1" class="text-danger">*</span> <span *ngIf="errorValidation2" class="text-danger">*(255)</span> </label>
                                                         <div class="col-sm-9">
-                                                            <textarea type="text" class="form-control form-row" rows="3" name="descripcion-proyecto" id="descripcion-proyecto" placeholder="Descripción" [(ngModel)]="descripcion"></textarea>
+                                                            <textarea type="text" class="form-control form-row" rows="3" name="descripcion-proyecto" id="descripcion-proyecto" placeholder="Descripción" [(ngModel)]="descripcionCargados[proyecto.id]"></textarea>
                                                         </div>
                                                     </div>
                                                     <div class="form-group row form-row mt-1 align-items-center">
                                                         <label class="col-md-3 col-form-label">Proyecto Actual</label>
                                                         <div class="col-1">
                                                             <div class="form-check">
-                                                                <input #checkbox class="form-check-input" type="checkbox" name="proyecto-actual" id="proyecto-actual" [(ngModel)]="proyectoActual">
+                                                                <input #checkbox class="form-check-input" type="checkbox" name="proyecto-actual" id="proyecto-actual" [(ngModel)]="proyectoActualCargados[proyecto.id]">
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div *ngIf="errorValidation1" class="errorMsj">
                                                         <p class="text-danger col-form-label">
-                                                            * Por favor completa los campos obligatorios del empleo
+                                                            * Por favor completa los campos obligatorios del proyecto
                                                         </p>
                                                     </div>
                                                     <div *ngIf="errorValidation2" class="errorMsj">
@@ -226,147 +226,3 @@
         </div>
     </div>
 </div>
-
-<!--old form for adding new project
-<form class="row container d-flex justify-content-center form-block" *ngIf="showAddProject && isLogged" (ngSubmit)="onSubmitAddProject()">
-    <div class="col-xl-12">
-        <div class="card proj-progress-card">
-            <div class="card-block d-flex justify-content-between">
-                <div class="row">
-                    <div class="form-group row">
-                        <label for="text" class="col-sm-2 col-form-label">Nombre</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="nombre-proyecto" id="nombre-proyecto" placeholder="Nombre del proyecto" [(ngModel)]="nombre">
-                        </div>
-                    </div>
-                    <div class="form-group row form-row">
-                        <label for="text" class="col-sm-2 col-form-label">Entidad</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="entidad" id="entidad" placeholder="Nombre de la entidad" [(ngModel)]="entidad">
-                        </div>
-                    </div>
-                    <div class="form-group row form-row">
-                        <label for="text" class="col-sm-2 col-form-label">Fecha de Inicio</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="fecha-inicio-proyecto" id="fecha-inicio-proyecto" placeholder="Fecha de inicio" [(ngModel)]="fechaInicio">
-                        </div>
-                    </div>
-                    <div class="form-group row form-row">
-                        <label for="text" class="col-sm-2 col-form-label">Fecha de Finalización</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="fecha-finalizacion-proyecto" id="fecha-finalizacion-proyecto" placeholder="Fecha de finalización" [(ngModel)]="fechaFinalizacion">
-                        </div>
-                    </div>
-                    <div class="form-group row form-row">
-                        <label for="text" class="col-sm-2 col-form-label">Descripción</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="descripcion-proyecto" id="descripcion-proyecto" placeholder="Descripción" [(ngModel)]="descripcion">
-                        </div>
-                    </div>
-                    <div class="form-group row form-row">
-                    <div class="col-sm-2">Proyecto actual</div>
-                    <div class="col-sm-10">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="empleo-actual" id="empleo-actual" [(ngModel)]="proyectoActual">
-                            <label class="form-check-label" for="empleo-actual">
-                                
-                            </label>
-                        </div>
-                    </div>
-                    </div>
-                    <div class="form-row d-flex">
-                        <div class="col-sm-10">
-                            <button type="submit" class="btn btn-warning">Agregar proyecto</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="edit-buttons">
-                        <i class="fa fa-close" aria-hidden="true" (click)="onShowAddProject()"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    </form>
--->
-
-<!--old list of projects
-    <div *ngFor="let proyecto of myProjects">
-        <div class="subsection">
-            <div class="col-6">
-                <p>{{proyecto.nombre}}</p>
-                <p>{{proyecto.entidad}}</p>
-                <p>{{proyecto.fechaInicio}} - {{proyecto.fechaFinalizacion}}</p>
-                <p>{{proyecto.descripcion}}</p>
-            </div>
-            <div class="edit-buttons">
-                <i class="fa fa-pencil edit-icon" aria-hidden="true" *ngIf="!showModifyProject[proyecto.id] && isLogged" (click)="onShowModifyProject(proyecto.id)"></i>
-                <i class="fa fa-trash delete-icon" aria-hidden="true" *ngIf="isLogged" (click)="onDeleteProject(proyecto)"></i>
-            </div>
-        </div>
-        
-        <!- > form for modifying new project-- >
-        <form class="row container d-flex justify-content-center form-block" *ngIf="showModifyProject[proyecto.id] && isLogged" (ngSubmit)="onSubmitModifyProject(proyecto)">
-            <div class="col-xl-12">
-                <div class="card proj-progress-card">
-                    <div class="card-block d-flex justify-content-between">
-                        <div class="row">
-                            <div class="form-group row">
-                                <label for="text" class="col-sm-2 col-form-label">Nombre</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="nombre-proyecto" id="nombre-proyecto" placeholder="Nombre del proyecto" [(ngModel)]="nombre">
-                                </div>
-                            </div>
-                            <div class="form-group row form-row">
-                                <label for="text" class="col-sm-2 col-form-label">Entidad</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="entidad" id="entidad" placeholder="Nombre de la entidad" [(ngModel)]="entidad">
-                                </div>
-                            </div>
-                            <div class="form-group row form-row">
-                                <label for="text" class="col-sm-2 col-form-label">Fecha de Inicio</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="fecha-inicio-proyecto" id="fecha-inicio-proyecto" placeholder="Fecha de inicio" [(ngModel)]="fechaInicio">
-                                </div>
-                            </div>
-                            <div class="form-group row form-row">
-                                <label for="text" class="col-sm-2 col-form-label">Fecha de Finalización</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="fecha-finalizacion-proyecto" id="fecha-finalizacion-proyecto" placeholder="Fecha de finalización" [(ngModel)]="fechaFinalizacion">
-                                </div>
-                            </div>
-                            <div class="form-group row form-row">
-                                <label for="text" class="col-sm-2 col-form-label">Descripción</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="descripcion-proyecto" id="descripcion-proyecto" placeholder="Descripción" [(ngModel)]="descripcion">
-                                </div>
-                            </div>
-                            <div class="form-group row form-row">
-                            <div class="col-sm-2">Proyecto actual</div>
-                            <div class="col-sm-10">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="empleo-actual" id="empleo-actual" [(ngModel)]="proyectoActual">
-                                    <label class="form-check-label" for="empleo-actual">
-                                        
-                                    </label>
-                                </div>
-                            </div>
-                            </div>
-                            <div class="form-row d-flex">
-                                <div class="col-sm-10">
-                                    <button type="submit" class="btn btn-warning">Modificar proyecto</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="edit-buttons">
-                                <i class="fa fa-close" aria-hidden="true" *ngIf="isLogged" (click)="onShowModifyProject(proyecto.id)"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
--->

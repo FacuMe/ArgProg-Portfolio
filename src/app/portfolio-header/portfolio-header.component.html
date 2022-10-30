@@ -70,49 +70,49 @@
                             <div class="form-group row align-items-center">
                                 <label for="text" class="col-md-3 col-form-label">Nombre <span *ngIf="errorValidation1" class="text-danger">*</span> <span *ngIf="errorValidation2" class="text-danger">*(40)</span> </label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre del usuario" [(ngModel)]="nombre">
+                                    <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre del usuario" [(ngModel)]="nombreCargados[user.id]">
                                 </div>
                             </div>
                             <div class="form-group row form-row mt-2 align-items-center">
                                 <label for="text" class="col-md-3 col-form-label">Apellido <span *ngIf="errorValidation1" class="text-danger">*</span> <span *ngIf="errorValidation2" class="text-danger">*(40)</span> </label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="apellido" id="apellido" placeholder="Apellido del usuario" [(ngModel)]="apellido">
+                                    <input type="text" class="form-control" name="apellido" id="apellido" placeholder="Apellido del usuario" [(ngModel)]="apellidoCargados[user.id]">
                                 </div>
                             </div>
                             <div class="form-group row form-row mt-1 align-items-center">
                                 <label for="text" class="col-md-3 col-form-label">Descripción 1 <span *ngIf="errorValidation1" class="text-danger">*</span> <span *ngIf="errorValidation2" class="text-danger">*(70)</span> </label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="descripcion1" id="descripcion1" placeholder="Descripción 1" [(ngModel)]="descripcion1">
+                                    <input type="text" class="form-control" name="descripcion1" id="descripcion1" placeholder="Descripción 1" [(ngModel)]="descripcion1Cargados[user.id]">
                                 </div>
                             </div>
                             <div class="form-group row form-row mt-1 align-items-center">
                                 <label for="text" class="col-md-3 col-form-label">Descripción 2 (Opcional) <span *ngIf="errorValidation2" class="text-danger">*(70)</span> </label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="descripcion2" id="descripcion2" placeholder="Descripción 2" [(ngModel)]="descripcion2">
+                                    <input type="text" class="form-control" name="descripcion2" id="descripcion2" placeholder="Descripción 2" [(ngModel)]="descripcion2Cargados[user.id]">
                                 </div>
                             </div>
                             <div class="form-group row form-row mt-1 align-items-center">
                                 <label for="text" class="col-md-3 col-form-label">Fecha de Nacimiento <span *ngIf="errorValidation1" class="text-danger">*</span> <span *ngIf="errorValidation2" class="text-danger">*(40)</span> </label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="nacimiento" id="nacimiento" placeholder="Fecha de nacimiento (dd-mm-aaaa)" [(ngModel)]="fechaNacimiento">
+                                    <input type="text" class="form-control" name="nacimiento" id="nacimiento" placeholder="Fecha de nacimiento (dd-mm-aaaa)" [(ngModel)]="fechaNacimientoCargados[user.id]">
                                 </div>
                             </div>
                             <div class="form-group row form-row mt-1 align-items-center">
                                 <label for="text" class="col-md-3 col-form-label">Lugar de Residencia <span *ngIf="errorValidation1" class="text-danger">*</span> <span *ngIf="errorValidation2" class="text-danger">*(50)</span> </label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="residencia" id="residencia" placeholder="Lugar de residencia" [(ngModel)]="domicilio">
+                                    <input type="text" class="form-control" name="residencia" id="residencia" placeholder="Lugar de residencia" [(ngModel)]="domicilioCargados[user.id]">
                                 </div>
                             </div>
                             <div class="form-group row form-row mt-1 align-items-center">
                                 <label for="text" class="col-md-3 col-form-label">Correo Electrónico <span *ngIf="errorValidation1" class="text-danger">*</span> <span *ngIf="errorValidation2" class="text-danger">*(50)</span> </label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="email" id="email" placeholder="Dirección de correo electrónico" [(ngModel)]="correoElectronico">
+                                    <input type="text" class="form-control" name="email" id="email" placeholder="Dirección de correo electrónico" [(ngModel)]="correoElectronicoCargados[user.id]">
                                 </div>
                             </div>
                             <div class="form-group row form-row mt-1 align-items-center">
                                 <label for="text" class="col-md-3 col-form-label">URL foto de perfil (Opcional)<span *ngIf="errorValidation2" class="text-danger">*(255)</span></label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="urlFoto" id="urlFoto" placeholder="URL de la foto de perfil" [(ngModel)]="urlFotoPerfil">
+                                    <input type="text" class="form-control" name="urlFoto" id="urlFoto" placeholder="URL de la foto de perfil" [(ngModel)]="urlFotoPerfilCargados[user.id]">
                                 </div>
                             </div>
                             <div *ngIf="errorValidation1" class="errorMsj">
@@ -138,79 +138,3 @@
         
     </div>
 </div>
-
-<!--old form for modifying header
-<form class="row container d-flex justify-content-center form-block" *ngIf="showModifyUser && isLogged" (ngSubmit)="onSubmitModifyUser(user)">
-    <div class="col-xl-12">
-        <div class="card proj-progress-card">
-            <div class="card-block d-flex justify-content-between">
-                <div class="row">
-                    <div class="form-group row">
-                        <label for="text" class="col-sm-2 col-form-label">Nombre</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre del usuario" [(ngModel)]="nombre">
-                        </div>
-                    </div>
-                    <div class="form-group row form-row">
-                        <label for="text" class="col-sm-2 col-form-label">Apellido</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="apellido" id="apellido" placeholder="Apellido del usuario" [(ngModel)]="apellido">
-                        </div>
-                    </div>
-                    <div class="form-group row form-row">
-                        <label for="text" class="col-sm-2 col-form-label">Descripción 1</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="descripcion1" id="descripcion1" placeholder="Descripción 1" [(ngModel)]="descripcion1">
-                        </div>
-                    </div>
-                    <div class="form-group row form-row">
-                        <label for="text" class="col-sm-2 col-form-label">Descripción 2</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="descripcion2" id="descripcion2" placeholder="Descripción 2" [(ngModel)]="descripcion2">
-                        </div>
-                    </div>
-                    <div class="form-group row form-row">
-                        <label for="text" class="col-sm-2 col-form-label">Fecha de nacimiento</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="nacimiento" id="nacimiento" placeholder="Fecha de nacimiento (dd-mm-aaaa)" [(ngModel)]="fechaNacimiento">
-                        </div>
-                    </div>
-                    <div class="form-group row form-row">
-                        <label for="text" class="col-sm-2 col-form-label">Lugar de residencia</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="residencia" id="residencia" placeholder="Lugar de residencia" [(ngModel)]="domicilio">
-                        </div>
-                    </div>
-                    <div class="form-group row form-row">
-                        <label for="text" class="col-sm-2 col-form-label">Correo Electrónico</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="email" id="email" placeholder="Dirección de correo electrónico" [(ngModel)]="correoElectronico">
-                        </div>
-                    </div>
-                    <div class="form-group row form-row">
-                        <label for="text" class="col-sm-2 col-form-label">URL foto de perfil</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="urlFoto" id="urlFoto" placeholder="URL de la foto de perfil" [(ngModel)]="urlFotoPerfil">
-                        </div>
-                    </div>
-                    <div class="form-group row form-row">
-                        <label for="text" class="col-sm-2 col-form-label">URL logo</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="urlLogo" id="urlLogo" placeholder="URL del logo" [(ngModel)]="urlFotoLogo">
-                        </div>
-                    </div>
-                    <div class="form-row d-flex">
-                        <div class="col-sm-10">
-                            <button type="submit" class="btn btn-warning">Modificar información</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="edit-buttons">
-                        <i class="fa fa-close" aria-hidden="true" (click)="onShowModifyUser()"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</form>-->

@@ -36,8 +36,8 @@
 }
 
 .edit-icon {
-    padding-left: 60%;
-    padding-right: 20px;
+    margin-left: 60%;
+    margin-right: 20px;
 }
 
 .fa:hover {
@@ -101,7 +101,7 @@
 .educationpic {
     height: 80px;
     width: 80px;
-    object-fit:cover;
+    object-fit:contain;
     border-radius: 10%;
 }
 

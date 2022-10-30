@@ -9,8 +9,8 @@ import { TokenService } from '../servicios/token.service';
 })
 export class PortfolioAboutComponent implements OnInit {
   myProfile:any;
-  showModifyProfile:boolean = false;
   descripcion:string = "";
+  descripcionCargados: string [] = [];
   load:boolean = false;
   isLogged: boolean = false;
   errorValidation1: boolean = false;
@@ -22,6 +22,9 @@ export class PortfolioAboutComponent implements OnInit {
     this.datosPortfolio.readProfile().subscribe(data =>{
       this.myProfile=data;
       this.load = true;
+      for (let profile of this.myProfile) {
+        this.descripcionCargados[profile.id] = profile.descripcion; 
+      }
     });
     if(this.tokenService.getToken()){
       this.isLogged = true;
@@ -36,26 +39,25 @@ export class PortfolioAboutComponent implements OnInit {
     this.errorValidation2 = false;
   }
 
-  onShowModifyProfile(){
-    this.showModifyProfile = !this.showModifyProfile;
-  }
-
   onSubmitModifyProfile(item:any){
-    if(this.descripcion.length === 0) {
+    if(this.descripcionCargados[item.id].length === 0) {
       this.errorValidation1 = true;
       this.errorValidation2 = false;
       return;
     }
-    if(this.descripcion.length > 255 ) {
+    if(this.descripcionCargados[item.id].length > 255 ) {
       this.errorValidation1 = false;
       this.errorValidation2 = true;
       return;
     }
-    const { descripcion } = this;
+    const descripcion = this.descripcionCargados[item.id];
     const modifValues:any= { descripcion };
     this.datosPortfolio.updateProfile(item, modifValues).subscribe((response) => {
       this.datosPortfolio.readProfile().subscribe(data =>{
         this.myProfile=data;
+        for (let profile of this.myProfile) {
+          this.descripcionCargados[profile.id] = profile.descripcion; 
+        }
       });
     }, err => {
       alert("No se pudo modificar, verifique estado de sesión e ingreso como usuario administrador");
