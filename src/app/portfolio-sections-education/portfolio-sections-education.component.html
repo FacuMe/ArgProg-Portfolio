@@ -68,7 +68,7 @@
                                 </div>
                                 <div *ngIf="errorValidation1" class="errorMsj">
                                     <p class="text-danger">
-                                        * Por favor completa los campos obligatorios del empleo
+                                        * Por favor completa los campos obligatorios de la educación
                                     </p>
                                 </div>
                                 <div *ngIf="errorValidation2" class="errorMsj">
@@ -98,7 +98,7 @@
                             <div class="row">
                                 <!--card for each education-->
                                 <div *ngFor="let educacion of myEducations" class="col-xl-6 col-md-6 mb-4">
-                                    <div class="cards">
+                                    <div data-aos="fade-up" data-aos-duration="1500" data-aos-once="true" class="cards">
                                         <div class="card-top-items d-flex justify-content-between">
                                             <div class="col-xl-8">
                                                 <h5>{{educacion.institucion}}</h5>
@@ -137,44 +137,44 @@
                                                         <div class="form-group row align-items-center">
                                                             <label for="text" class="col-md-3 col-form-label">Institución <span *ngIf="errorValidation1" class="text-danger">*</span> <span *ngIf="errorValidation2" class="text-danger">*(40)</span> </label>
                                                             <div class="col-sm-9">
-                                                                <input type="text" class="form-control" name="institucion" id="institucion" placeholder="Nombre de la institución" [(ngModel)]="institucionCargados[educacion.id]">
+                                                                <input type="text" class="form-control" name="institucion" id="institucion-modif" placeholder="Nombre de la institución" [(ngModel)]="institucionCargados[educacion.id]">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row form-row mt-2 align-items-center">
                                                             <label for="text" class="col-md-3 col-form-label">Nombre <span *ngIf="errorValidation1" class="text-danger">*</span> <span *ngIf="errorValidation2" class="text-danger">*(40)</span> </label>
                                                             <div class="col-sm-9">
-                                                                <input type="text" class="form-control" name="nombre-estudio" id="nombre-estudio" placeholder="Nombre del curso, estudio o capacitación" [(ngModel)]="nombreCargados[educacion.id]">
+                                                                <input type="text" class="form-control" name="nombre-estudio" id="nombre-estudio-modif" placeholder="Nombre del curso, estudio o capacitación" [(ngModel)]="nombreCargados[educacion.id]">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row form-row mt-1 align-items-center">
                                                             <label for="text" class="col-md-3 col-form-label">Fecha de Inicio <span *ngIf="errorValidation1" class="text-danger">*</span> <span *ngIf="errorValidation2" class="text-danger">*(40)</span> </label>
                                                             <div class="col-sm-9">
-                                                                <input type="text" class="form-control" name="fecha-inicio-estudio" id="fecha-inicio-estudio" placeholder="Fecha de inicio" [(ngModel)]="fechaInicioCargados[educacion.id]">
+                                                                <input type="text" class="form-control" name="fecha-inicio-estudio" id="fecha-inicio-estudio-modif" placeholder="Fecha de inicio" [(ngModel)]="fechaInicioCargados[educacion.id]">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row form-row mt-1 align-items-center">
                                                             <label for="text" class="col-md-3 col-form-label">Fecha de Finalización <span *ngIf="errorValidation1" class="text-danger">*</span> <span *ngIf="errorValidation2" class="text-danger">*(40)</span> </label>
                                                             <div class="col-sm-9">
-                                                                <input [disabled]="checkbox.checked" type="text" class="form-control" name="fecha-finalizacion-estudio" id="fecha-finalizacion-estudio" placeholder="Fecha de finalización" [(ngModel)]="fechaFinalizacionCargados[educacion.id]">
+                                                                <input [disabled]="checkbox.checked" type="text" class="form-control" name="fecha-finalizacion-estudio-modif" id="fecha-finalizacion-estudio" placeholder="Fecha de finalización" [(ngModel)]="fechaFinalizacionCargados[educacion.id]">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row form-row mt-1 align-items-center">
                                                             <label for="text" class="col-md-3 col-form-label">URL Foto (Opcional)<span *ngIf="errorValidation2" class="text-danger">*(100)</span> </label>
                                                             <div class="col-sm-9">
-                                                                <input type="text" class="form-control" name="url-foto-educacion" id="url-foto-educacion" placeholder="URL Foto" [(ngModel)]="urlFotoCargados[educacion.id]">
+                                                                <input type="text" class="form-control" name="url-foto-educacion" id="url-foto-educacion-modif" placeholder="URL Foto" [(ngModel)]="urlFotoCargados[educacion.id]">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row form-row mt-1 align-items-center">
                                                             <label for="text" class="col-md-3 col-form-label">Descripción <span *ngIf="errorValidation1" class="text-danger">*</span> <span *ngIf="errorValidation2" class="text-danger">*(255)</span></label>
                                                             <div class="col-sm-9">
-                                                                <textarea type="text" class="form-control form-row" rows="3" name="descripcion-estudio" id="descripcion-estudio" placeholder="Descripción" [(ngModel)]="descripcionCargados[educacion.id]"></textarea>
+                                                                <textarea type="text" class="form-control form-row" rows="3" name="descripcion-estudio" id="descripcion-estudio-modif" placeholder="Descripción" [(ngModel)]="descripcionCargados[educacion.id]"></textarea>
                                                             </div>
                                                         </div>
                                                         <div class="form-group row form-row mt-1 align-items-center">
                                                             <div class="col-md-3">Estudio Actual</div>
                                                             <div class="col-1">
                                                                 <div class="form-check">
-                                                                    <input #checkbox class="form-check-input" type="checkbox" name="estudio-actual" id="estudio-actual" [(ngModel)]="estudioActualCargados[educacion.id]">
+                                                                    <input #checkbox class="form-check-input" type="checkbox" name="estudio-actual" id="estudio-actual-modif" [(ngModel)]="estudioActualCargados[educacion.id]">
                                                                 </div>
                                                             </div>
                                                         </div>

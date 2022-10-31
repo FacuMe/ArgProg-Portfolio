@@ -120,6 +120,15 @@ export class PortfolioSectionsExperienceComponent implements OnInit {
     this.errorValidation1 = false;
     this.errorValidation2 = false;
     document.getElementById('closeButtonExp')?.click();
+    this.puesto = "";
+    this.empleador = "";
+    this.fechaIngreso = "";
+    this.fechaSalida = "";
+    this.tipoEmpleo = "";
+    this.descripcion = "";
+    this.empleoActual = false;
+    this.urlFoto = "";
+
   }
 
   onSubmitModifyExperience(item:any){
@@ -181,7 +190,6 @@ export class PortfolioSectionsExperienceComponent implements OnInit {
   }
 
   onDeleteExperience(item: any) {
-    console.log(item);
     this.datosPortfolio.deleteExperience(item).subscribe(
       () => {
         this.myExperiences = this.myExperiences.filter( 

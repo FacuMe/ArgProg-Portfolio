@@ -4,7 +4,7 @@
             <div class="title-content">
                 <h2>Perfil</h2>
                 <div class="description">
-                    <div>
+                    <div data-aos="zoom-in" data-aos-duration="2000" data-aos-once="true">
                         <p *ngIf="load" class="fst-italic">{{profile.descripcion}}</p>
                     </div>    
                 </div>
@@ -55,33 +55,3 @@
         
     </div>
 </div>
-
-<!--form for modifying profile
-<form class="row container d-flex justify-content-center form-block" *ngIf="showModifyProfile && isLogged" (ngSubmit)="onSubmitModifyProfile(profile)">
-    <div class="col-xl-12">
-        <div class="card proj-progress-card">
-            <div class="card-block d-flex justify-content-between">
-                <div class="row d-flex justify-content-between col-sm-10">
-                    <div>
-                        <div class="form-group row form-row">
-                            <label for="text" class="col-sm-2 col-form-label">Descripción</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control form-row" name="descripcion" id="descripcion" placeholder="Descripcion" [(ngModel)]="descripcion">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div>
-                            <button type="submit" class="btn btn-warning form-row">Modificar perfil</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="edit-buttons">
-                        <i class="fa fa-close" aria-hidden="true" (click)="onShowModifyProfile()"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</form>-->

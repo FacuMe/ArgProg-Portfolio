@@ -121,6 +121,14 @@ export class PortfolioSectionsProjectComponent implements OnInit {
     this.errorValidation1 = false;
     this.errorValidation2 = false;
     document.getElementById('closeButtonProj')?.click();
+    this.nombre = "";
+    this.entidad = "";
+    this.fechaInicio = "";
+    this.fechaFinalizacion = "";
+    this.descripcion = "";
+    this.proyectoActual = false;
+    this.urlFoto = "";
+    this.urlProyecto = "";
   }
 
   onSubmitModifyProject(item:any){
@@ -182,7 +190,6 @@ export class PortfolioSectionsProjectComponent implements OnInit {
   }
 
   onDeleteProject(item: any) {
-    console.log(item);
     this.datosPortfolio.deleteProject(item).subscribe(
       () => {
         this.myProjects = this.myProjects.filter( 

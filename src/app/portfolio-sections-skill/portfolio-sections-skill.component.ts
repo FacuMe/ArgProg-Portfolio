@@ -131,6 +131,9 @@ export class PortfolioSectionsSkillComponent implements OnInit {
     this.errorValidation3 = false;
     this.isLoad = !this.isLoad;
     document.getElementById('closeButtonSkill')?.click();
+    this.nombre = "";
+    this.porcentaje = "";
+    this.color = "";
   }
 
   onSubmitModifySkill(item:any){

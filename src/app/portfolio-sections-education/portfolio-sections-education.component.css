@@ -36,7 +36,7 @@
 }
 
 .edit-icon {
-    margin-left: 60%;
+    margin-left:60%;
     margin-right: 20px;
 }
 
@@ -115,8 +115,9 @@
     }
 
     .edit-icon{
-        padding-left: 45%;
+    margin-left:35%;
     }
+
     .educationpic{
         height: 70px;
         width: 70px;

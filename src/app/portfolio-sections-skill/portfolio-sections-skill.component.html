@@ -50,7 +50,7 @@
                                 </div>
                                 <div *ngIf="errorValidation1" class="errorMsj">
                                     <p class="text-danger col-form-label">
-                                        * Por favor completa los campos obligatorios del empleo
+                                        * Por favor completa los campos obligatorios de la habilidad
                                     </p>
                                 </div>
                                 <div *ngIf="errorValidation2" class="errorMsj">
@@ -81,18 +81,20 @@
                         <div class="card-block">
                             <div class="row">
                                 <div *ngFor="let habilidad of mySkills" class="col-xl-3 col-md-6">
-                                    <div *ngIf="isLoad" class="d-flex justify-content-between">
-                                        <h6>{{habilidad.nombre}}</h6>
-                                        <div class="edit-buttons">
-                                            <i class="fa fa-pencil edit-icon" aria-hidden="true" *ngIf="isLogged" data-bs-toggle="modal" [attr.data-bs-target]="'#staticBackdropSkill' + habilidad.id"></i>
-                                            <i class="fa fa-trash delete-icon" aria-hidden="true" *ngIf="isLogged" data-bs-toggle="modal" [attr.data-bs-target]="'#staticBackdropSkillDelete' + habilidad.id"></i>
+                                    <div data-aos="fade-up" data-aos-duration="1500" data-aos-once="true">
+                                        <div *ngIf="isLoad" class="d-flex justify-content-between">
+                                            <h6>{{habilidad.nombre}}</h6>
+                                            <div class="edit-buttons">
+                                                <i class="fa fa-pencil edit-icon" aria-hidden="true" *ngIf="isLogged" data-bs-toggle="modal" [attr.data-bs-target]="'#staticBackdropSkill' + habilidad.id"></i>
+                                                <i class="fa fa-trash delete-icon" aria-hidden="true" *ngIf="isLogged" data-bs-toggle="modal" [attr.data-bs-target]="'#staticBackdropSkillDelete' + habilidad.id"></i>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <h5 class="m-b-30 f-w-700">{{habilidad.porcentaje}}%</h5>
-                                    <div class="progress">
-                                        <div class="progress-bar" [ngStyle]="{
-                                            'width': (habilidad.porcentaje + '%'), 
-                                            'background': habilidad.color}">
+                                        <h5 class="m-b-30 f-w-700">{{habilidad.porcentaje}}%</h5>
+                                        <div class="progress">
+                                            <div class="progress-bar" [ngStyle]="{
+                                                'width': (habilidad.porcentaje + '%'), 
+                                                'background': habilidad.color}">
+                                            </div>
                                         </div>
                                     </div>
 
@@ -110,20 +112,20 @@
                                                         <div class="form-group row align-items-center">
                                                             <label for="text" class="col-md-3 col-form-label">Nombre <span *ngIf="errorValidation1" class="text-danger">*</span> <span *ngIf="errorValidation2" class="text-danger">*(40)</span> </label>
                                                             <div class="col-sm-9">
-                                                                <input type="text" class="form-control" name="nombre-habilidad" id="nombre-habilidad" placeholder="Nombre de la habilidad" [(ngModel)]="nombreCargados[habilidad.id]">
+                                                                <input type="text" class="form-control" name="nombre-habilidad" id="nombre-habilidad-modif" placeholder="Nombre de la habilidad" [(ngModel)]="nombreCargados[habilidad.id]">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row form-row mt-2 align-items-center">
                                                             <label for="text" class="col-md-3 col-form-label">Porcentaje <span *ngIf="errorValidation1" class="text-danger">*</span> <span *ngIf="errorValidation2" class="text-danger">*(3)</span> <span *ngIf="errorValidation3" class="text-danger">*(0-100)</span> </label>
                                                             <div class="col-sm-9">
-                                                                <input type="text" class="form-control" name="porcentaje" id="porcentaje" placeholder="Porcentaje de progreso (0 - 100)" [(ngModel)]="porcentajeCargados[habilidad.id]">
+                                                                <input type="text" class="form-control" name="porcentaje" id="porcentaje-modif" placeholder="Porcentaje de progreso (0 - 100)" [(ngModel)]="porcentajeCargados[habilidad.id]">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row form-row mt-1 align-items-center">
                                                             <label for="exampleFormControlSelect" class="col-md-3 col-form-label">Grupo de color <span *ngIf="errorValidation1" class="text-danger">*</span></label>
                                                             <div class="col-sm-9">
                                                                 <!--<select multiple class="form-control" name="color" id="color" [(ngModel)]="color">-->
-                                                                <select class="form-control form-select" name="color" id="color" [(ngModel)]="colorCargados[habilidad.id]">
+                                                                <select class="form-control form-select" name="color" id="color-modif" [(ngModel)]="colorCargados[habilidad.id]">
                                                                     <option value="" selected disabled hidden>Seleccionar color</option>
                                                                     <option>Rojo</option>
                                                                     <option>Azul</option>

@@ -1,7 +1,7 @@
 <div class="container-fluid" *ngFor="let user of myPortfolio">
     <div class="portfolio-header">  
         <img class="img-fluid banner" src="/assets/leadbg3.jpg" alt="banner">
-        <div class="photo">
+        <div data-aos="flip-down" data-aos-duration="1500" data-aos-once="true" class="photo">
             <img id="url_foto_perfil" class="profilepic img-fluid" [src]="user.urlFotoPerfil" alt="profile-pic" *ngIf="load">
             <div class="edit-buttons">
                 <i class="fa fa-pencil" aria-hidden="true" *ngIf="isLogged"  data-bs-toggle="modal" data-bs-target="#staticBackdropHeader"></i>
@@ -9,7 +9,7 @@
         </div>
         <div class="personal-data" *ngIf="load">
             <div class="col-sm-6">
-                <div class="title col-xl-10">
+                <div data-aos="fade-down-left" data-aos-duration="1500" data-aos-once="true" class="title col-xl-10">
                     <h1>
                         <b>{{user.nombre}} {{user.apellido}}</b>
                     </h1> 
@@ -17,25 +17,25 @@
                 <div class="info">
                     <ul>
                         <li>
-                            <div class="infocard">
+                            <div data-aos="fade-left" data-aos-duration="1500" data-aos-once="true" class="infocard">
                                 <i class="fa fa-chevron-right" aria-hidden="true"></i>
                                 <p>{{user.descripcion1}}</p>
                             </div>
                         </li>
                         <li *ngIf="user.descripcion2">
-                            <div class="infocard">
+                            <div data-aos="fade-left" data-aos-duration="1500" data-aos-once="true" class="infocard">
                                 <i class="fa fa-chevron-right" aria-hidden="true"></i>
                                 <p>{{user.descripcion2}}</p>
                             </div>
                         </li>
                         <li>
-                            <div class="infocard">
+                            <div data-aos="fade-left" data-aos-duration="1500" data-aos-once="true" class="infocard">
                                 <i class="fa fa-chevron-right" aria-hidden="true"></i>
                                 <p>{{user.fechaNacimiento}}, {{user.domicilio}}</p>
                             </div>
                         </li>
                         <li>
-                            <div class="infocard">
+                            <div data-aos="fade-left" data-aos-duration="1500" data-aos-once="true" class="infocard">
                                 <i class="fa fa-chevron-right" aria-hidden="true"></i>
                                 <p>{{user.correoElectronico}}</p>
                             </div>
@@ -43,7 +43,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="argproglogo align-self-center">
+            <div data-aos="fade-down" data-aos-duration="1500" data-aos-once="true" class="argproglogo align-self-center">
                 <img id="joblogo" src="/assets/mineconlogo2.png" alt="portfolio-logo">
                 <div class="typing">
                     <div class="wrapper">
@@ -117,7 +117,7 @@
                             </div>
                             <div *ngIf="errorValidation1" class="errorMsj">
                                 <p class="text-danger col-form-label">
-                                    * Por favor completa los campos obligatorios del empleo
+                                    * Por favor completa los campos obligatorios del perfil
                                 </p>
                             </div>
                             <div *ngIf="errorValidation2" class="errorMsj">

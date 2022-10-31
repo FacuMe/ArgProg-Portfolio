@@ -115,6 +115,13 @@ export class PortfolioSectionsEducationComponent implements OnInit {
     this.errorValidation1 = false;
     this.errorValidation2 = false;
     document.getElementById('closeButtonEduc')?.click();
+    this.institucion = "";
+    this.nombre = "";
+    this.fechaInicio = "";
+    this.fechaFinalizacion = "";
+    this.descripcion = "";
+    this.estudioActual = false;
+    this.urlFoto = "";
   }
 
   onSubmitModifyEducation(item:any){
@@ -174,7 +181,6 @@ export class PortfolioSectionsEducationComponent implements OnInit {
   }
 
   onDeleteEducation(item: any) {
-    console.log(item);
     this.datosPortfolio.deleteEducation(item).subscribe(
       () => {
         this.myEducations = this.myEducations.filter( 
