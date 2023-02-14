@@ -5,11 +5,11 @@
     text-align: center;
     padding: 30px 0;
 }
-
-#footer .container{
-    margin-right: 125px;
-}
   
+#footer .container{
+    padding-right: 3.6rem;
+}
+
 #footer h3 {
     font-size: 32px;
     font-weight: 700;

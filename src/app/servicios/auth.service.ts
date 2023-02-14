@@ -14,7 +14,11 @@ export class AuthService {
    * authURL = 'http://localhost:8080/auth/';
   */
   
-   authURL = 'https://back-proyectofinal-argprog.herokuapp.com/auth/';
+  /** viejo link heroku obsoleto
+  * authURL = 'https://back-proyectofinal-argprog.herokuapp.com/auth/';
+  * */
+
+  authURL = 'https://test-api-rest.herokuapp.com/auth/';
 
   constructor(private httpClient: HttpClient) { }
 

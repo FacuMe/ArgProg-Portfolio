@@ -17,7 +17,11 @@ export class PortfolioService {
    * private apiUrl = 'http://localhost:8080/';
    * */
   
-  private apiUrl = 'https://back-proyectofinal-argprog.herokuapp.com/';
+  /** viejo link heroku obsoleto
+   * private apiUrl = 'https://back-proyectofinal-argprog.herokuapp.com/';
+  */
+
+  private apiUrl = 'https://test-api-rest.herokuapp.com/';
 
   constructor(private http:HttpClient) { }
 
